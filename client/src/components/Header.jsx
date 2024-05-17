@@ -1,20 +1,58 @@
 import React from 'react'
+import { Avatar, Button, Dropdown, Navbar} from "flowbite-react";
+import { Link, useLocation} from "react-router-dom";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useState } from "react";
+import logo from "../images/logo.png"
 
 export default function Header() {
+  const path = useLocation().pathname;
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  }
   return (
-    <div >
-    Header
-    <div>
-                <nav>
-                    <ul className="flex flex-row gap-2 text-right">
-                        <li><a href="/" className="text-xs hover:underline">home</a></li>
-                        <li><a href="/about" className="text-xs hover:underline">about</a></li>
-                        <li><a href="/signin"
-                                className="text-xs bg-orange-600 p-1 rounded-lg text-white shadow-lg hover:bg-orange-500">login</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+    <Navbar className="border border-b-2 dark:bg-[#0c12243f]">
+      <Link to="/">
+        <img src= {logo} alt="Logo" />
+      </Link>
+        <Button className="w-12 h10 lg:hidden" pill>
+          <AiOutlineSearch/>
+        </Button>
+      <Navbar.Collapse>
+          <Navbar.Link active={path === "/"} as={"div"}>
+          <Link to="/" >Home</Link>
+
+          </Navbar.Link>
+          <Navbar.Link active={path === "/about"} as={"div"}>
+          <Link to="/about">About</Link>
+
+          </Navbar.Link>
+          <Navbar.Link active={path === "/search"} as={"div"}>
+          <Link to="/search">All Posts</Link>
+          </Navbar.Link>
+          </Navbar.Collapse>
+
+          
+        <form onSubmit={handleSubmit}>
+          <input 
+            type="text"
+            placeholder="Search..."
+            className="hidden lg:inline bg-white dark:bg-black rounded-full text-left"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </form>
+        <Link to="/signin">
+                  <Button style={{ marginLeft: '20px', marginTop: '10px'}} className="w-15 h-15 outline-1 outline-[#0e93b7]">Einloggen
+                  </Button>
+                </Link>
+  </Navbar>
   )
 }
