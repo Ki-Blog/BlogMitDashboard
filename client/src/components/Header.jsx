@@ -3,10 +3,12 @@ import { Avatar, Button, Dropdown, Navbar} from "flowbite-react";
 import { Link, useLocation} from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useState } from "react";
+import logo from "../images/logo.png"
 
 export default function Header() {
   const path = useLocation().pathname;
   const [searchTerm, setSearchTerm] = useState("");
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +19,9 @@ export default function Header() {
   }
   return (
     <Navbar className="border border-b-2 dark:bg-[#0c12243f]">
+      <Link to="/">
+        <img src= {logo} alt="Logo" />
+      </Link>
         <Button className="w-12 h10 lg:hidden" pill>
           <AiOutlineSearch/>
         </Button>
@@ -44,6 +49,10 @@ export default function Header() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </form>
+        <Link to="/signin">
+                  <Button style={{ marginLeft: '20px', marginTop: '10px'}} className="w-15 h-15 outline-1 outline-[#0e93b7]">Einloggen
+                  </Button>
+                </Link>
   </Navbar>
   )
 }
