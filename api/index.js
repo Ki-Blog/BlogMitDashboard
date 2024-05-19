@@ -20,6 +20,11 @@ app.listen(4000, () => {
     console.log('server running on port 4000!')
   });
 
+  
+
+app.use("/api/auth", authRoutes);
+app.use("/api/post", postRoutes);
+app.use("/api/comment", commentRoutes);
 
 app.use((error, req, res, next) => {
     const statusCode = error.statusCode || 500;
