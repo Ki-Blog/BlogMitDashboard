@@ -7,16 +7,16 @@ import { useSelector } from "react-redux";
 export default function FooterCom() {
   const { theme } = useSelector((state) => state.theme);
   return (
-    <Footer container className='border-t border-1px border-[#0e93b7] rounded-none dark:bg-[#0c12243f]'>
+    <Footer container className='border-t-2 border-[#385cb6] rounded-none dark:bg-[#0b1020d4] bg-[#b8bfd71e]'>
     <div className='w-full max-w-7xl mx-auto'>
       <div className='grid w-full justify-between sm:flex md:grid-cols-1'>
         <div className='mt-5'>
         <Link to="/">
         <img src={theme === "dark" ? logodark : logo} alt="Logo" />
       </Link>
-      </div>
-      <div className='grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6'>
-        <div>
+      </div >
+      <div className='flex gap-16 sm:mt-0 mt-4 sm:justify-center'>
+        <div >
         <Footer.Title title='Über Uns'/>
         <Footer.LinkGroup col>
           <Footer.Link
@@ -53,7 +53,7 @@ export default function FooterCom() {
     <div className='w-full sm:flex sm:items-center sm:justify-between'>
       <Footer.Copyright href='#' by="AI Quantum " year={new Date().getFullYear()}
       />
-      <div className='flex gap-6 sm:mt-0 mt-4 sm:justify-center'>
+      <div className='flex gap-8 sm:mt-0 mt-4 mr-16 sm:justify-center'>
         <Footer.Icon href='#' icon={BsFacebook}/>
         <Footer.Icon href='#' icon={BsInstagram}/>
         <Footer.Icon href='#' icon={BsTwitter}/>
