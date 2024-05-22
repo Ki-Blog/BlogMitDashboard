@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div>
       <div className="flex flex-col gap-4 lg:p-15 mx-auto">
-        <div className="relative mx-auto bg-black w-full border-b-2 border-[#0e93b7] dark:border-hidden"
+        <div className="relative mx-auto bg-black w-full border-b-2 border-[#385cb6] dark:border-hidden"
         >
           <div className="relative mx-auto max-w-[1500px]">
             <video loop autoPlay muted className="w-full h-auto object-cover">
@@ -42,13 +42,13 @@ export default function Home() {
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7" >
         {posts && posts.length > 0 && (
           <div className="gap-8 flex flex-col">
-            <h2 className="text-3xl font-medium text-center text-[#0e93b7] dark:text-[#0096bf]">Neuste Beiträge</h2>
+            <h2 className="text-3xl font-medium text-center text-[#385cb6] ">Neuste Beiträge</h2>
             <div className="flex flex-wrap gap-4">
               {posts.map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             </div>
-            <Link to="/search" className="text-lg text-[#0e93b7] dark:text-[#0096bf]  hover:underline text-center font-bold">
+            <Link to="/search" className="text-lg text-[#385cb6]  hover:underline text-center font-bold">
               Alle Beiträge anzeigen
             </Link>
           </div>

@@ -102,13 +102,13 @@ export default function Search() {
 
   return (
     <div className='flex flex-col md:flex-row'>
-      <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
+      <div className='p-7 md:border-r md:min-h-screen border-gray-700 dark:bg-[#0b1020d4] bg-[#b8bfd71e]'>
         <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
-          <div className='flex   items-center gap-2'>
+          <div className='flex items-center gap-2'>
             <label className='whitespace-nowrap font-semibold'>
               Search Term:
             </label>
-            <TextInput
+            <input className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
               placeholder='Search...'
               id='searchTerm'
               type='text'
@@ -117,20 +117,20 @@ export default function Search() {
             />
           </div>
           <div className='flex items-center gap-2'>
-            <label className='font-semibold'>Sort:</label>
-            <Select onChange={handleChange} value={sidebarData.sort} id='sort'>
-              <option value='desc'>Latest</option>
-              <option value='asc'>Oldest</option>
-            </Select>
+            <label className='font-semibold'>Sortieren nach:</label>
+            <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md' onChange={handleChange} value={sidebarData.sort} id='sort'>
+              <option value='desc'>Neuste</option>
+              <option value='asc'>Älteste</option>
+            </select>
           </div>
           <div className='flex items-center gap-2'>
-            <label className='font-semibold'>Category:</label>
-            <Select
+            <label className='font-semibold'>Kategorie:</label>
+            <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
               onChange={handleChange}
               value={sidebarData.category}
               id='category'
             >
-              <option value='uncategorized'>Uncategorized</option>
+              <option value='uncategorized'>Nicht kategorisiert</option>
               <option value='midjourney'>Midjourney</option>
               <option value='pika'>Pika</option>
               <option value='canva'>Canva</option>
@@ -140,31 +140,31 @@ export default function Search() {
               <option value='beautifulai'>Beautiful.ai</option>
               <option value='LanguageTool'>LanguageTool</option>
               <option value='dalle2'>DALL-E2</option>
-            </Select>
+            </select>
           </div>
-          <Button type='submit' className='bg-#0e93b7' outline>
+          <Button type='submit' gradientDuoTone='purpleToBlue' outline>
             Filter anwenden
           </Button>
         </form>
       </div>
       <div className='w-full'>
-        <h1 className='text-4xl font-semibold p-3 mt-5 ml-4  text text-[#0e93b7]'>
+        <h1 className='text-4xl font-semibold p-3 mt-5 ml-4 text-[#385cb6]'>
         Ergebnisse:
         </h1>
         <div className='p-7 flex flex-wrap gap-4'>
           {!loading && posts.length === 0 && (
-            <p className='text-xl text-gray-500'>No posts found.</p>
+            <p className='text-xl text-[#385cb6]'>Keine Einträge gefunden.</p>
           )}
-          {loading && <p className='text-xl text-gray-500'>Loading...</p>}
+          {loading && <p className='text-xl text-[#385cb6]'>Laden...</p>}
           {!loading &&
             posts &&
             posts.map((post) => <PostCard key={post._id} post={post} />)}
           {showMore && (
             <button
               onClick={handleShowMore}
-              className='text-teal-500 text-lg hover:underline p-7 w-full'
+              className='text-[#385cb6] text-lg hover:underline p-7 w-full'
             >
-              Show More
+              Weitere Beiträge anzeigen
             </button>
           )}
         </div>
