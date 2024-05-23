@@ -1,15 +1,15 @@
-import {
-  HiUser,
-  HiArrowSmRight,
-  HiDocumentText,
-  HiOutlineUserGroup,
-  HiAnnotation,
-  HiChartPie,
-} from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { signoutSuccess } from '../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  HiClipboardList,
+  HiLogout,
+  HiChatAlt2,
+  HiUserGroup,
+  HiCog,
+  HiChartBar,
+} from 'react-icons/hi';
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -42,49 +42,49 @@ export default function DashSidebar() {
   };
 
   return (
-    <div className="w-full md:w-56 h-full dark:bg-[#0b1020d4] bg-[#b8bfd71e] flex flex-col p-4">
+    <div className="w-full md:w-56 h-full md:border-r border-[#aeaeae77] dark:border-[#aeaeae2f] dark:bg-[#090d1c] bg-[#f7f7fa] flex flex-col p-4">
       <div className="flex flex-col gap-1">
         {currentUser && currentUser.isAdmin && (
           <Link to="/dashboard?tab=dash">
-            <div className={`flex items-center p-3 rounded hover:bg-[#273f7b] ${tab === 'dash' || !tab ? 'bg-[#2e406d] text-white' : ''}`}>
-              <HiChartPie className="mr-2" />
+            <div className={`flex items-center p-3 rounded text-[#979dc0] hover:text-white hover:bg-[#141c37] ${tab === 'dash' || !tab ? 'bg-[#2e406d] text-white' : ''}`}>
+              <HiChartBar className="mr-2 text-2xl" />
               Dashboard
             </div>
           </Link>
         )}
         <Link to="/dashboard?tab=profile">
-          <div className={`flex items-center p-3 rounded hover:bg-[#273f7b] ${tab === 'profile' ? 'bg-[#2e406d] text-white' : ''}`}>
-            <HiUser className="mr-2" />
+          <div className={`flex items-center p-3 rounded text-[#979dc0] hover:text-white hover:bg-[#141c37] ${tab === 'profile' ? 'bg-[#2e406d] text-white' : ''}`}>
+            <HiCog className="mr-2 text-2xl" />
             Profil
           </div>
         </Link>
         {currentUser.isAdmin && (
           <Link to="/dashboard?tab=posts">
-            <div className={`flex items-center p-3 rounded hover:bg-[#273f7b] ${tab === 'posts' ? 'bg-[#2e406d] text-white' : ''}`}>
-              <HiDocumentText className="mr-2" />
-              Posts
+            <div className={`flex items-center p-3 rounded text-[#979dc0] hover:text-white hover:bg-[#141c37] ${tab === 'posts' ? 'bg-[#2e406d] text-white' : ''}`}>
+              <HiClipboardList className="mr-2 text-2xl" />
+              Beiträge
             </div>
           </Link>
         )}
         {currentUser.isAdmin && (
           <>
             <Link to="/dashboard?tab=users">
-              <div className={`flex items-center p-3 rounded hover:bg-[#273f7b] ${tab === 'users' ? 'bg-[#2e406d] text-white' : ''}`}>
-                <HiOutlineUserGroup className="mr-2" />
-                Users
+              <div className={`flex items-center p-3 rounded text-[#979dc0] hover:text-white hover:bg-[#141c37] ${tab === 'users' ? 'bg-[#2e406d] text-white' : ''}`}>
+                <HiUserGroup className="mr-2 text-2xl" />
+                Benutzer
               </div>
             </Link>
             <Link to="/dashboard?tab=comments">
-              <div className={`flex items-center p-3 rounded hover:bg-[#273f7b] ${tab === 'comments' ? 'bg-[#2e406d] text-white' : ''}`}>
-                <HiAnnotation className="mr-2" />
-                Comments
+              <div className={`flex items-center p-3 rounded text-[#979dc0] hover:text-white hover:bg-[#141c37] ${tab === 'comments' ? 'bg-[#2e406d] text-white' : ''}`}>
+                <HiChatAlt2 className="mr-2 text-2xl" />
+                Kommentare
               </div>
             </Link>
           </>
         )}
-        <div className="flex items-center p-3 rounded hover:bg-[#273f7b] cursor-pointer" onClick={handleSignout}>
-          <HiArrowSmRight className="mr-2" />
-          Sign Out
+        <div className="flex items-center p-3 rounded text-[#979dc0] hover:text-white hover:bg-[#141c37] cursor-pointer" onClick={handleSignout}>
+          <HiLogout className="mr-2 text-2xl" />
+          Ausloggen
         </div>
       </div>
     </div>

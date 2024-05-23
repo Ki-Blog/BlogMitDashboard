@@ -21,7 +21,7 @@ export default function CreatePost() {
   const handleUploadImage = async () => {
     try {
       if (!file) {
-        setImageUploadError("Please select an image");
+        setImageUploadError("Bitte wähle ein Bild aus");
         return;
       }
       setImageUploadError(null);
@@ -36,7 +36,7 @@ export default function CreatePost() {
           setImageUploadProgress(progress.toFixed(0));
         }, 
         (error) => {
-          setImageUploadError("Image upload failed");
+          setImageUploadError("Hochladen des Bildes ist fehlgeschlagen");
           setImageUploadProgress(null);
         },
         () => {
@@ -48,7 +48,7 @@ export default function CreatePost() {
         }
       );
     } catch (error) {
-      setImageUploadError("Image upload failed");
+      setImageUploadError("Hochladen des Bildes ist fehlgeschlagen");
       setImageUploadProgress(null);
       console.log(error);
     }
@@ -73,28 +73,28 @@ export default function CreatePost() {
         navigate(`/post/${data.slug}`);
       }
     }catch (error) {
-      setPublishError("Something went wrong");
+      setPublishError("Etwas ist schief gelaufen");
     }
   };
 
-  return <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
+  return <div className="p-3 max-w-3xl mx-auto min-h-screen mt-[80px]">
+      <h1 className="text-center my-7 dark:text-[#9bb0ddd3] text-[#7b8cb0] p-2 font-semibold text-4xl">Beitrag erstellen</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
-          <TextInput 
+          <input 
           type="text" 
           id="title" 
-          placeholder="Title" 
+          placeholder="Titel" 
           required
-          className="flex-1"
+          className='hidden lg:inline w-[520px] p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-10'
           onChange={(e) => 
             setFormData({ ...formData, title: e.target.value })}
           />
-          <Select
+          <select className='hidden lg:inline p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-0 text-ml'
           onChange={(e) => 
             setFormData({ ...formData, category: e.target.value })}
           >
-            <option value="uncategorized">Select a category</option>
+            <option value="uncategorized">Wählen Sie eine Kategorie</option>
             <option value="midjourney">Midjourney</option>
             <option value="pika">Pika</option>
             <option value="canva">Canva</option>
@@ -104,9 +104,9 @@ export default function CreatePost() {
             <option value='beautifulai'>Beautiful.ai</option>
             <option value='LanguageTool'>LanguageTool</option>
             <option value='dalle2'>DALL-E2</option>
-          </Select>
+          </select>
         </div>
-        <div className="flex gap-4 items-center justify-between border-2 border-blue-200 rounded-md p-3">
+        <div className="flex gap-4 items-center justify-between border-2 border-[#9bb0ddd3] dark:border-[#9bb0ddd3] rounded-md p-3">
           <FileInput type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])}/>
           <Button 
           type="button" 
@@ -123,7 +123,7 @@ export default function CreatePost() {
                 text={`${imageUploadProgress || 0 }%`}
                 />
               </div>
-            ):( "Upload Image"
+            ):( "Bild hochladen"
             )}
           </Button>
         </div>
@@ -139,14 +139,14 @@ export default function CreatePost() {
         )}
         <ReactQuill 
         theme="snow" 
-        placeholder="Write something..." 
-        className="h-72 mb-12"
+        placeholder="Schreibe etwas..." 
+        className="h-72 mb-12 rounded-md"
         required
         onChange={(value) => setFormData({ ...formData, content: value })
         }
         />
       
-        <Button type="submit" gradientDuoTone="purpleToPink">Publish</Button>
+        <Button type="submit" gradientDuoTone="purpleToBlue" outline>Beitrag Veröffentlichen</Button>
         {publishError && <Alert className="mt-5" color="failure">{publishError}</Alert>}
       </form>
     </div>;

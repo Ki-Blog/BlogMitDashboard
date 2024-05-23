@@ -1,6 +1,7 @@
-import { Button, Select, TextInput } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import PostCard from '../components/PostCard';
 
 export default function Search() {
@@ -10,13 +11,14 @@ export default function Search() {
     category: 'uncategorized',
   });
 
+  const { theme } = useSelector((state) => state.theme);
+
   console.log(sidebarData);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
   const location = useLocation();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,72 +103,74 @@ export default function Search() {
   };
 
   return (
-    <div className='flex flex-col md:flex-row'>
-      <div className='p-7 md:border-r md:min-h-screen border-gray-700 dark:bg-[#0b1020d4] bg-[#b8bfd71e]'>
-        <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
-          <div className='flex items-center gap-2'>
-            <label className='whitespace-nowrap font-semibold'>
-              Search Term:
-            </label>
-            <input className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
-              placeholder='Search...'
-              id='searchTerm'
-              type='text'
-              value={sidebarData.searchTerm}
-              onChange={handleChange}
-            />
+    <div className="relative min-h-screen">
+      <div className='relative flex flex-col md:flex-row'>
+        <div className='p-7 md:border-r md:min-h-screen border-[#aeaeae77] dark:border-[#aeaeae2f] dark:bg-[#090d1c] bg-[#f7f7fa]'>
+          <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
+            <div className='flex items-center gap-2'>
+              <label className='whitespace-nowrap font-semibold'>
+                Search Term:
+              </label>
+              <input className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
+                placeholder='Search...'
+                id='searchTerm'
+                type='text'
+                value={sidebarData.searchTerm}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center gap-2'>
+              <label className='font-semibold'>Sortieren nach:</label>
+              <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md' onChange={handleChange} value={sidebarData.sort} id='sort'>
+                <option value='desc'>Neuste</option>
+                <option value='asc'>Älteste</option>
+              </select>
+            </div>
+            <div className='flex items-center gap-2'>
+              <label className='font-semibold'>Kategorie:</label>
+              <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
+                onChange={handleChange}
+                value={sidebarData.category}
+                id='category'
+              >
+                <option value='uncategorized'>Nicht kategorisiert</option>
+                <option value='midjourney'>Midjourney</option>
+                <option value='pika'>Pika</option>
+                <option value='canva'>Canva</option>
+                <option value='chatgpt'>ChatGPT</option>
+                <option value='colormind'>Colormind</option>
+                <option value='brainfm'>Brain.fm</option>
+                <option value='beautifulai'>Beautiful.ai</option>
+                <option value='LanguageTool'>LanguageTool</option>
+                <option value='dalle2'>DALL-E2</option>
+              </select>
+            </div>
+            <Button type='submit' gradientDuoTone='purpleToBlue' outline>
+              Filter anwenden
+            </Button>
+          </form>
+        </div>
+        <div className='w-full flex flex-col items-center mt-[80px]'>
+          <h1 className='text-4xl font-semibold p-3 mt-5 dark:text-[#9bb0ddd3] text-[#7b8cb0]'>
+            Ergebnisse
+          </h1>
+          <div className='p-7 flex flex-wrap gap-4 justify-center'>
+            {!loading && posts.length === 0 && (
+              <p className='text-xl p dark:text-[#b3bccfb6] text-[#7b8cb0]'>Keine Einträge gefunden.</p>
+            )}
+            {loading && <p className='text-xl text-[#2ca3c1]'>Laden...</p>}
+            {!loading && posts && posts.map((post) => (
+              <PostCard key={post._id} post={post} />
+            ))}
+            {showMore && (
+              <button
+                onClick={handleShowMore}
+                className='text-lg hover:underline p-7 w-full text-center'
+              >
+                Weitere Beiträge anzeigen
+              </button>
+            )}
           </div>
-          <div className='flex items-center gap-2'>
-            <label className='font-semibold'>Sortieren nach:</label>
-            <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md' onChange={handleChange} value={sidebarData.sort} id='sort'>
-              <option value='desc'>Neuste</option>
-              <option value='asc'>Älteste</option>
-            </select>
-          </div>
-          <div className='flex items-center gap-2'>
-            <label className='font-semibold'>Kategorie:</label>
-            <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
-              onChange={handleChange}
-              value={sidebarData.category}
-              id='category'
-            >
-              <option value='uncategorized'>Nicht kategorisiert</option>
-              <option value='midjourney'>Midjourney</option>
-              <option value='pika'>Pika</option>
-              <option value='canva'>Canva</option>
-              <option value='chatgpt'>ChatGPT</option>
-              <option value='colormind'>Colormind</option>
-              <option value='brainfm'>Brain.fm</option>
-              <option value='beautifulai'>Beautiful.ai</option>
-              <option value='LanguageTool'>LanguageTool</option>
-              <option value='dalle2'>DALL-E2</option>
-            </select>
-          </div>
-          <Button type='submit' gradientDuoTone='purpleToBlue' outline>
-            Filter anwenden
-          </Button>
-        </form>
-      </div>
-      <div className='w-full'>
-        <h1 className='text-4xl font-semibold p-3 mt-5 ml-4 text-[#385cb6]'>
-        Ergebnisse:
-        </h1>
-        <div className='p-7 flex flex-wrap gap-4'>
-          {!loading && posts.length === 0 && (
-            <p className='text-xl text-[#385cb6]'>Keine Einträge gefunden.</p>
-          )}
-          {loading && <p className='text-xl text-[#385cb6]'>Laden...</p>}
-          {!loading &&
-            posts &&
-            posts.map((post) => <PostCard key={post._id} post={post} />)}
-          {showMore && (
-            <button
-              onClick={handleShowMore}
-              className='text-[#385cb6] text-lg hover:underline p-7 w-full'
-            >
-              Weitere Beiträge anzeigen
-            </button>
-          )}
         </div>
       </div>
     </div>

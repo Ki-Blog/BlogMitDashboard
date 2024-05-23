@@ -5,8 +5,7 @@ import { BsFillSunFill, BsMoonStarsFill } from "react-icons/bs";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../redux/theme/themeSlice';
 import { signoutSuccess } from '../redux/user/userSlice';
-import logo from "../images/logo.png";
-import logodark from "../images/logodark.png";
+import logo from "../images/logo_gross.svg";
 import "../index.css";
 
 export default function Header() {
@@ -58,41 +57,41 @@ export default function Header() {
   };
 
   return (
-    <nav className="bg-[#b8bfd71e] border-[#385cb6] dark:bg-[#0b1020d4] border-b-2">
+    <nav className="bg-[#f7f7fa] border-[#9bb0ddd3] dark:bg-[#090d1c] border-b-2">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Link to="/" className="flex items-center">
-            <img src={theme === "dark" ? logodark : logo} alt="Logo" />
+          <img src={logo} alt="Logo" className={`h-11 ${theme === 'dark' ? 'filter invert' : ''}`} />
           </Link>
         </div>
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow justify-center">
-        <form onSubmit={handleSubmit}>
-        <input 
-          type='text'
-          placeholder='Search...'
-          className='hidden lg:inline p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-10'
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </form>
-      <button className=''>
-      </button>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type='text'
+              placeholder='Suche...'
+              className='hidden lg:inline p-2 border dark:bg-[#0b1020d4] bg-[#f7f7fa] rounded-md mr-10'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </form>
+          <button className=''>
+          </button>
           <ul className="font-medium flex space-x-8 mt-[8px]">
             <li>
               <Link
                 to="/"
-                className={`py-1 px-3 hover:text-[#385cb6] ${linkClass} ${getLinkClass('/')}`}
+                className={`py-1 px-3 hover:text-[#377fb6] ${linkClass} ${getLinkClass('/')}`}
                 aria-current={location.pathname === '/' ? 'page' : undefined}
               >
-                Home
+                Start
               </Link>
             </li>
             <div className="hidden lg:inline" style={{ borderLeft: '1px solid grey', height: '25px', paddingRight: '8px' }}></div>
             <li>
               <Link
                 to="/about"
-                className={`py-1 px-3 hover:text-[#385cb6] ${linkClass} ${getLinkClass('/about')}`}
+                className={`py-1 px-3 hover:text-[#377fb6] ${linkClass} ${getLinkClass('/about')}`}
                 aria-current={location.pathname === '/about' ? 'page' : undefined}
               >
                 Über uns
@@ -102,7 +101,7 @@ export default function Header() {
             <li>
               <Link
                 to="/search"
-                className={`py-1 px-3 hover:text-[#385cb6] ${linkClass} ${getLinkClass('/search')}`}
+                className={`py-1 px-3 hover:text-[#377fb6] ${linkClass} ${getLinkClass('/search')}`}
                 aria-current={location.pathname === '/search' ? 'page' : undefined}
               >
                 Alle Beiträge
@@ -123,15 +122,15 @@ export default function Header() {
                 <span className='block text-sm font-medium truncate'>{currentUser.email}</span>
               </Dropdown.Header>
               <Link to={'/dashboard?tab=profile'}>
-                <Dropdown.Item>Profile</Dropdown.Item>
+                <Dropdown.Item>Profil</Dropdown.Item>
               </Link>
               <Dropdown.Divider />
-              <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
+              <Dropdown.Item onClick={handleSignout}>Ausloggen</Dropdown.Item>
             </Dropdown>
           ) : (
             <Link to='/signin'>
               <Button gradientDuoTone='purpleToBlue' outline>
-                Sign In
+                Einloggen
               </Button>
             </Link>
           )}
@@ -158,15 +157,15 @@ export default function Header() {
         <div className={`w-full md:hidden ${isNavbarOpen ? 'block' : 'hidden'}`} id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 dark:  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 ">
             <li>
-              <Link to="/" className={`py-1 px-3 text-gray-900 hover:text-[#385cb6] active:text-[#385cb6] md:p-0 ${linkClass}`}>Home</Link>
+              <Link to="/" className={`py-1 px-3 text-gray-900 hover:text-[#296593] active:text-[#377fb6] md:p-0 ${linkClass}`}>Start</Link>
             </li>
             <hr className="my-4 border-gray-300 md:hidden"/>
             <li>
-              <Link to="/about" className={`py-1 px-3 text-gray-900 hover:text-[#385cb6] active:text-[#385cb6] md:p-0 ${linkClass}`}>Über uns</Link>
+              <Link to="/about" className={`py-1 px-3 text-gray-900 hover:text-[#377fb6] active:text-[#377fb6] md:p-0 ${linkClass}`}>Über uns</Link>
             </li>
             <hr className="my-4 border-gray-300 md:hidden"/>
             <li>
-              <Link to="/search" className={`py-1 px-3 text-gray-900 hover:text-[#385cb6] active:text-[#385cb6] md:p-0 ${linkClass}`}>Alle Beiträge</Link>
+              <Link to="/search" className={`py-1 px-3 text-gray-900 hover:text-[#377fb6] active:text-[#377fb6] md:p-0 ${linkClass}`}>Alle Beiträge</Link>
             </li>
           </ul>
         </div>
@@ -174,5 +173,3 @@ export default function Header() {
     </nav>
   );
 };
-
-

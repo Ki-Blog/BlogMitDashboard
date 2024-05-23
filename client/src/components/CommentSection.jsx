@@ -116,37 +116,38 @@ export default function CommentSection({postId}) {
     <div className='mx-w-2xl mx-auto w-full p-3'>
       {currentUser?
       (
-        <div className='flex items-center gap-1 my-5 text-gray-500 text-sm'>
-          <p>Sign in as:</p>
+        <div className='flex items-center gap-1 my-5 text-gray-500 text-md'>
+          <p>Anmelden als:</p>
           <img className='h-5 w-5 object-cover rounded-full' src={currentUser.profilePicture} alt="" />
-          <Link to={'/dashboard?tab=profile'} className='text-xs text-cyan-600 hover:underline'>
+          <Link to={'/dashboard?tab=profile'} className='text-md text-[#2ca3c1] hover:underline'>
             @{currentUser.username}
           </Link>
         </div>
       ):
       (
-        <div className='text-sm text-teal-500 my-5 flex gap-1'>
-            You must be signed to comment.
-            <Link className='text-blue-500 hover:underline' to={'/signin'}>
-              Sign In
+        <div className='text-md dark:text-[#b3bccfb6] text-[#7b8cb0] my-5 flex gap-1'>
+            Um kommentieren zu können, musst du angemeldet sein.
+            <Link className='text-[#2ca3c1] text-md hover:underline' to={'/signin'}>
+              Einloggen
             </Link>
         </div>
       )
     }
     {currentUser && (
-      <form onSubmit={handleSubmit} className='border border-teal-500 rounded-md p-3'>
-        <Textarea
-        placeholder='Add a comment...'
+      <form onSubmit={handleSubmit} className='border border-[#9bb0ddd3] rounded-md p-3'>
+        <textarea
+        placeholder='Schreibe einen Kommentar...'
         rows='3'
         maxLength='200'
+        className='w-full bg-transparent outline-none'
         onChange={(e) => setComment(e.target.value)}
         value={comment}
         />
         <div className='flex justify-between items-center mt-5'>
-          <p className='text-gray-500 text-xs'>{200 - comment.length} characters remaining</p>
+          <p className='text-gray-500 text-xs'>{200 - comment.length} verbleibende Zeichen</p>
           <Button outline gradientDuoTone='purpleToBlue'
           type='submit'>
-            Submit
+            Erstellen
           </Button>
         </div>
         {commentError &&(
@@ -155,12 +156,13 @@ export default function CommentSection({postId}) {
       </form>
     )}
     {comments.length === 0 ?(
-      <p className='text-gray-500 text-sm my-5'>No comments yet</p>
+      <p className='dark:text-[#9bb0ddd3] text-[#7b8cb0] text-md my-5'>Noch keine Kommentare</p>
     ):(
       <>
-      <div className='text-sm my-5 flex items-center gap-1'>
-        <p>Comments</p>
-        <div className='border border-gray-400 py-1 px-2 rounded-sm'>
+      <div className='text-md my-5 flex items-center gap-1'>
+        <p>Kommentare</p>
+        
+        <div className='border border-[#9bb0ddd3] flex items-center py-2 px-2 w-8 h-8 rounded-md'>
           <p>{comments.length}</p>
         </div>
       </div>
@@ -188,16 +190,16 @@ export default function CommentSection({postId}) {
         <Modal.Header />
         <Modal.Body>
           <div className='text-center'>
-            <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
+            <HiOutlineExclamationCircle className='h-18 w-18 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
             <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
-              Are you sure you want to delete this comment?
+            Sicher, dass du diesen Kommentar löschen möchten?
             </h3>
             <div className='flex justify-center gap-4'>
               <Button color='failure' onClick={() => handleDelete(commentToDelete)}>
-                Yes, I'm sure
+              Ja, ich bin mir sicher
               </Button>
-              <Button color='gray' onClick={() => setShowModal(false)}>
-                No, cancel
+              <Button color='gray' onClick={() => setShowModal(false)}>          
+              Nein, abbrechen
               </Button>
             </div>
           </div>
@@ -206,3 +208,4 @@ export default function CommentSection({postId}) {
     </div>
   )
 }
+
