@@ -204,7 +204,7 @@ export default function DashboardComp() {
                 {posts.map((post, index) => (
                   <tr key={post._id} className={`bg-[#b8bfd71e] dark:border-gray-900 dark:bg-[#0b1020d4] ${index !== posts.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''}`}>
                     <td className="py-2 px-4 w-60">
-                      <img src={post.image} alt="post" className="w-14 h-10 rounded-md bg-black" />
+                      <img src={post.image} alt="post" className="w-20 h-15 rounded-md bg-black" />
                     </td>
                     <td className="py-2 px-4 w-96">{post.title}</td>
                     <td className="py-2 px-4 w-5">{post.category}</td>
