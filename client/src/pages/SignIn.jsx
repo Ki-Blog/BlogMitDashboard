@@ -7,6 +7,7 @@ import OAuth from "../components/OAuth";
 import logo from "../images/logo_gross.svg";
 import backgroundImage from "../images/background.jpg";
 import backgroundImageLight from "../images/background_light.jpg";
+import { useEffect } from "react";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -15,6 +16,12 @@ export default function SignIn() {
   const navigate = useNavigate();
   const { theme } = useSelector((state) => state.theme);
   
+  useEffect(() => {
+    return () => {
+      dispatch(signInFailure(null));
+    };
+  }, [dispatch]);
+
   const handleChance = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
