@@ -3,10 +3,10 @@ import { errorHandler } from '../utils/error.js';
 
 export const create = async (req, res, next) => {
   if (!req.user.isAdmin) {
-    return next(errorHandler(403, 'You are not allowed to create a post'));
+    return next(errorHandler(403, 'Du bist nicht berechtigt, einen Beitrag zu erstellen'));
   }
   if (!req.body.title || !req.body.content) {
-    return next(errorHandler(400, 'Please provide all required fields'));
+    return next(errorHandler(400, 'Bitte alle Felder ausfüllen.'));
   }
   const slug = req.body.title
     .split(' ')
@@ -73,11 +73,11 @@ export const getposts = async (req, res, next) => {
 
 export const deletepost = async (req, res, next) => {
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-    return next(errorHandler(403, 'You are not allowed to delete this post'));
+    return next(errorHandler(403, 'Du bist nicht berechtigt, diesen Beitrag zu löschen'));
   }
   try {
     await Post.findByIdAndDelete(req.params.postId);
-    res.status(200).json('The post has been deleted');
+    res.status(200).json('Beitrag wurde gelöscht');
   } catch (error) {
     next(error);
   }
@@ -85,7 +85,7 @@ export const deletepost = async (req, res, next) => {
 
 export const updatepost = async (req, res, next) => {
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-    return next(errorHandler(403, 'You are not allowed to update this post'));
+    return next(errorHandler(403, 'Du bist nicht berechtigt, diesen Beitrag zu bearbeiten'));
   }
   try {
     const updatedPost = await Post.findByIdAndUpdate(
