@@ -82,7 +82,7 @@ export default function DashComments() {
                   <th className="py-2 text-left px-6 font-semibold">Datum</th>
                   <th className="py-2 text-left px-6 font-semibold">Kommentare</th>
                   <th className="py-2 text-left px-6 font-semibold">Anzahl der Likes</th>
-                  <th className="py-2 text-left px-6 font-semibold">Post Id</th>
+                  <th className="py-2 text-left px-6 font-semibold">Post</th>
                   <th className="py-2 text-left px-6 font-semibold">User Id</th>
                   <th className="py-2 text-left px-6 font-semibold">Löschen</th>
                 </tr>
@@ -95,7 +95,11 @@ export default function DashComments() {
                     </td>
                     <td className='py-3 px-6'>{comment.content}</td>
                     <td className='py-3 px-6'>{comment.numberOfLikes}</td>
-                    <td className='py-3 px-6'>{comment.postId}</td>
+                    <td className='py-3 px-6'>
+                      <a href={`/post/${comment.postId.slug}`} className='text-[#2ca3c1] hover:underline'>
+                        {comment.postId.title}
+                      </a>
+                    </td>
                     <td className='py-3 px-6'>{comment.userId}</td>
                     <td className='py-3 px-6'>
                       <span
