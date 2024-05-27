@@ -1,66 +1,59 @@
-import { Button, Label, TextInput, Alert, Spinner } from "flowbite-react";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux"; 
-import { signInFailure, signInStart, signInSuccess } from "../redux/user/userSlice";
-import OAuth from "../components/OAuth";
+import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
 import logo from "../images/logo_gross.svg";
+import { useSelector } from "react-redux"; 
 import backgroundImage from "../images/background.jpg";
 import backgroundImageLight from "../images/background_light.jpg";
-import { useEffect } from "react";
 
-export default function SignIn() {
+export default function SignUp() {
   const [formData, setFormData] = useState({});
-  const { loading, error: errorMessage } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { theme } = useSelector((state) => state.theme);
-  
-  useEffect(() => {
-    return () => {
-      dispatch(signInFailure(null));
-    };
-  }, [dispatch]);
 
-  const handleChance = (e) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password) {
-      return dispatch(signInFailure("Bitte alle Felder ausfüllen"));
+    if (!formData.username || !formData.email || !formData.password) {
+      return setErrorMessage('Bitte alle Felder ausfüllen.');
     }
     try {
-      dispatch(signInStart());
-      const res = await fetch("api/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+      setLoading(true);
+      setErrorMessage(null);
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      setLoading(false);
       if (data.success === false) {
-        dispatch(signInFailure(data.message));
+        return setErrorMessage(data.message);
       }
-      if (res.ok) {
-        dispatch(signInSuccess(data));
-        navigate("/");
+      if(res.ok) {
+        navigate('/');
       }
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      setErrorMessage(error.message);
+      setLoading(false);
     }
   };
 
   const formContent = (
     <>
-        <div>
+      <div>
         <Label value="Username:" />
         <TextInput 
           type="text" 
           placeholder="Username" 
-          id="username" onChange={handleChance}
+          id="username" 
+          onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
             color: theme === 'dark' ? 'white' : 'black'
@@ -72,7 +65,8 @@ export default function SignIn() {
         <TextInput 
           type="email" 
           placeholder="name@company.com" 
-          id="email" onChange={handleChance}
+          id="email" 
+          onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
             color: theme === 'dark' ? 'white' : 'black'
@@ -84,7 +78,8 @@ export default function SignIn() {
         <TextInput 
           type="password" 
           placeholder="*********" 
-          id="password" onChange={handleChance}
+          id="password" 
+          onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
             color: theme === 'dark' ? 'white' : 'black'
