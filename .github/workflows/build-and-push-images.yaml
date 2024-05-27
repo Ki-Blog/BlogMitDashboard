@@ -11,10 +11,10 @@ jobs:
       matrix:
         include:
           - dockerfile: ./api/Dockerfile
-            image: alq-backend
+            image: aiq-backend
             context: ./api
           - dockerfile: ./client/Dockerfile
-            image: alq-frontend
+            image: aiq-frontend
             context: ./client
     steps:
       - name: Checkout code
