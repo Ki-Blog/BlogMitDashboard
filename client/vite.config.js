@@ -13,6 +13,10 @@ export default defineConfig({
         target: "http://localhost:4001",
         secure: false,
       },
+      '/api/post':{
+        target: "http://localhost:4002",
+        secure: false,
+      },
     },
   },
   plugins: [react()],
