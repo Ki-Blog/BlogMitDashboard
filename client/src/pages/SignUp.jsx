@@ -33,12 +33,12 @@ export default function SignUp() {
       });
       const data = await res.json();
       setLoading(false);
-      if (data.success === false) {
+      if (!res.ok) {
         return setErrorMessage(data.message);
       }
-      if(res.ok) {
-        navigate('/');
-      }
+      // Speichern des Tokens und Weiterleitung zur Startseite
+      localStorage.setItem('token', data.token);
+      navigate('/');
     } catch (error) {
       setErrorMessage(error.message);
       setLoading(false);
