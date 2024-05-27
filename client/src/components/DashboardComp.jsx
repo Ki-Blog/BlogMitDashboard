@@ -128,7 +128,7 @@ export default function DashboardComp() {
       <div className='mt-12 grid grid-cols-1 md:grid-cols-2 gap-6'>
         <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] border-[#385cb6] border-2 rounded-lg shadow-lg'>
           <div className='flex justify-between items-center'>
-            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'>Aktuelle Benutzer</h1>
+            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'>Die neuesten Benutzer</h1>
             <Button outline gradientDuoTone="purpleToBlue">
               <Link to={"/dashboard?tab=users"}>Alle ansehen</Link>
             </Button>
@@ -137,7 +137,7 @@ export default function DashboardComp() {
             <table className="min-w-full bg-[#b8bfd71e] dark:bg-[#0b10209a] shadow-md rounded-lg overflow-hidden">
               <thead className="bg-[#b8bfd789] dark:bg-[#070914e4] dark:text-[#7b8cb0b6] text-[#40517c]">
                 <tr>
-                  <th className="py-2 text-left px-4 font-semibold">User Bild</th>
+                  <th className="py-2 text-left px-4 font-semibold">Profilbild</th>
                   <th className="py-2 text-left px-4 font-semibold">Benutzername</th>
                 </tr>
               </thead>
@@ -156,7 +156,7 @@ export default function DashboardComp() {
         </div>
         <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] ] border-[#385cb6] border-2 rounded-lg shadow-lg'>
           <div className='flex justify-between items-center'>
-            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'>Letzte Kommentare</h1>
+            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'>Die neuesten Kommentare</h1>
             <Button outline gradientDuoTone="purpleToBlue">
               <Link to={"/dashboard?tab=comments"}>Alle ansehen</Link>
             </Button>
@@ -186,7 +186,7 @@ export default function DashboardComp() {
       <div className='mt-12'>
         <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] border-[#385cb6] border-2 rounded-lg shadow-lg'>
           <div className='flex justify-between items-center'>
-            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'>Kürzliche Posts</h1>
+            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'> Deine zuletzt erstellten Beiträge</h1>
             <Button outline gradientDuoTone="purpleToBlue">
               <Link to={"/dashboard?tab=posts"}>Alle ansehen</Link>
             </Button>
@@ -195,8 +195,8 @@ export default function DashboardComp() {
             <table className="min-w-full bg-[#b8bfd71e] dark:bg-[#0b10209a] shadow-md rounded-lg overflow-hidden">
               <thead className="bg-[#b8bfd789] dark:bg-[#070914e4] dark:text-[#7b8cb0b6] text-[#40517c]">
                 <tr>
-                  <th className="py-2 text-left px-4 font-semibold">Post Bild</th>
-                  <th className="py-2 text-left px-4 font-semibold">Post Titel</th>
+                  <th className="py-2 text-left px-4 font-semibold">Beitragsbild</th>
+                  <th className="py-2 text-left px-4 font-semibold">Beitragstitel</th>
                   <th className="py-2 text-left px-4 font-semibold">Kategorie</th>
                 </tr>
               </thead>
