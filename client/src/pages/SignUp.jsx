@@ -48,11 +48,11 @@ export default function SignUp() {
   const formContent = (
     <>
       <div>
-        <Label value="Username:" />
+        <Label value="E-Mail:" />
         <TextInput 
-          type="text" 
-          placeholder="Username" 
-          id="username" 
+          type="email" 
+          placeholder="name@company.com" 
+          id="email" 
           onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
@@ -61,11 +61,11 @@ export default function SignUp() {
         />
       </div>
       <div>
-        <Label value="E-Mail:" />
+        <Label value="Benutzername:" />
         <TextInput 
-          type="email" 
-          placeholder="name@company.com" 
-          id="email" 
+          type="text" 
+          placeholder="Benutzername" 
+          id="username" 
           onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
