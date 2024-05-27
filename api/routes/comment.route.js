@@ -2,7 +2,6 @@ import { verifyToken } from "../utils/verifyUser.js";
 import express from "express";
 import { createComment, getPostComments, likeComment , editComment, deleteComment, getcomments } from "../controllers/comment.controller.js";
 
-
 const router = express.Router();
 
 router.post('/create', verifyToken, createComment);
