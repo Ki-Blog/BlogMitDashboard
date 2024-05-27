@@ -73,7 +73,7 @@ export default function DashUsers() {
             <thead className="bg-[#b8bfd789] dark:bg-[#070914e4] dark:text-[#7b8cb0b6] text-[#40517c]">
               <tr>
                 <th className="py-2 text-left px-6 font-semibold">Datum</th>
-                <th className="py-2 text-left px-6 font-semibold">Benutzerbild</th>
+                <th className="py-2 text-left px-6 font-semibold">Profilbild</th>
                 <th className="py-2 text-left px-6 font-semibold">Benutzername</th>
                 <th className="py-2 text-left px-6 font-semibold">E-Mail</th>
                 <th className="py-2 text-left px-6 font-semibold">Admin</th>
