@@ -73,7 +73,7 @@ export default function DashPosts() {
 
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 mt-[80px]'>
-      <h1 className='dark:text-[#9bb0ddd3] text-[#7b8cb0] font-semibold text-4xl mb-12'>Alle Beiträge</h1>
+      <h1 className='dark:text-[#9bb0ddd3] text-[#7b8cb0] font-semibold text-4xl mb-12'>Deine Beiträge</h1>
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <div className="shadow-md rounded-lg overflow-hidden dark:border-2 border-gray-900">
           <table className='min-w-full bg-[#b8bfd71e] dark:bg-[#0b10209a]'>
@@ -104,7 +104,7 @@ export default function DashPosts() {
                   </td>
                   <td className="py-2 px-4">
                     <Link
-                      className='font-medium text-gray-900 dark:text-white'
+                      className=' text-[#2ca3c1] hover:underline'
                       to={`/post/${post.slug}`}
                     >
                       {post.title}
@@ -144,7 +144,11 @@ export default function DashPosts() {
           )}
         </div>
       ) : (
-        <p>Du hast noch keine Beiträge erstellt!</p>
+        <div className='flex items-center justify-center h-64'>
+          <p className='text-center text-lg text-gray-700 dark:text-gray-300'>
+            Du hast noch keine Beiträge erstellt!
+          </p>
+        </div>
       )}
       <Modal
         show={showModal}
@@ -157,7 +161,7 @@ export default function DashPosts() {
           <div className='text-center'>
             <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
             <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>  
-            Bist du sicher, dass du diesen Beitrag löschen möchten?
+            Bist du sicher, dass du diesen Beitrag löschen möchtest?
             </h3>
             <div className='flex justify-center gap-4'>
               <Button color='failure' onClick={handleDeletePost}>
