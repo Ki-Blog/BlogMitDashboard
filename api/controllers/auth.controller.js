@@ -3,32 +3,44 @@ import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
-
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
 
-  if (
-    !username || 
-    !email || 
-    !password || 
-    username === "" || 
-    email === "" || password === ""
-  ) { 
-    next (errorHandler(400, "Bitte alle Felder ausfüllen."));
+  if (!username || !email || !password) {
+    return next(errorHandler(400, "Bitte alle Felder ausfüllen."));
   }
 
-  const hashedPassword = bcryptjs.hashSync(password, 10);
-
-  const newUser = new User({
-    username,
-    email,
-    password: hashedPassword,
-  });
-
   try {
-  await newUser.save();
-  res.json("Anmeldung erfolgreich.");
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return next(errorHandler(400, "Benutzer mit dieser E-Mail existiert bereits."));
+    }
+
+    const hashedPassword = bcryptjs.hashSync(password, 10);
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+
+    const token = jwt.sign(
+      { id: newUser._id, username: newUser.username },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.status(201).json({ token, message: "Anmeldung erfolgreich." });
   } catch (err) {
+    if (err.code === 11000) {
+      if (err.keyPattern.username) {
+        return next(errorHandler(400, "Benutzername existiert bereits."));
+      }
+      if (err.keyPattern.email) {
+        return next(errorHandler(400, "E-Mail existiert bereits."));
+      }
+    }
     next(err);
   }
 };
