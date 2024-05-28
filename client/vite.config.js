@@ -14,7 +14,7 @@ export default defineConfig({
         secure: false,
       },
       '/api/post': {
-        target: "http://localhost:4002",
+        target: "http://localhost:4003",
         secure: false,
       },
       '/api/comment': {
