@@ -7,7 +7,6 @@ export const test = (req, res) => {
   res.json({ message: "is it working" });
   };
 
-
   export const updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.userId){
       return next(errorHandler(403, "Du bist nicht berechtigt, diesen Nutzer zu aktualisieren"));
