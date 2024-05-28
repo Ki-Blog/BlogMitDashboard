@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.0.1] - 2024-05-28
+### :bug: Bug Fixes
+- [`a3644fc`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a3644fca9b978bcaad8f53aacf2978daa0702ca1) - testing *(commit by [@Mone19](https://github.com/Mone19))*
+
+
 ## 1.0.0 (2024-05-28)
 
 
@@ -44,3 +49,4 @@ All notable changes to this project will be documented in this file. See [standa
 * routes has modifed ([efe14e4](https://github.com/Ki-Blog/BlogMitDashboard/commit/efe14e49ab32f2dab0531535e47e32e30bbb243a))
 * Schema angepasst ([133d47d](https://github.com/Ki-Blog/BlogMitDashboard/commit/133d47da8fb400b856a2764803eb3b18526facc8))
 * SignUp registrierung Routen aktualisiert ([5429ef5](https://github.com/Ki-Blog/BlogMitDashboard/commit/5429ef5022eb36eb4bf0a768a4fd078c9220bdbd))
+[v1.0.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.0.0...v1.0.1
