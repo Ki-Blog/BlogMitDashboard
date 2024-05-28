@@ -9,14 +9,14 @@ export default function FooterCom() {
 
   return (
     <Footer container className='border-t-2 border-[#9bb0ddd3] rounded-none dark:bg-[#090d1c] bg-[#f7f7fa]'>
-      <div className='w-full max-w-7xl mx-auto'>
-        <div className='flex justify-between items-center py-5'>
-          <Link to="/" className='flex items-center'>
+      <div className='w-full max-w-7xl mx-auto '>
+        <div className='flex justify-between items-center py-5 '>
+          <Link to="/" className='flex items-center '>
             <img src={logo} alt="Logo" className={`h-11 ${theme === 'dark' ? 'filter invert' : ''}`} />
           </Link>
           <div className='flex items-center gap-4'>
-            <span className='text-lg font-semibold'>Lerne uns kennen:</span>
-            <Link to='/about' className='text-lg text-blue-500 hover:underline'>
+            <span className='text-lg font-semibold '>Lerne uns kennen:</span>
+            <Link to='/about' className='text-lg text-[#377fb6] hover:underline mr-[40px]'>
               Über uns
             </Link>
             <a href='https://github.com/Ki-Blog/BlogMitDashboard/' target='_blank' rel='noopener noreferrer'>
