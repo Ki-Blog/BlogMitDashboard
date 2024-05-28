@@ -46,9 +46,9 @@ export default function DashSidebar() {
   return (
     <div className="w-full md:w-56 h-full md:border-r border-[#aeaeae77] dark:border-[#aeaeae2f] dark:bg-[#090d1c] bg-[#f7f7fa] flex flex-col p-4">
       <div className="flex flex-col gap-1">
-        <div className="flex items-center p-3">
+        <div className="flex items-center border-[#2ca3c1] border rounded p-2 mb-8 text-[#2ca3c1]">
           {currentUser && currentUser.isAdmin ? (
-            <HiShieldCheck className="mr-2 text-3xl text-[#8a52f3dd]" />
+            <HiShieldCheck className="mr-2 text-3xl text-[#2ca3c1]" />
           ) : (
             <HiUser className="mr-2 text-3xl text-[#2ca3c1]" />
           )}
