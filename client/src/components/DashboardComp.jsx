@@ -79,7 +79,7 @@ export default function DashboardComp() {
               <h3 className='dark:text-[#7b8cb0b6] text-[#40517c] text-lg uppercase'>Alle Benutzer</h3>
               <p className='text-3xl font-bold text-[#8a52f3dd]'>{totalUsers}</p>
             </div>
-            <HiUserGroup className='text-6xl text-[#2ca3c17c]' />
+            <HiUserGroup className='text-6xl text-[#2ca3c1]' />
           </div>
           <div className='mt-4 flex items-center text-sm'>
             <HiArrowNarrowUp className='text-[#2ca3c1] text-lg mr-2' />
@@ -96,7 +96,7 @@ export default function DashboardComp() {
               <h3 className='dark:text-[#7b8cb0b6] text-[#40517c] text-lg uppercase'>Alle Kommentare</h3>
               <p className='text-3xl font-bold text-[#8a52f3dd]'>{totalComments}</p>
             </div>
-            <HiChatAlt2 className='text-6xl text-[#2ca3c17c]' />
+            <HiChatAlt2 className='text-6xl text-[#2ca3c1]' />
           </div>
           <div className='mt-4 flex items-center text-sm'>
             <HiArrowNarrowUp className='text-[#2ca3c1] text-lg mr-2' />
@@ -113,7 +113,7 @@ export default function DashboardComp() {
               <h3 className='dark:text-[#7b8cb0b6] text-[#40517c] text-lg uppercase'>Alle Beiträge</h3>
               <p className='text-3xl font-bold text-[#8a52f3dd]'>{totalPosts}</p>
             </div>
-            <HiClipboardList className='text-6xl text-[#2ca3c17c]' />
+            <HiClipboardList className='text-6xl text-[#2ca3c1]' />
           </div>
           <div className='mt-4 flex items-center text-sm'>
             <HiArrowNarrowUp className='text-[#2ca3c1] text-lg mr-2' />
@@ -187,8 +187,11 @@ export default function DashboardComp() {
         <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] border-[#385cb6] border-2 rounded-lg shadow-lg'>
           <div className='flex justify-between items-center'>
             <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'> Deine zuletzt erstellten Beiträge</h1>
+            <Button outline gradientDuoTone="purpleToBlue" className='ml-[450px]'>
+              <Link to={"/dashboard?tab=posts"}>Deine Beiträge ansehen</Link>
+            </Button>
             <Button outline gradientDuoTone="purpleToBlue">
-              <Link to={"/dashboard?tab=posts"}>Alle ansehen</Link>
+              <Link to={"/search"}>Alle Beiträge ansehen</Link>
             </Button>
           </div>
           <div className="overflow-x-auto mt-4 border border-1 rounded-lg border-[#385cb674]">
