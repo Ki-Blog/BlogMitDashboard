@@ -13,10 +13,10 @@ export default defineConfig({
         target: "http://localhost:4001",
         secure: false,
       },
-      '/api/post': {
-        target: "http://localhost:4002",
-        secure: false,
-      },
+      /* '/api/post': {
+        target: "http://localhost:4003",
+        secure: false, */
+      
       '/api/comment': {
         target: "http://localhost:4003",
         secure: false,
