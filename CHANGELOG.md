@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.0.1] - 2024-05-28
+### :bug: Bug Fixes
+- [`a3644fc`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a3644fca9b978bcaad8f53aacf2978daa0702ca1) - testing *(commit by [@Mone19](https://github.com/Mone19))*
+
+
 ## 1.0.0 (2024-05-28)
 
 
@@ -32,6 +37,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * .env has added to the commen and post ([11204d3](https://github.com/Ki-Blog/BlogMitDashboard/commit/11204d3422f12b8dc2432f201754d07b23eca3c1))
 * Anpassung der Fehlermeldungen ([ecb2902](https://github.com/Ki-Blog/BlogMitDashboard/commit/ecb2902927b79b1fc2a415b531fe9a15c4e30b88))
+* corrected empty comment.route.js and index.js in comment ([fe44508](https://github.com/Ki-Blog/BlogMitDashboard/commit/fe44508aa9bc48963cc56d2e1922be2d5494a475))
 * corrected index.js ([998c252](https://github.com/Ki-Blog/BlogMitDashboard/commit/998c252d12b84a875a17c0266d0a0da6c5714db6))
 * Fehlerbezeichnung  angepasst backend ([486df3f](https://github.com/Ki-Blog/BlogMitDashboard/commit/486df3fc29a171243299eab24c5e00c0f472a314))
 * Fehlermeldungen angepasst ([8b8c7ab](https://github.com/Ki-Blog/BlogMitDashboard/commit/8b8c7ab6571673b9fb38ecdf8296a3e3ab5ef421))
@@ -43,3 +49,4 @@ All notable changes to this project will be documented in this file. See [standa
 * routes has modifed ([efe14e4](https://github.com/Ki-Blog/BlogMitDashboard/commit/efe14e49ab32f2dab0531535e47e32e30bbb243a))
 * Schema angepasst ([133d47d](https://github.com/Ki-Blog/BlogMitDashboard/commit/133d47da8fb400b856a2764803eb3b18526facc8))
 * SignUp registrierung Routen aktualisiert ([5429ef5](https://github.com/Ki-Blog/BlogMitDashboard/commit/5429ef5022eb36eb4bf0a768a4fd078c9220bdbd))
+[v1.0.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.0.0...v1.0.1
