@@ -144,10 +144,8 @@ export default function DashPosts() {
           )}
         </div>
       ) : (
-        <div className='flex items-center justify-center h-64'>
-          <p className='text-center text-lg text-gray-700 dark:text-gray-300'>
-            Du hast noch keine Beiträge erstellt!
-          </p>
+        <div>
+          <p> Du hast noch keine Beiträge erstellt!</p>
         </div>
       )}
       <Modal
