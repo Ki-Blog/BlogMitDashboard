@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import commentRoutes from './routes/comment.route.js';
+import postRoutes from './routes/post.route.js';
 import cookieParser from 'cookie-parser';
 
 
@@ -29,6 +30,7 @@ app.listen(4003, () => {
 
 
 app.use("/api/comment", commentRoutes);
+app.use("/api/post", postRoutes);
 
 
 
