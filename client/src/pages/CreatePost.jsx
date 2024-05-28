@@ -95,15 +95,15 @@ export default function CreatePost() {
             setFormData({ ...formData, category: e.target.value })}
           >
             <option value="uncategorized">Wählen Sie eine Kategorie</option>
-            <option value="midjourney">Midjourney</option>
-            <option value="pika">Pika</option>
-            <option value="canva">Canva</option>
-            <option value='chatgpt'>ChatGPT</option>
-            <option value='colormind'>Colormind</option>
-            <option value='brainfm'>Brain.fm</option>
-            <option value='beautifulai'>Beautiful.ai</option>
+            <option value="Midjourney">Midjourney</option>
+            <option value="Pika">Pika</option>
+            <option value="Canva">Canva</option>
+            <option value='Chatgpt'>ChatGPT</option>
+            <option value='Colormind'>Colormind</option>
+            <option value='Brainfm'>Brain.fm</option>
+            <option value='Beautifulai'>Beautiful.ai</option>
             <option value='LanguageTool'>LanguageTool</option>
-            <option value='dalle2'>DALL-E2</option>
+            <option value='Dalle2'>DALL-E2</option>
           </select>
         </div>
         <div className="flex gap-4 items-center justify-between border-2 border-[#9bb0ddd3] dark:border-[#9bb0ddd3] rounded-md p-3">
