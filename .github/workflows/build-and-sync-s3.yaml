@@ -2,7 +2,7 @@ name: build and sync s3
 on:
     push:
       branches:
-        - CI
+        - feature/CI
 env:
   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
 jobs:
