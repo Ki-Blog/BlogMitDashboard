@@ -2,7 +2,8 @@ name: Build, Deploy, and Sync S3
 
 on:
   push:
-
+    branches:
+      - feature/CI
 
 jobs:
   terraform:
@@ -12,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -32,10 +33,10 @@ jobs:
         working-directory: ./infra
         
       - name: Set S3 Bucket URL
-        id: set_bucket_url
-        run: echo "S3_BUCKET_URL=$(terraform output -raw bucket_url)"
+        id: set_website_url
+        run: echo "S3_WEBSITE_URL=$(terraform output -raw website_url)"
         env:
-          S3_BUCKET_URL: ${{ steps.apply_terraform.outputs.website_url }}
+          S3_WEBSITE_URL: ${{ steps.apply_terraform.outputs.website_url }}
       
   build:
     needs: terraform
@@ -83,4 +84,4 @@ jobs:
           
       - name: Sync to S3
         run: |
-          aws s3 sync client/dist s3://${{ steps.set_bucket_url.outputs.bucket_url }}/ --acl public-read --delete
+          aws s3 sync client/dist s3://${{ steps.set_website_url.outputs.website_url_url }}/ --acl public-read --delete

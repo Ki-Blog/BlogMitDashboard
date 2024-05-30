@@ -1,8 +1,8 @@
 name: build and sync s3
 on:
     push:
-      branches:
-        - feature/CI
+      tags:
+        - "v*"
 env:
   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
 
