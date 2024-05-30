@@ -34,7 +34,9 @@ jobs:
         
       - name: Set S3 Bucket URL
         id: set_bucket_url
-        run: echo "bucket_url=$(terraform output -raw bucket_url)" >> $GITHUB_ENV
+        run: echo "S3_BUCKET_URL=$(terraform output -raw bucket_url)"
+        env:
+          S3_BUCKET_URL: ${{ steps.apply_terraform.outputs.website_url }}
       
   build:
     needs: terraform
