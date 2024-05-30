@@ -1,10 +1,11 @@
 provider "aws" {
-  region     = "eu-central-1"
+  region = "eu-central-1"
 }
+
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "5.48.0"
     }
   }
@@ -49,6 +50,6 @@ resource "aws_s3_bucket_website_configuration" "web-config" {
 }
 
 output "website_url" {
-  description = "My website URL"
+  description = "URL meiner Website"
   value       = aws_s3_bucket_website_configuration.web-config.website_endpoint
 }
