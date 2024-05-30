@@ -51,7 +51,7 @@ resource "aws_s3_bucket_website_configuration" "web-config" {
 
 resource "aws_cloudfront_distribution" "website_distribution" {
   origin {
-    domain_name = aws_s3_bucket.aiq.website_endpoint
+    domain_name = aws_s3_bucket.aiq.bucket_regional_domain_name
     origin_id   = "S3Origin"
   }
 
