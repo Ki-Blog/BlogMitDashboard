@@ -78,4 +78,5 @@ jobs:
           
       - name: Sync to S3
         run: |
-          aws s3 sync client/dist ${{ steps.apply_terraform.outputs.website_url }}/ --acl public-read --delete
+              aws s3 sync client/dist s3://aiq-frontend --acl public-read --delete
+
