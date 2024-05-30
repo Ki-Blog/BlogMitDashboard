@@ -5,6 +5,7 @@ on:
         - feature/CI
 env:
   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +20,8 @@ jobs:
           cd client
           npm install
           npm run build
-          ls -la
+        env:
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
