@@ -38,7 +38,7 @@ resource "aws_s3_bucket_acl" "example" {
 }
 
 resource "aws_s3_bucket_policy" "host_bucket_policy" {
-  bucket = aws_s3_bucket.aiq
+  bucket = aws_s3_bucket.aiq.id
 
   policy = jsonencode({
     "Version" : "2012-10-17",
@@ -54,7 +54,7 @@ resource "aws_s3_bucket_policy" "host_bucket_policy" {
 }
 
 resource "aws_s3_bucket_website_configuration" "web-config" {
-  bucket = aws_s3_bucket.aiq
+  bucket = aws_s3_bucket.aiq.id
 
   index_document {
     suffix = "index.html"
