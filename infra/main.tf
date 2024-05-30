@@ -33,12 +33,12 @@ resource "aws_s3_bucket_acl" "example" {
     aws_s3_bucket_public_access_block.example,
   ]
 
-  bucket = aws_s3_bucket.b.id
+  bucket = aws_s3_bucket.aiq.id
   acl    = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "host_bucket_policy" {
-  bucket = aws_s3_bucket.b.id
+  bucket = aws_s3_bucket.aiq
 
   policy = jsonencode({
     "Version" : "2012-10-17",
@@ -54,7 +54,7 @@ resource "aws_s3_bucket_policy" "host_bucket_policy" {
 }
 
 resource "aws_s3_bucket_website_configuration" "web-config" {
-  bucket = aws_s3_bucket.b.id
+  bucket = aws_s3_bucket.aiq
 
   index_document {
     suffix = "index.html"
