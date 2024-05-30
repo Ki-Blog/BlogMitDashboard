@@ -34,7 +34,8 @@ jobs:
         
       - name: Get S3 Bucket URL
         id: get_bucket_url
-        run: echo "S3_BUCKET_URL=$(terraform output -raw bucket_url)" >> $GITHUB_ENV
+        run: |
+          echo "S3_BUCKET_URL=$(terraform output -raw bucket_url)" >> $GITHUB_ENV
         working-directory: ./infra
 
   build:
