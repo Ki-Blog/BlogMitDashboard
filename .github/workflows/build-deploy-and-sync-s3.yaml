@@ -32,16 +32,11 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ./infra
         
-      - name: Get S3 Bucket URL
-        run: echo "S3_BUCKET_URL=$(terraform output -raw bucket_url)" >> $GITHUB_ENV
-        shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+      - name: Set S3 Bucket URL
+        run: echo "S3_BUCKET_URL=$(terraform output -raw bucket_url)"
+        
         env:
-          TERRAFORM_CLI_PATH: /home/runner/work/_temp/5d0f4d43-e1d6-45fc-92ae-4292a6e8bf00
-          AWS_DEFAULT_REGION: ***
-          AWS_REGION: ***
-          AWS_ACCESS_KEY_ID: ***
-          AWS_SECRET_ACCESS_KEY: ***
-          AWS_SESSION_TOKEN: ***
+          S3_BUCKET_URL: ${{ steps.set_bucket_url.outputs.bucket_url }}
       
   build:
     needs: terraform
