@@ -31,10 +31,6 @@ jobs:
         id: apply_terraform
         run: terraform apply -auto-approve
         working-directory: ./infra
-        
-      - name: Set S3 Bucket URL
-        id: set_website_url
-        run: echo "S3_WEBSITE_URL=$(terraform output -raw website_url)"
         env:
           S3_WEBSITE_URL: ${{ steps.apply_terraform.outputs.website_url }}
       
@@ -84,4 +80,4 @@ jobs:
           
       - name: Sync to S3
         run: |
-          aws s3 sync client/dist s3://${{ steps.set_website_url.outputs.website_url_url }}/ --acl public-read --delete
+          aws s3 sync client/dist s3://${{ env.S3_WEBSITE_URL }}/ --acl public-read --delete
