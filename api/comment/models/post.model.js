@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
   },
   image:{
     type: String,
-    default: "https://www.seoclerk.com/pics/000/787/824/51099d50ed6a0c6fa4e74f1260db024b.png",
+    default: "http://aiq-frontend.s3-website.eu-central-1.amazonaws.com/assets/titel_pic.jpg",
   },
   category:{
     type: String,
