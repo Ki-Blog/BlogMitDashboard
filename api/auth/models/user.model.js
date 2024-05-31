@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   profilePicture: {
     type: String,
-    default: "http://aiq-frontend.s3-website.eu-central-1.amazonaws.com/assets/profil.jpg",
+    default: "https://firebasestorage.googleapis.com/v0/b/it-guru-blog.appspot.com/o/profil.jpg?alt=media&token=e627e2f8-cd3f-4a0a-ad8b-7b5ed7889ca7",
   },
   isAdmin: {
     type: Boolean,
