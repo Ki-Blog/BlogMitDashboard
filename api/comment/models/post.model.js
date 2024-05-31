@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
   },
   image:{
     type: String,
-    default: "http://aiq-frontend.s3-website.eu-central-1.amazonaws.com/assets/titel_pic.jpg",
+    default: "https://firebasestorage.googleapis.com/v0/b/it-guru-blog.appspot.com/o/titel_pic.jpg?alt=media&token=ff2ab791-0aec-4c42-b362-8a184f5a9066",
   },
   category:{
     type: String,
