@@ -1,7 +1,10 @@
 name: Destroy Infrastructure
 
 on:
-  workflow_dispatch:
+    push:
+        branches:
+          - feature/CI
+#   workflow_dispatch:
 
 jobs:
   destroy:
