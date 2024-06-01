@@ -113,10 +113,9 @@ resource "local_file" "ingress_yaml" {
 
 resource "null_resource" "patch_and_login" {
   provisioner "local-exec" {
-    command = "./script.sh"
+    command = "chmod +x ./script.sh && ./script.sh"
   }
 }
-
 
 resource "null_resource" "set_context" {
   provisioner "local-exec" {
