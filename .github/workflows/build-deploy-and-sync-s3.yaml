@@ -8,7 +8,6 @@ on:
   push:
     branches:
       - feature/CI
-  workflow_dispatch:
 
 jobs:
   terraform:
@@ -86,7 +85,6 @@ jobs:
               aws s3 sync client/dist s3://aiq-frontend --acl public-read --delete
 
   destroy:
-    needs: [upload_to_s3]
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
