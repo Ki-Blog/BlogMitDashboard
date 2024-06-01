@@ -31,10 +31,10 @@ jobs:
         run: |
           if aws s3api head-bucket --bucket "aiq-frontend" 2>/dev/null; then
             echo "Bucket exists"
-            echo "::set-output name=bucket_exists::true"
+            echo "bucket_exists=true" >> $GITHUB_ENV
           else
             echo "Bucket does not exist"
-            echo "::set-output name=bucket_exists::false"
+            echo "bucket_exists=false" >> $GITHUB_ENV
           fi
 
   terraform:
