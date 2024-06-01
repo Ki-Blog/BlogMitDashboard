@@ -1,12 +1,12 @@
 name: Terraform Apply
 
 on:
-  push:
-    tags:
-      - "v*"
 #   push:
-#     branches:
-#       - feature/CI
+#     tags:
+#       - "v*"
+  push:
+    branches:
+      - feature/CI
 
 jobs:
   terraform:
