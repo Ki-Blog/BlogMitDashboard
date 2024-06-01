@@ -4,9 +4,9 @@ metadata:
   name: aiq
 spec:
   source:
-    repoURL: "https://github.com/kpblmMik/AI-Quantum-Fork.git"
+    repoURL: "https://github.com/Ki-Blog/BlogMitDashboard.git"
     path: "./deployment"
-    targetRevision: "CI"
+    targetRevision: "feature/CI"
   destination:
     server: https://kubernetes.default.svc
     namespace: default

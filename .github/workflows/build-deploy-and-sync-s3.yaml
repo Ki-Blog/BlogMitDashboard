@@ -2,12 +2,12 @@ name: Build, Deploy, and Sync S3
 
 
 on:
-#   push:
-#     tags:
-#       - "v*"
   push:
-    branches:
-      - feature/CI
+    tags:
+      - "v*"
+  # push:
+  #   branches:
+  #     - feature/CI
 
 jobs:
   terraform:

@@ -82,20 +82,10 @@ resource "null_resource" "update_kubeconfig" {
 
 resource "null_resource" "helm_repo_update" {
   provisioner "local-exec" {
-    command = "helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && helm repo add argo https://argoproj.github.io/argo-helm && helm repo update"
+    command = "helm repo add argo https://argoproj.github.io/argo-helm && helm repo update"
   }
 
   depends_on = [null_resource.update_kubeconfig]
-}
-
-resource "helm_release" "ingress_nginx" {
-  name            = "ingress-nginx"
-  repository      = "https://kubernetes.github.io/ingress-nginx"
-  chart           = "ingress-nginx"
-  create_namespace = true
-  namespace       = "ingress-nginx"
-
-  depends_on = [null_resource.helm_repo_update]
 }
 
 resource "helm_release" "argocd" {
@@ -109,22 +99,17 @@ resource "helm_release" "argocd" {
 }
 
 data "template_file" "ingress_template" {
-  template = file("${path.module}/../deployment/ingress.tpl")
+  template = file("${path.module}/../k8s/ingress.tpl")
 
   vars = {
     elb_dns = replace(module.eks.cluster_endpoint, "https://", "")
   }
 }
+
 resource "local_file" "ingress_yaml" {
-  filename = "${path.module}/../deployment/ingress.yaml"
+  filename = "${path.module}/../k8s/ingress.yaml"
   content  = data.template_file.ingress_template.rendered
 }
-
-# resource "null_resource" "patch_and_login" {
-#   provisioner "local-exec" {
-#     command = "patch_and_login.bat"
-#   }
-# }
 
 resource "null_resource" "patch_and_login" {
   provisioner "local-exec" {
@@ -142,7 +127,7 @@ resource "null_resource" "set_context" {
 
 resource "null_resource" "argocd_add_repo" {
   provisioner "local-exec" {
-    command = "argocd repo add https://github.com/kpblmMik/AI-Quantum-Fork.git --username kpblmMik --password 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"
+    command = "argocd repo add https://github.com/Ki-Blog/BlogMitDashboard.git --username kpblmMik --password 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"
   }
 
   depends_on = [null_resource.patch_and_login]
