@@ -1,8 +1,8 @@
 name: Docker Build and Push
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - feature/CI
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
