@@ -115,7 +115,7 @@ export default function Header() {
             <Dropdown className='dark:bg-[#2b3456]'
               arrowIcon={false}
               inline
-              label={<Avatar alt='user' img={currentUser.profilePicture} rounded />}
+              label={<Avatar alt='user' img={currentUser.profilePicture} rounded style={{ border: '2px solid #385cb6', borderRadius: '50%' }}/>}
             >
               <Dropdown.Header>
                 <span className='block text-sm'>@{currentUser.username}</span>
