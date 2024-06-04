@@ -1,8 +1,11 @@
 name: Docker Build and Push
 on:
+  # push:
+  #   branches:
+  #     - feature/CI
   push:
-    branches:
-      - feature/CI
+    tags:
+      - "v*"
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -11,14 +14,14 @@ jobs:
       matrix:
         include:
           - dockerfile: ./api/auth/Dockerfile
-            image: aiq-backend
-            context: ./auth
+            image: aiq-auth
+            context: ./api/auth
           - dockerfile: ./api/user/Dockerfile
-            image: aiq-frontend
-            context: ./user
-          - dockerfile: ./api/comment/Dockerfile
-            image: aiq-frontend
-            context: ./comment
+            image: aiq-user
+            context: ./api/user
+          - dockerfile: ./api/post/Dockerfile
+            image: aiq-post
+            context: ./api/post
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
