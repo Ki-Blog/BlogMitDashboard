@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.1.1] - 2024-06-04
+### :bug: Bug Fixes
+- [`ea22af2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ea22af222979829b28cc2c04c97056bfbe75102b) - solve merge conflicts in pull in main *(commit by [@Onben](https://github.com/Onben))*
+- [`9b7e42e`](https://github.com/Ki-Blog/BlogMitDashboard/commit/9b7e42e866387d613e6361edfeb3350116b11524) - solve merge conflicts *(commit by [@Onben](https://github.com/Onben))*
+- [`3c2135b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/3c2135b6edc70e6c277c711fd7be71c1e7e2ee02) - adjusted build-and-push-images.yaml for 3 microservices *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`3d016b1`](https://github.com/Ki-Blog/BlogMitDashboard/commit/3d016b1dcd9310ee918b64a8437bc1f7fbd3c579) - Corrected build-and-push-images.yaml *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :wrench: Chores
+- [`be7eb34`](https://github.com/Ki-Blog/BlogMitDashboard/commit/be7eb3491fe816903ed944f5eaab08f608b601bb) - **release**: 1.0.0 *(commit by [@Onben](https://github.com/Onben))*
+
+
 ## [v1.1.0] - 2024-06-04
 ### :sparkles: New Features
 - [`79844a7`](https://github.com/Ki-Blog/BlogMitDashboard/commit/79844a70873396f1bb9d966f323de3e4acacb125) - s3 sync pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
@@ -108,3 +119,4 @@ All notable changes to this project will be documented in this file. See [standa
 * SignUp registrierung Routen aktualisiert ([5429ef5](https://github.com/Ki-Blog/BlogMitDashboard/commit/5429ef5022eb36eb4bf0a768a4fd078c9220bdbd))
 [v1.0.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.0.0...v1.0.1
 [v1.1.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.0.1...v1.1.0
+[v1.1.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.0...v1.1.1
