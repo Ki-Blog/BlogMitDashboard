@@ -1,7 +1,7 @@
-FROM node:20.12.2 
+FROM node:20-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 3004
+EXPOSE 4003
 CMD ["node", "index.js"]
