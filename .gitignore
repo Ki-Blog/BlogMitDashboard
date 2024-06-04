@@ -1,2 +1,8 @@
 .env
 node_modules
+
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
