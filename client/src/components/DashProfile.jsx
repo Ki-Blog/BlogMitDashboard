@@ -1,4 +1,4 @@
-import { Alert, Button, Modal, ModalBody, ModalHeader, TextInput } from "flowbite-react";
+import { Alert, Button, Modal, ModalBody, ModalHeader} from "flowbite-react";
 import {useSelector} from "react-redux";
 import { useState, useRef, useEffect } from "react";
 import { 
@@ -44,6 +44,7 @@ export default function DashProfile() {
       setImageFileUrl(URL.createObjectURL(file));
     }
   };
+
   useEffect(() => {
     if (imageFile) {
       uploadImage();
@@ -51,16 +52,6 @@ export default function DashProfile() {
   }, [imageFile]);
 
   const uploadImage = async () => {
-    // service firebase.storage {
-//   match /b/{bucket}/o {
-//     match /{allPaths=**} {
-//       allow read;
-//       allow write: if
-//       request.resource.size < 2 * 1024 * 1024 &&
-//       request.resource.contentType.matches('image/.*')
-//   	}
-// 	}
-// }
     setImageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
@@ -76,7 +67,7 @@ export default function DashProfile() {
       setImageFileUploadProgress(progress.toFixed(0));
       },
       (error) => {
-        setImageFileUploadError("Could not upload image (File must be less than 2MB)");
+        setImageFileUploadError("Bild konnte nicht hochgeladen werden (Datei muss kleiner als 2 MB sein)");
         setImageFileUploadProgress(null);
         setImageFile(null);
         setImageFileUrl(null);
@@ -100,11 +91,11 @@ export default function DashProfile() {
     setUpdateUserError(null);
     setUpdateUserSuccuss(null);
     if (Object.keys(formData).length === 0 ) {
-      setUpdateUserError("Please fill in all fields");
+      setUpdateUserError("Bitte füllen alle Felder aus");
       return;
   }
   if(imageFileUploading){
-    setUpdateUserError("Please wait while your profile picture is being uploaded");
+    setUpdateUserError("Bitte warten bis das Profilbild hochgeladen wird");
     return;
   }
   try {
@@ -122,7 +113,7 @@ export default function DashProfile() {
       setUpdateUserError(data.message);
     }else {
       dispatch(updateSuccess(data));
-      setUpdateUserSuccuss("Profile updated successfully");
+      setUpdateUserSuccuss("Profil erfolgreich aktualisiert");
     }
   } catch (error) {
     dispatch(updateFailure(error.message));
@@ -162,113 +153,110 @@ export default function DashProfile() {
     }
   };
   return (
-    <div className="max-w-lg mx-auto p-3 w-full">
-      <h1 className="my-7 text-center font-semibold text-3xl">Profil</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input 
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange} 
-        ref={filePickerRef} 
-        hidden
-        />
-        <div className="relative w-32 h-32 self-center cursor-pointer shadow-md overflow-hidden rounded-full" onClick={(e) => filePickerRef.current.click()}>
-          {imageFileUploadProgress && (
-            <CircularProgressbar value={imageFileUploadProgress || 0} text={`${imageFileUploadProgress}%`} 
-            strokeWidth={5}
-            styles={{
-              root: {
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-              },
-              path: {
-                stroke: `rgba(62, 152, 199, ${imageFileUploadProgress / 100})`,
-              },
-            }}
+      <div className="max-w-lg mx-auto p-3 w-full mt-[80px]">
+        <div className="flex flex-col gap-4 justify-center max-w-md w-full">
+          <h1 className="my-7 text-center dark:text-[#9bb0ddd3] text-[#7b8cb0] font-semibold text-4xl">Dein Profil</h1>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <input 
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange} 
+              ref={filePickerRef} 
+              hidden
             />
-          )}
-        <img src={imageFileUrl || currentUser.profilePicture} 
-        alt="user" 
-        className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${
-          imageFileUploadProgress && 
-          imageFileUploadProgress < 100 && 
-          'opacity-60'}`} 
-        />
-        </div>
-        {imageFileUploadError && <Alert color="failure">{imageFileUploadError}</Alert>}
-        <TextInput 
-        type="text" 
-        id="username" 
-        placeholder="Username"
-        defaultValue={currentUser.username} onChange={handleChange}
-        />
-        <TextInput 
-        type="email" 
-        id="email" 
-        placeholder="Email"
-        defaultValue={currentUser.email} onChange={handleChange}
-        />
-        <TextInput 
-        type="password" 
-        id="password" 
-        placeholder="password" onChange={handleChange}
-        />
-        <Button type='submit' gradientDuoTone='purpleToBlue' outline 
-        disabled={loading || imageFileUploading}
-        >
-          {loading ? "Loading ..." : "Update"}
-        </Button>
-        {
-          currentUser.isAdmin && (
-            <Link to={"/create-post"}>
-              <Button
-                type="button"
-                gradientDuoTone="purpleToPink"
-                className="w-full"
-            >
-                Create a post
-              </Button>
-            </Link>
-          )
-        }
-      </form>
-      <div className="text-red-500 flex justify-between mt-5">
-        <span onClick={() =>setShowModal(true)} className="cursor-pointer">Delete Account</span>
-        <span onClick={handleSignout} className="cursor-pointer">Sign Out</span>
-      </div>
-      {updateUserSuccuss && (
-      <Alert color="success" className="mt-5">
-        {updateUserSuccuss}
-        </Alert>
-        )}
-      {updateUserError && (
-      <Alert color="failure" className="mt-5">
-        {updateUserError}
-        </Alert>
-      )}
-      {error && (
-      <Alert color="failure" className="mt-5">
-        {error}
-        </Alert>
-      )}
-      <Modal show={showModal} onClose={() => setShowModal(false)} 
-      popup 
-      size='md'>
-        <ModalHeader/>
-          <ModalBody>
-            <div className="text-center">
-              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 md-4 mx-auto"/>
-              <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">Are you sure yiz want to delete your account?</h3>
-              <div className="flex justify-center gap-4">
-                <Button color="failure" onClick={handleDeleteUser}> Yes, I'm sure</Button>
-                <Button color="gray" onClick={() => setShowModal(false)}> No, cancel</Button>
-              </div>
+            <div className="relative w-32 h-32 self-center cursor-pointer shadow-md overflow-hidden rounded-full" onClick={(e) => filePickerRef.current.click()}>
+              {imageFileUploadProgress && (
+                <CircularProgressbar value={imageFileUploadProgress || 0} text={`${imageFileUploadProgress}%`} 
+                  strokeWidth={5}
+                  styles={{
+                    root: {
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                    },
+                    path: {
+                      stroke: `rgba(62, 152, 199, ${imageFileUploadProgress / 100})`,
+                    },
+                  }}
+                />
+              )}
+              <img src={imageFileUrl || currentUser.profilePicture} 
+                alt="user" 
+                className={`rounded-full w-full h-full object-cover border-8 border-[#8a52f37a] ${
+                  imageFileUploadProgress && 
+                  imageFileUploadProgress < 100 && 
+                  'opacity-60'}`} 
+              />
             </div>
+            {imageFileUploadError && <Alert color="failure">{imageFileUploadError}</Alert>}
+            <input className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
+              type="text" 
+              id="username" 
+              placeholder="Username"
+              defaultValue={currentUser.username} onChange={handleChange}
+            />
+            <input className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
+              type="email" 
+              id="email" 
+              placeholder="Email"
+              defaultValue={currentUser.email} onChange={handleChange}
+            />
+            <input className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
+              type="password" 
+              id="password" 
+              placeholder="passwort" onChange={handleChange}
+            />
+            <Button type='submit' gradientDuoTone='purpleToBlue' outline 
+              disabled={loading || imageFileUploading}
+            >
+              {loading ? "Laden ..." : "Profil aktualisieren"}
+            </Button>
+            {
+              currentUser.isAdmin && (
+                <Link to={"/create-post"}>
+                  <Button
+                    type="button"
+                    gradientDuoTone='purpleToBlue' outline
+                    className="w-full"
+                  >
+                    Beitrag erstellen
+                  </Button>
+                </Link>
+              )
+            }
+          </form>
+          <div className="flex justify-between font-semibold mt-5">
+            <span onClick={() =>setShowModal(true)} className="cursor-pointer text-[#8a52f3dd]">Konto löschen</span>
+            <span onClick={handleSignout} className="cursor-pointer text-[#2ca3c1]">Ausloggen</span>
+          </div>
+          {updateUserSuccuss && (
+            <Alert color="success" className="mt-5">
+              {updateUserSuccuss}
+            </Alert>
+          )}
+          {updateUserError && (
+            <Alert color="failure" className="mt-5">
+              {updateUserError}
+            </Alert>
+          )}
+          <Modal show={showModal} onClose={() => setShowModal(false)} 
+            popup 
+            size='md'>
+            <ModalHeader/>
+            <ModalBody>
+              <div className="text-center">
+                <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 md-4 mx-auto"/>
+                <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">Bist du sicher, dass du dein Konto löschen möchtest?</h3>
+                <div className="flex justify-center gap-4">
+                  <Button color="failure" onClick={handleDeleteUser}> Ja, ich bin mir sicher</Button>
+                  <Button color="gray" onClick={() => setShowModal(false)}> Nein, abbrechen</Button>
+                </div>
+              </div>
             </ModalBody>
-      </Modal>
-    </div>
+          </Modal>
+        </div>
+      </div>
   );
 }

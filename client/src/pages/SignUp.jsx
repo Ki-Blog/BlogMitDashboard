@@ -1,10 +1,9 @@
-import { Button, Label, TextInput, Alert, Spinner } from "flowbite-react";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import OAuth from "../components/OAuth";
-import logo from "../images/logo_gross.png";
-import logodark from "../images/logodark_gross.png";
-import { useSelector } from "react-redux";
+import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
+import logo from "../images/logo_gross.svg";
+import { useSelector } from "react-redux"; 
 import backgroundImage from "../images/background.jpg";
 import backgroundImageLight from "../images/background_light.jpg";
 
@@ -15,112 +14,151 @@ export default function SignUp() {
   const navigate = useNavigate();
   const { theme } = useSelector((state) => state.theme);
 
-  const handleChance = (e) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password || !formData.username) {
-      return setErrorMessage("All fields are required");
+    if (!formData.username || !formData.email || !formData.password) {
+      return setErrorMessage('Bitte alle Felder ausfüllen.');
     }
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch("api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success === false) {
+      setLoading(false);
+      if (!res.ok) {
         return setErrorMessage(data.message);
       }
-      setLoading(false);
-      if (res.ok)
-        navigate("/signin");
+      // Speichern des Tokens und Weiterleitung zur Startseite
+      localStorage.setItem('token', data.token);
+      navigate('/');
     } catch (error) {
       setErrorMessage(error.message);
       setLoading(false);
     }
   };
 
+  const formContent = (
+    <>
+      <div>
+        <Label value="E-Mail:" />
+        <TextInput 
+          type="email" 
+          placeholder="name@company.com" 
+          id="email" 
+          onChange={handleChange}
+          style={{
+            backgroundColor: theme === 'dark' ? 'black' : 'white',
+            color: theme === 'dark' ? 'white' : 'black'
+          }}
+        />
+      </div>
+      <div>
+        <Label value="Benutzername:" />
+        <TextInput 
+          type="text" 
+          placeholder="Benutzername" 
+          id="username" 
+          onChange={handleChange}
+          style={{
+            backgroundColor: theme === 'dark' ? 'black' : 'white',
+            color: theme === 'dark' ? 'white' : 'black'
+          }}
+        />
+      </div>
+      <div>
+        <Label value="Passwort:" />
+        <TextInput 
+          type="password" 
+          placeholder="*********" 
+          id="password" 
+          onChange={handleChange}
+          style={{
+            backgroundColor: theme === 'dark' ? 'black' : 'white',
+            color: theme === 'dark' ? 'white' : 'black'
+          }}
+        />
+      </div>
+      <Button gradientDuoTone="purpleToBlue" outline type="submit" disabled={loading}>
+        {loading ? (
+          <>
+            <Spinner size="sm"/>
+            <span className="pl-3">Laden...</span>
+          </>
+        ) : (
+          "Registrieren"
+        )}
+      </Button>
+      <OAuth/>
+    </>
+  );
+
   return (
-    <div className="min-h-screen mt-20 flex justify-center">
-      <div className="relative bg-cover h-[600px] w-[880px] bg-center border border-[#a00a8c]">
-        <div className="absolute right-0 top-0 w-1/2 bg-[#343e7f40] dark:bg-[#000000] h-full"></div>
+    <div className="min-h-screen mt-20 flex justify-center items-center">
+      {/* Desktop Ansicht */}
+      <div className="relative bg-cover h-[600px] w-[880px] bg-center border border-[#385cb6] hidden md:flex mb-[200px] ">
+        <div className="absolute right-0 top-0 w-1/2 dark:bg-[#090d1c] bg-[#f7f7fa] h-full"></div>
         <div className="absolute left-0 top-0 w-1/2 h-full bg-center bg-cover" style={{ backgroundImage: `url(${theme === 'dark' ? backgroundImage : backgroundImageLight})` }}></div>
-        <div className="absolute top-0 right-0 flex p-3 max-w-3xl mt-10 mr-14 flex-col md:flex-row md:items-center gap-5">
+        <div className="absolute top-0 right-0 flex p-3 max-w-3xl mt-14 mr-14 flex-col md:flex-row md:items-center gap-5">
           {/* left */}
-          <div className="flex-1 mt-4 mr-14">
-            <h1 className="text-4xl font font-semibold text-[#0e93b7] dark:text-[#0096bf] text-center my-3">Willkommen bei</h1>
-            <Link to="/" className=" font-bold dark:text-white text-4xl">
-              <img src={theme === "dark" ? logodark : logo} alt="Logo" />
+          <div className="flex-1 mt-16 mr-16">
+            <h1 className="text-4xl font font-semibold text-[#385cb6]  text-center my-3">Willkommen bei</h1>
+            <Link to="/" className="font-bold dark:text-white text-4xl">
+            <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
             </Link>
-            <p className="rext-sm text-center p-5 text-lg">
-            Jetzt registrieren oder mit Google anmelden.
+            <p className="text-center p-5 text-lg">
+              Jetzt registrieren oder mit Google anmelden.
             </p>
           </div>
           {/* right */}
           <div className="flex-1 mt-12 mb-2 ml-12">
-            <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
-              <div>
-                <Label value="Name:" />
-                <TextInput
-                  type="text"
-                  placeholder="Name"
-                  id="username"
-                  onChange={handleChance}
-                  style={{
-                    backgroundColor: theme === 'dark' ? 'black' : 'white',
-                    color: theme === 'dark' ? 'white' : 'black'
-                  }}
-                />
-              </div>
-              <div>
-                <Label value="E-Mail:" />
-                <TextInput
-                  type="email"
-                  placeholder="name@company.com"
-                  id="email"
-                  onChange={handleChance}
-                  style={{
-                    backgroundColor: theme === 'dark' ? 'black' : 'white',
-                    color: theme === 'dark' ? 'white' : 'black'
-                  }}
-                />
-              </div>
-              <div>
-                <Label value="Passwort:" />
-                <TextInput
-                  type="password"
-                  placeholder="Passwort"
-                  id="password"
-                  onChange={handleChance}
-                    style={{
-                    backgroundColor: theme === 'dark' ? 'black' : 'white',
-                    color: theme === 'dark' ? 'white' : 'black'
-                  }}
-                />
-              </div>
-              <Button gradientDuoTone="purpleToBlue" type="submit" disabled={loading}>
-                {loading ? (
-                  <>
-                    <Spinner size="sm" />
-                    <span className="pl-3">Laden...</span>
-                  </>
-                ) : (
-                  "Registieren"
-                )}
-              </Button>
-              <OAuth />
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              {formContent}
             </form>
             <div className="flex gap-2 text-sm mt-5">
-              <span>Hast du bereits einen Account?</span>
-              <Link to="/signin" className="text-[#c409ab] dark:text-[#0e93b7]">
+              <span>Du hast bereits einen Account?</span>
+              <Link to="/signin" className="text-[#5356ff] font-semibold ">
                 Anmelden
+              </Link>
+            </div>
+            {errorMessage && (
+              <Alert className="mt-5" color="failure">
+                {errorMessage}
+              </Alert>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Ansicht */}
+      <div className="relative md:hidden w-full bg-center bg-cover flex justify-center items-start" style={{ backgroundImage: `url(${theme === 'dark' ? backgroundImage : backgroundImageLight})`, height: '100vh' }}>
+        <div className="absolute inset-0 bg-white dark:bg-[#000000a0] opacity-50"></div>
+        <div className="relative z-10 flex flex-col items-center justify-start p-4 mt-10">
+          <div className="text-center mb-8 flex flex-col items-center">
+            <h1 className="text-4xl font font-semibold text-[#385cb6]  mb-3">Willkommen bei</h1>
+            <Link to="/" className="font-bold dark:text-white text-4xl">
+            <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
+            </Link>
+            <p className="text-sm p-5">
+              Jetzt registrieren oder mit Google anmelden.
+            </p>
+          </div>
+          
+          <div className="w-full px-4">
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              {formContent}
+            </form>
+            <div className="flex gap-2 text-sm mt-5 justify-center">
+              <span>Du hast bereits einen Account?</span>
+              <Link to="/signin" className="text-[#5356ff] font-semibold ">
+              Anmelden
               </Link>
             </div>
             {errorMessage && (
