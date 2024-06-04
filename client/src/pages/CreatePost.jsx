@@ -151,3 +151,4 @@ export default function CreatePost() {
       </form>
     </div>;
 }
+
