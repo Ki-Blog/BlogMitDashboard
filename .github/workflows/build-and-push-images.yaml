@@ -10,12 +10,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: ./api/Dockerfile
+          - dockerfile: ./api/auth/Dockerfile
             image: aiq-backend
-            context: ./api
-          # - dockerfile: ./client/Dockerfile
-          #   image: aiq-frontend
-          #   context: ./client
+            context: ./auth
+          - dockerfile: ./api/user/Dockerfile
+            image: aiq-frontend
+            context: ./user
+          - dockerfile: ./api/comment/Dockerfile
+            image: aiq-frontend
+            context: ./comment
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
