@@ -23,7 +23,7 @@ const app = express()
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(4001, () => {
+const server = app.listen(4001, () => {
   console.log('server running on port 4001!')
 });
 
@@ -40,3 +40,4 @@ app.use((error, req, res, next) => {
     message
   });
 });
+export { app, server };
