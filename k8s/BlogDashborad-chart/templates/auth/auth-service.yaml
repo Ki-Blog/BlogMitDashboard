@@ -1,0 +1,16 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiq-backend
+  namespace: default
+spec:
+  selector:
+    app: aiq-backend
+  type: ClusterIP
+  ports:
+    - name: aiq-backend
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+

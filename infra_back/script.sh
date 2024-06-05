@@ -2,9 +2,17 @@
 
 set -e
 
-echo "Waiting for all ArgoCD pods to be ready..."
-kubectl wait --for=condition=ready pods --all -n argocd --timeout=600s
-echo "All ArgoCD pods are ready."
+wait_for_pods() {
+    echo "Waiting for all ArgoCD pods to be ready..."
+    while ! kubectl wait --for=condition=ready pods --all -n argocd --timeout=600s; do
+        echo "Still waiting for pods to be ready..."
+        sleep 10
+    done
+    echo "All ArgoCD pods are ready."
+}
+
+# Wait for all ArgoCD pods to be ready
+wait_for_pods
 
 echo "Patching the ArgoCD server service to be of type LoadBalancer..."
 kubectl patch svc argocd-server -n argocd -p "{\"spec\": {\"type\": \"LoadBalancer\"}}"
