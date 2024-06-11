@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aiq-backend
+  name: aiq-auth
   namespace: default
   labels:
-    app: aiq-backend
+    app: aiq-auth
 spec:
   selector:
     matchLabels:
-      app: aiq-backend
+      app: aiq-auth
   replicas: {{ .Values.auth.replicas }}
   strategy:
     rollingUpdate:
@@ -22,7 +22,7 @@ spec:
         app: AIQ-backend
     spec:
       containers:
-        - name: aiq-backend
+        - name: aiq-auth
           image: {{ .Values.auth.image }}
           imagePullPolicy: {{ .Values.auth.imagePullPolicy }}
           resources:
@@ -40,13 +40,12 @@ spec:
             successThreshold: 1
             failureThreshold: 3
             periodSeconds: 10
-      env: 
-          {{- range .Values.auth.env }}
-        - name: {{ .name }}
-        value: {{ .value | quote }}
-          {{- end }}
-
-        name: auth 
-            ports:
+          env: 
+            {{-range .Values.auth.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+          restartPolicy: {{.Values.auth.restartPolicy}}       
+          ports:
               - containerPort: {{ .Values.auth.port}}
-        restartPolicy: {{.Values.auth.restartPolicy}}
+
