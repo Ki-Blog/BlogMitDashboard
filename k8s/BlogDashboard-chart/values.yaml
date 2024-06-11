@@ -2,7 +2,7 @@ namespace: default
 
 aiqauth:
   app: aiqauth
-  replicas: 2
+  replicas: 1
   port: 4000
   restartPolicy: Always
   image: docker.io/kpblm256/aiq-auth:1.1.1
@@ -21,10 +21,8 @@ aiqauth:
     failureThreshold: 3
     periodSeconds: 10
   env:
-    - name: MONGO
-      value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
-    - name: JWT_SECRET
-      value: sdjfslgjd56fr7
+    MONGO: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
+    JWT_SECRET: "sdjfslgjd56fr7"
   service:
     name: aiqauth
     type: ClusterIP
@@ -58,10 +56,8 @@ aiqpost:
     failureThreshold: 3
     periodSeconds: 10
   env:
-    - name: MONGO
-      value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
-    - name: JWT_SECRET
-      value: sdjfslgjd56fr7
+    MONGO: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
+    JWT_SECRET: "sdjfslgjd56fr7"
   service:
     name: aiqpost
     type: ClusterIP
@@ -95,10 +91,8 @@ aiquser:
     failureThreshold: 3
     periodSeconds: 10
   env:
-    - name: MONGO
-      value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
-    - name: JWT_SECRET
-      value: sdjfslgjd56fr7
+    MONGO: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
+    JWT_SECRET: "sdjfslgjd56fr7"
   service:
     name: aiquser
     type: ClusterIP
