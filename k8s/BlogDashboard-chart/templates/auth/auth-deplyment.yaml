@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: aiqauth
-  namespace: {{ .Values.namespace }}
+  namespace: default
   labels:
     app: {{ .Values.aiqauth.app }}
 spec:

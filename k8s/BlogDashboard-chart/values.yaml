@@ -2,7 +2,7 @@ namespace: default
 
 aiqauth:
   app: aiqauth
-  replicas: 1
+  replicas: 2
   port: 4000
   restartPolicy: Always
   image: docker.io/kpblm256/aiq-auth:1.1.1
@@ -31,8 +31,8 @@ aiqauth:
     port: 4000
     targetPort: 4000
 
-
 aiqpost:
+  app: aiqpost
   replicas: 1
   port: 4003
   restartPolicy: Always
@@ -63,15 +63,13 @@ aiqpost:
     - name: JWT_SECRET
       value: sdjfslgjd56fr7
   service:
-      type: ClusterIP
-      port: 4003
-      targetPort: 4003
-
-
-
-
+    name: aiqpost
+    type: ClusterIP
+    port: 4003
+    targetPort: 4003
 
 aiquser:
+  app: aiquser
   replicas: 1
   port: 4001
   restartPolicy: Always
@@ -85,7 +83,6 @@ aiquser:
       cpu: "100m"
       memory: "100Mi"
   livenessProbe:
-    livenessProbe:
     initialDelaySeconds: 5
     timeoutSeconds: 5
     successThreshold: 1
@@ -103,6 +100,7 @@ aiquser:
     - name: JWT_SECRET
       value: sdjfslgjd56fr7
   service:
+    name: aiquser
     type: ClusterIP
     port: 4001
     targetPort: 4001
