@@ -1,34 +1,12 @@
-aiq-post:
-  replicas: 1
-  port: 8000
-  restartPolicy: Always
-  image: your-image-repo/aiq-backend:latest
+auth:
+  image: docker.io/kpblm256/aiq-backend:1.2.1
   imagePullPolicy: Always
-  resources:
-    requests:
-      cpu: "100m"
-      memory: "128Mi"
-    limits:
-      cpu: "200m"
-      memory: "256Mi"
-  livenessProbe:
-    initialDelaySeconds: 5
-    timeoutSeconds: 5
-    successThreshold: 1
-    failureThreshold: 3
-    periodSeconds: 10
-  readinessProbe:
-    initialDelaySeconds: 5
-    timeoutSeconds: 5
-    successThreshold: 1
-    failureThreshold: 3
-    periodSeconds: 10
+  replicas: 1
+  port: 4000
+  targetPort: 4000
+  restartPolicy: Always
   env:
-    - name: ENV_VAR_1
-      value: "value1"
-    - name: ENV_VAR_2
-      value: "value2"
-  service:
-    type: ClusterIP
-    port: 4000
-    targetPort: 4000
+    - name: MONGO
+      value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
+    - name: JWT_SECRET
+      value: sdjfslgjd56fr7
