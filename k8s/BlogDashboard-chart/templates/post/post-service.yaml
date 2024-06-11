@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiq-post
+  namespace: default
+spec:
+  selector:
+    app: aiq-post
+  type: {{ .Values.aiq-post.service.type }}
+  ports:
+    - name: aiq-post
+      protocol: TCP
+      port: {{ .Values.aiq-post.service.port }}
+      targetPort: {{ .Values.aiq-post.service.targetPort }}

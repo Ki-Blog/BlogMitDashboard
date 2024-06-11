@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "${lower(elb_dns)}"
+    - host: "ed5d520f2291efc6832ba8b12ee11a1c.gr7.eu-central-1.eks.amazonaws.com"
       http:
         paths:
           - path: /api/auth

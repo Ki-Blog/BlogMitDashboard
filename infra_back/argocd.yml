@@ -5,7 +5,7 @@ metadata:
 spec:
   source:
     repoURL: "https://github.com/Ki-Blog/BlogMitDashboard.git"
-    path: "./k8s"
+    path: "./k8s/BlogDashboard-chart"
     targetRevision: "feature/k8s"
   destination:
     server: https://kubernetes.default.svc

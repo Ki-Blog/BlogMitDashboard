@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiq-post
+  namespace: default
+  labels:
+    app: aiq-post
+spec:
+  selector:
+    matchLabels:
+      app: aiq-post
+  replicas: {{ .Values.aiq-post.replicas }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: aiq-post
+    spec:
+      containers:
+        - name: aiq-post
+          image: {{ .Values.aiq-post.image }}
+          imagePullPolicy: {{ .Values.aiq-post.imagePullPolicy }}
+          resources:
+            requests:
+              cpu: {{ .Values.aiq-post.resources.requests.cpu }}
+              memory: {{ .Values.aiq-post.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.aiq-post.resources.limits.cpu }}
+              memory: {{ .Values.aiq-post.resources.limits.memory }}
+          env: 
+          {{- range .Values.aiq-post.env }}
+          - name: {{ .name }}
+            value: {{ .value | quote }}
+          {{- end }}
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.aiq-post.port }}
+            initialDelaySeconds: {{ .Values.aiq-post.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.aiq-post.livenessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.aiq-post.livenessProbe.successThreshold }}
+            failureThreshold: {{ .Values.aiq-post.livenessProbe.failureThreshold }}
+            periodSeconds: {{ .Values.aiq-post.livenessProbe.periodSeconds }}
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.aiq-post.port }}
+            initialDelaySeconds: {{ .Values.aiq-post.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.aiq-post.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.aiq-post.readinessProbe.successThreshold }}
+            failureThreshold: {{ .Values.aiq-post.readinessProbe.failureThreshold }}
+            periodSeconds: {{ .Values.aiq-post.readinessProbe.periodSeconds }}
+          ports:
+            - containerPort: {{ .Values.aiq-post.port }}
+      restartPolicy: {{ .Values.aiq-post.restartPolicy }}
