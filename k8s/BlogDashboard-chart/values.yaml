@@ -1,4 +1,4 @@
-auth:
+aiq-auth:
   image: docker.io/kpblm256/aiq-auth:1.1.1
   imagePullPolicy: Always
   replicas: 1
@@ -42,9 +42,9 @@ aiq-post:
     - name: JWT_SECRET
       value: sdjfslgjd56fr7
   service:
-    type: ClusterIP
-    port: 4003
-    targetPort: 4003
+      type: ClusterIP
+      port: 4003
+      targetPort: 4003
 
 aiq-user:
   replicas: 1

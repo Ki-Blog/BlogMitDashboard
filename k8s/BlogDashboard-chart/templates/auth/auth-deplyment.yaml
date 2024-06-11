@@ -2,15 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aiq-backend
+  name: aiq-auth
   namespace: default
   labels:
-    app: aiq-backend
+    app: aiq-auth
 spec:
   selector:
     matchLabels:
-      app: aiq-backend
-  replicas: {{ .Values.auth.replicas }}
+      app: aiq-auth
+  replicas: {{ .Values.aiq-auth.replicas }}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,9 +22,9 @@ spec:
         app: AIQ-backend
     spec:
       containers:
-        - name: aiq-backend
-          image: {{ .Values.auth.image }}
-          imagePullPolicy: {{ .Values.auth.imagePullPolicy }}
+        - name: aiq-auth
+          image: {{ .Values.aiq-auth.image }}
+          imagePullPolicy: {{ .Values.aiq-auth.imagePullPolicy }}
           resources:
             requests:
               cpu: 100m
@@ -34,19 +34,18 @@ spec:
               memory: 100Mi
           livenessProbe:
             tcpSocket:
-              port: {{.Values.auth.restartPolicy}}
+              port: {{.Values.aiq-auth.restartPolicy}}
             initialDelaySeconds: 5
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
             periodSeconds: 10
-      env: 
-          {{- range .Values.auth.env }}
-        - name: {{ .name }}
-        value: {{ .value | quote }}
-          {{- end }}
+          env: 
+            {{-range .Values.aiq-auth.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+          restartPolicy: {{.Values.aiq-auth.restartPolicy}}       
+          ports:
+              - containerPort: {{ .Values.aiq-auth.port}}
 
-        name: auth 
-            ports:
-              - containerPort: {{ .Values.auth.port}}
-        restartPolicy: {{.Values.auth.restartPolicy}}
