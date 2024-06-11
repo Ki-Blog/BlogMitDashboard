@@ -37,46 +37,46 @@ aiq-post:
     successThreshold: 1
     failureThreshold: 3
     periodSeconds: 10
- env:
-    - name: MONGO
-      value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
-    - name: JWT_SECRET
-      value: sdjfslgjd56fr7
-
+  env:
+      - name: MONGO
+        value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
+      - name: JWT_SECRET
+        value: sdjfslgjd56fr7
+    
   service:
-    type: ClusterIP
-    port: 4003
-    targetPort: 4003
+      type: ClusterIP
+      port: 4003
+      targetPort: 4003
 
 
 
 aiq-user:
-  replicas: 1
-  port: 4001
-  restartPolicy: Always
-  image: kpblm256/aiq-user:1.1.1
-  imagePullPolicy: IfNotPresent
-  resources:
-    requests:
-      cpu: "100m"
-      memory: "100Mi"
-    limits:
-      cpu: "100m"
-      memory: "100Mi"
-  livenessProbe:
-    initialDelaySeconds: 5
-    timeoutSeconds: 5
-    successThreshold: 1
-    failureThreshold: 3
-    periodSeconds: 10
-  
-   env:
-    - name: MONGO
-      value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
-    - name: JWT_SECRET
-      value: sdjfslgjd56fr7
-
-  service:
-    type: ClusterIP
+    replicas: 1
     port: 4001
-    targetPort: 4001  
+    restartPolicy: Always
+    image: kpblm256/aiq-user:1.1.1
+    imagePullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "100Mi"
+      limits:
+        cpu: "100m"
+        memory: "100Mi"
+    livenessProbe:
+      initialDelaySeconds: 5
+      timeoutSeconds: 5
+      successThreshold: 1
+      failureThreshold: 3
+      periodSeconds: 10
+    
+    env:
+      - name: MONGO
+        value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
+      - name: JWT_SECRET
+        value: sdjfslgjd56fr7
+
+    service:
+      type: ClusterIP
+      port: 4001
+      targetPort: 4001  
