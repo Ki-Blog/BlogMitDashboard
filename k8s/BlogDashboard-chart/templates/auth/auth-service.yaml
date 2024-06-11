@@ -1,16 +1,14 @@
-# https://kubernetes.io/docs/concepts/services-networking/service/
 apiVersion: v1
 kind: Service
 metadata:
-  name: aiqauth
-  namespace: default
+  name: {{ .Values.aiqauth.service.name }}
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: aiqauth
-  type: ClusterIP
+    app: {{ .Values.aiqauth.app }}
+  type: {{ .Values.aiqauth.service.type }}
   ports:
     - name: aiqauth
       protocol: TCP
-      port: {{ .Values.aiqauth.port}}
-      targetPort: {{ .Values.aiqauth.targetPort }}
-
+      port: {{ .Values.aiqauth.service.port }}
+      targetPort: {{ .Values.aiqauth.service.targetPort }}

@@ -1,15 +1,14 @@
-# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: aiqauth
-  namespace: default
+  namespace: {{ .Values.namespace }}
   labels:
-    app: aiqauth
+    app: {{ .Values.aiqauth.app }}
 spec:
   selector:
     matchLabels:
-      app: aiqauth
+      app: {{ .Values.aiqauth.app }}
   replicas: {{ .Values.aiqauth.replicas }}
   strategy:
     rollingUpdate:
@@ -19,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: AIQ-backend
+        app: {{ .Values.aiqauth.app }}
     spec:
       containers:
         - name: aiqauth
@@ -27,25 +26,23 @@ spec:
           imagePullPolicy: {{ .Values.aiqauth.imagePullPolicy }}
           resources:
             requests:
-              cpu: 100m
-              memory: 100Mi
+              cpu: {{ .Values.aiqauth.resources.requests.cpu }}
+              memory: {{ .Values.aiqauth.resources.requests.memory }}
             limits:
-              cpu: 100m
-              memory: 100Mi
+              cpu: {{ .Values.aiqauth.resources.limits.cpu }}
+              memory: {{ .Values.aiqauth.resources.limits.memory }}
           livenessProbe:
             tcpSocket:
-              port: {{.Values.aiqauth.restartPolicy}}
-            initialDelaySeconds: 5
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
-            periodSeconds: 10
-          env: 
-            {{- range .Values.aiqauth.env }}
-            - name: {{ .name }}
-              value: {{ .value | quote }}
-            {{- end }}
-          restartPolicy: {{.Values.aiqauth.restartPolicy}}       
+              port: {{ .Values.aiqauth.port }}
+            initialDelaySeconds: {{ .Values.aiqauth.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.aiqauth.livenessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.aiqauth.livenessProbe.successThreshold }}
+            failureThreshold: {{ .Values.aiqauth.livenessProbe.failureThreshold }}
+            periodSeconds: {{ .Values.aiqauth.livenessProbe.periodSeconds }}
+          env:
+          {{- range .Values.aiqauth.env }}
+          - name: {{ .name }}
+            value: {{ .value | quote }}
+          {{- end }}
           ports:
-              - containerPort: {{ .Values.aiqauth.port}}
-
+            - containerPort: {{ .Values.aiqauth.port }}
