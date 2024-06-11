@@ -1,5 +1,5 @@
 auth:
-  image: docker.io/kpblm256/aiq-backend:1.2.1
+  image: docker.io/kpblm256/aiq-auth:1.1.1
   imagePullPolicy: Always
   replicas: 1
   port: 4000
@@ -16,7 +16,7 @@ aiq-post:
   replicas: 1
   port: 8080
   restartPolicy: Always
-  image: docker.io/kpblm256/aiq-backend:1.2.1
+  image: docker.io/kpblm256/aiq-post:1.1.1
   imagePullPolicy: Always
   resources:
     requests:
