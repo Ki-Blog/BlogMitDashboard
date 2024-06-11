@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aiq-post
+  name: aiq-user
   namespace: default
   labels:
-    app: aiq-post
+    app: aiq-user
 spec:
   selector:
     matchLabels:
-      app: aiq-post
-  replicas: {{ .Values.aiq-post.replicas }}
+      app: aiq-user
+  replicas: {{ .Values.aiq-user.replicas }}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,40 +18,40 @@ spec:
   template:
     metadata:
       labels:
-        app: aiq-post
+        app: aiq-user
     spec:
       containers:
-        - name: aiq-post
-          image: {{ .Values.aiq-post.image }}
-          imagePullPolicy: {{ .Values.aiq-post.imagePullPolicy }}
+        - name: aiq-user
+          image: {{ .Values.aiq-user.image }}
+          imagePullPolicy: {{ .Values.aiq-user.imagePullPolicy }}
           resources:
             requests:
-              cpu: {{ .Values.aiq-post.resources.requests.cpu }}
-              memory: {{ .Values.aiq-post.resources.requests.memory }}
+              cpu: {{ .Values.aiq-user.resources.requests.cpu }}
+              memory: {{ .Values.aiq-user.resources.requests.memory }}
             limits:
-              cpu: {{ .Values.aiq-post.resources.limits.cpu }}
-              memory: {{ .Values.aiq-post.resources.limits.memory }}
-          env: 
-          {{- range .Values.aiq-post.env }}
+              cpu: {{ .Values.aiq-user.resources.limits.cpu }}
+              memory: {{ .Values.aiq-user.resources.limits.memory }}
+          env:
+          {{- range .Values.aiq-user.env }}
           - name: {{ .name }}
             value: {{ .value | quote }}
           {{- end }}
           livenessProbe:
             tcpSocket:
-              port: {{ .Values.aiq-post.port }}
-            initialDelaySeconds: {{ .Values.aiq-post.livenessProbe.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.aiq-post.livenessProbe.timeoutSeconds }}
-            successThreshold: {{ .Values.aiq-post.livenessProbe.successThreshold }}
-            failureThreshold: {{ .Values.aiq-post.livenessProbe.failureThreshold }}
-            periodSeconds: {{ .Values.aiq-post.livenessProbe.periodSeconds }}
+              port: {{ .Values.aiq-user.port }}
+            initialDelaySeconds: {{ .Values.aiq-user.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.aiq-user.livenessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.aiq-user.livenessProbe.successThreshold }}
+            failureThreshold: {{ .Values.aiq-user.livenessProbe.failureThreshold }}
+            periodSeconds: {{ .Values.aiq-user.livenessProbe.periodSeconds }}
           readinessProbe:
             tcpSocket:
-              port: {{ .Values.aiq-post.port }}
-            initialDelaySeconds: {{ .Values.aiq-post.readinessProbe.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.aiq-post.readinessProbe.timeoutSeconds }}
-            successThreshold: {{ .Values.aiq-post.readinessProbe.successThreshold }}
-            failureThreshold: {{ .Values.aiq-post.readinessProbe.failureThreshold }}
-            periodSeconds: {{ .Values.aiq-post.readinessProbe.periodSeconds }}
+              port: {{ .Values.aiq-user.port }}
+            initialDelaySeconds: {{ .Values.aiq-user.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.aiq-user.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.aiq-user.readinessProbe.successThreshold }}
+            failureThreshold: {{ .Values.aiq-user.readinessProbe.failureThreshold }}
+            periodSeconds: {{ .Values.aiq-user.readinessProbe.periodSeconds }}
           ports:
-            - containerPort: {{ .Values.aiq-post.port }}
-      restartPolicy: {{ .Values.aiq-post.restartPolicy }}
+            - containerPort: {{ .Values.aiq-user.port }}
+      restartPolicy: {{ .Values.aiq-user.restartPolicy }}

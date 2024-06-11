@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "ed5d520f2291efc6832ba8b12ee11a1c.gr7.eu-central-1.eks.amazonaws.com"
+    - host: "59d85a2c806881bb1531a5058a3ff0e3.gr7.eu-central-1.eks.amazonaws.com"
       http:
         paths:
           - path: /api/auth

@@ -11,7 +11,6 @@ auth:
     - name: JWT_SECRET
       value: sdjfslgjd56fr7
 
-
 aiq-post:
   replicas: 1
   port: 4003
@@ -37,18 +36,15 @@ aiq-post:
     successThreshold: 1
     failureThreshold: 3
     periodSeconds: 10
- env:
+  env:
     - name: MONGO
       value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
     - name: JWT_SECRET
       value: sdjfslgjd56fr7
-
   service:
     type: ClusterIP
     port: 4003
     targetPort: 4003
-
-
 
 aiq-user:
   replicas: 1
@@ -69,14 +65,12 @@ aiq-user:
     successThreshold: 1
     failureThreshold: 3
     periodSeconds: 10
-  
-   env:
+  env:
     - name: MONGO
       value: mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru
     - name: JWT_SECRET
       value: sdjfslgjd56fr7
-
   service:
     type: ClusterIP
     port: 4001
-    targetPort: 4001  
+    targetPort: 4001
