@@ -21,9 +21,9 @@ spec:
         app: aiq-post
     spec:
       containers:
-        - name: aiq-backend
-          image: {{ .Values.aiq-backend.image }}
-          imagePullPolicy: {{ .Values.aiq-backend.imagePullPolicy }}
+        - name: aiq-post
+          image: {{ .Values.aiq-post.image }}
+          imagePullPolicy: {{ .Values.aiq-post.imagePullPolicy }}
           resources:
             requests:
               cpu: {{ .Values.aiq-post.resources.requests.cpu }}
