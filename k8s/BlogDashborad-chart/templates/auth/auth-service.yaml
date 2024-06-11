@@ -11,6 +11,6 @@ spec:
   ports:
     - name: aiq-backend
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: {{ .Values.auth.port}}
+      targetPort: {{ .Values.auth.targetPort }}
 

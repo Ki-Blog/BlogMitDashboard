@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: aiq-backend
-  replicas: 1
+  replicas: {{ .Values.auth.replicas }}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,8 +23,8 @@ spec:
     spec:
       containers:
         - name: aiq-backend
-          image: kpblm256/aiq-backend:1.2.1
-          imagePullPolicy: IfNotPresent
+          image: {{ .Values.auth.image }}
+          imagePullPolicy: {{ .Values.auth.imagePullPolicy }}
           resources:
             requests:
               cpu: 100m
@@ -34,12 +34,19 @@ spec:
               memory: 100Mi
           livenessProbe:
             tcpSocket:
-              port: 3000
+              port: {{.Values.auth.restartPolicy}}
             initialDelaySeconds: 5
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
             periodSeconds: 10
-          ports:
-            - containerPort: 3000
-      restartPolicy: Always
+      env: 
+          {{- range .Values.auth.env }}
+        - name: {{ .name }}
+        value: {{ .value | quote }}
+          {{- end }}
+
+        name: auth 
+            ports:
+              - containerPort: {{ .Values.auth.port}}
+        restartPolicy: {{.Values.auth.restartPolicy}}
