@@ -107,7 +107,7 @@ data "template_file" "ingress_template" {
 }
 
 resource "local_file" "ingress_yaml" {
-  filename = "${path.module}/../k8s/ingress.yaml"
+  filename = "${path.module}/../k8s/BlogDashboard-chart/templates/ingress.yaml"
   content  = data.template_file.ingress_template.rendered
 }
 
