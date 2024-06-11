@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: aiq-auth
-  replicas: {{ .Values.auth.replicas }}
+  replicas: {{ .Values.aiq-auth.replicas }}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,8 +23,8 @@ spec:
     spec:
       containers:
         - name: aiq-auth
-          image: {{ .Values.auth.image }}
-          imagePullPolicy: {{ .Values.auth.imagePullPolicy }}
+          image: {{ .Values.aiq-auth.image }}
+          imagePullPolicy: {{ .Values.aiq-auth.imagePullPolicy }}
           resources:
             requests:
               cpu: 100m
@@ -34,18 +34,18 @@ spec:
               memory: 100Mi
           livenessProbe:
             tcpSocket:
-              port: {{.Values.auth.restartPolicy}}
+              port: {{.Values.aiq-auth.restartPolicy}}
             initialDelaySeconds: 5
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
             periodSeconds: 10
           env: 
-            {{-range .Values.auth.env }}
+            {{-range .Values.aiq-auth.env }}
             - name: {{ .name }}
               value: {{ .value | quote }}
             {{- end }}
-          restartPolicy: {{.Values.auth.restartPolicy}}       
+          restartPolicy: {{.Values.aiq-auth.restartPolicy}}       
           ports:
-              - containerPort: {{ .Values.auth.port}}
+              - containerPort: {{ .Values.aiq-auth.port}}
 

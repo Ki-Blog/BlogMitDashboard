@@ -1,4 +1,4 @@
-auth:
+aiq-auth:
   image: docker.io/kpblm256/aiq-auth:1.1.1
   imagePullPolicy: Always
   replicas: 1
