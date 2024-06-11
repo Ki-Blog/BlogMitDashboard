@@ -5,8 +5,8 @@ metadata:
 spec:
   source:
     repoURL: "https://github.com/Ki-Blog/BlogMitDashboard.git"
-    path: "./deployment"
-    targetRevision: "feature/CI"
+    path: "./k8s"
+    targetRevision: "feature/k8s"
   destination:
     server: https://kubernetes.default.svc
     namespace: default
