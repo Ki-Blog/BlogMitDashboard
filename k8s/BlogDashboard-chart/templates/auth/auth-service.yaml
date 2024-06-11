@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: aiq-backend
+  name: aiqauth
   namespace: default
 spec:
   selector:
-    app: aiq-backend
+    app: aiqauth
   type: ClusterIP
   ports:
-    - name: aiq-backend
+    - name: aiqauth
       protocol: TCP
-      port: {{ .Values.auth.port}}
-      targetPort: {{ .Values.auth.targetPort }}
+      port: {{ .Values.aiqauth.port}}
+      targetPort: {{ .Values.aiqauth.targetPort }}
 

@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: aiq-user
-  namespace: default
+  name: {{.Values.aiquser.service.name }}
+  namespace: {{.Values.namespace }}
 spec:
   selector:
-    app: aiq-user
-  type: {{ .Values.aiq-user.service.type }}
+    app: {{.Values.aiquser.app }}
+  type: {{.Values.aiquser.service.type }}
   ports:
-    - name: aiq-user
+    - name: aiquser
       protocol: TCP
-      port: {{ .Values.aiq-user.service.port }}
-      targetPort: {{ .Values.aiq-user.service.targetPort }}
+      port: {{.Values.aiquser.service.port }}
+      targetPort: {{.Values.aiquser.service.targetPort }}
