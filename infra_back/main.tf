@@ -4,10 +4,8 @@ provider "aws" {
 
 provider "helm" {
   kubernetes {
-    
     config_path = "~/.kube/config"
   }
-  
 }
 
 data "aws_availability_zones" "availibility_zones" {
@@ -35,14 +33,13 @@ module "vpc" {
 
   public_subnet_tags = {
     "kubernetes.io/cluster/${var.clustername}" = "shared"
-    "kubernetes.io/role/elb"                      = 1
+    "kubernetes.io/role/elb"                  = 1
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/${var.clustername}" = "shared"
-    "kubernetes.io/role/internal-elb"             = 1
+    "kubernetes.io/role/internal-elb"         = 1
   }
-
 }
 
 module "eks" {
@@ -74,7 +71,7 @@ module "eks" {
 }
 
 resource "null_resource" "update_kubeconfig" {
-  depends_on = [ module.eks ]
+  depends_on = [module.eks]
   provisioner "local-exec" {
     command = "aws eks update-kubeconfig --name ${var.clustername} --region ${var.region}"
   }
@@ -119,14 +116,23 @@ resource "null_resource" "patch_and_login" {
 
 resource "null_resource" "set_context" {
   provisioner "local-exec" {
-    command = "kubectl config set-context --current --namespace=argocd"
+    command = <<EOT
+      if [ -f $HOME/.kube/config.lock ]; then
+        rm $HOME/.kube/config.lock
+      fi
+      kubectl config set-context --current --namespace=argocd
+    EOT
+    interpreter = ["bash", "-c"]
   }
 }
 
-
 resource "null_resource" "argocd_add_repo" {
   provisioner "local-exec" {
-    command = "argocd repo add https://github.com/Ki-Blog/BlogMitDashboard.git --username kpblmMik --password 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"
+    command = <<EOT
+    EXTERNAL_ENDPOINT=$(cat /tmp/argocd_endpoint)
+    argocd repo add https://github.com/Ki-Blog/BlogMitDashboard.git --username kpblmMik --password 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 --server $EXTERNAL_ENDPOINT
+    EOT
+    interpreter = ["bash", "-c"]
   }
 
   depends_on = [null_resource.patch_and_login]

@@ -3,8 +3,8 @@ name: Build, Deploy, and Sync S3
 
 on:
   push:
-   branches:
-    - feature/CI
+  branches:
+    - feature/k8s
 
 jobs:
   terraform:
