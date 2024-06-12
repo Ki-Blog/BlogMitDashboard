@@ -8,7 +8,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import {useNavigate} from "react-router-dom"; 
-
+import apiFetch from '../api';
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -56,7 +56,7 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("api/post/create", {
+      const res = await apiFetch("api/post/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

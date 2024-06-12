@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PostCard from '../components/PostCard';
 import video from '../video/animation.mp4';
 import fallbackImage from '../images/fallback.png';
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);

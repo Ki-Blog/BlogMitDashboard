@@ -9,7 +9,7 @@ import {
 import { Button } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { TinyBarChart, TinyAreaChart, TinyLineChart } from './TinyCharts';
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function DashboardComp() {
   const [users, setUsers] = useState([]);

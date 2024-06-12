@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Comment from './Comment'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function CommentSection({postId}) {
   const {currentUser} = useSelector((state) => state.user);

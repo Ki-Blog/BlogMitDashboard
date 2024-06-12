@@ -8,6 +8,7 @@ import logo from "../images/logo_gross.svg";
 import backgroundImage from "../images/background.jpg";
 import backgroundImageLight from "../images/background_light.jpg";
 import { useEffect } from "react";
+import apiFetch from '../api';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -33,7 +34,7 @@ export default function SignIn() {
     }
     try {
       dispatch(signInStart());
-      const res = await fetch("api/auth/signin", {
+      const res = await apiFetch("api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

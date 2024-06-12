@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import PostCard from '../components/PostCard';
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({

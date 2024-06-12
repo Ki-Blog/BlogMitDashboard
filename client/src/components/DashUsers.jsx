@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);

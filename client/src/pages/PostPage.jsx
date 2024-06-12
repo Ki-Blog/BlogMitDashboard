@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import CommentSection from "../components/CommentSection";
 import PostCard from "../components/PostCard";
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function PostPage() {
   const { postSlug } = useParams();

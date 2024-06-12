@@ -7,7 +7,7 @@ import { toggleTheme } from '../redux/theme/themeSlice';
 import { signoutSuccess } from '../redux/user/userSlice';
 import logo from "../images/logo_gross.svg";
 import "../index.css";
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function Header() {
   const location = useLocation();

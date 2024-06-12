@@ -6,7 +6,7 @@ import logo from "../images/logo_gross.svg";
 import { useSelector } from "react-redux"; 
 import backgroundImage from "../images/background.jpg";
 import backgroundImageLight from "../images/background_light.jpg";
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});

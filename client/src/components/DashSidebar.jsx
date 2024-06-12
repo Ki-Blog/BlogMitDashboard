@@ -12,7 +12,7 @@ import {
   HiUser,
   HiShieldCheck,
 } from 'react-icons/hi';
-import apiFetch from './api';
+import apiFetch from '../api';
 
 export default function DashSidebar() {
   const location = useLocation();
