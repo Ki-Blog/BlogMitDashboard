@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import PostCard from '../components/PostCard';
+import apiFetch from './api';
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -38,7 +39,7 @@ export default function Search() {
     const fetchPosts = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/post/getposts?${searchQuery}`);
+      const res = await apiFetch(`/api/post/getposts?${searchQuery}`);
       if (!res.ok) {
         setLoading(false);
         return;
@@ -87,7 +88,7 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('startIndex', startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(`/api/post/getposts?${searchQuery}`);
+    const res = await apiFetch(`/api/post/getposts?${searchQuery}`);
     if (!res.ok) {
       return;
     }
