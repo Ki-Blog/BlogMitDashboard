@@ -12,7 +12,7 @@ terraform {
 }
 
 resource "aws_s3_bucket" "aiq" {
-  bucket = "aiq-frontend"
+  bucket = "aiq-frontend1"
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {
