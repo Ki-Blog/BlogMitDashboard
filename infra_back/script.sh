@@ -23,10 +23,14 @@ while [ -z "$EXTERNAL_ENDPOINT" ]; do
     if [ -z "$EXTERNAL_ENDPOINT" ]; then
         echo "Still waiting..."
         kubectl get svc argocd-server -n argocd
-        sleep 10
+        sleep 30
     fi
 done
 echo "External endpoint obtained: $EXTERNAL_ENDPOINT"
+
+# Wait for DNS propagation
+echo "Waiting for DNS propagation..."
+sleep 60
 
 # Retrieve the admin password
 ADMIN_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode)
@@ -36,8 +40,8 @@ if [ -z "$ADMIN_PASSWORD" ]; then
 fi
 echo "Retrieved admin password: $ADMIN_PASSWORD"
 
-# Log in to ArgoCD
-argocd login "$EXTERNAL_ENDPOINT" --username admin --password "$ADMIN_PASSWORD"
+# Log in to ArgoCD without verifying the server certificate
+argocd login "$EXTERNAL_ENDPOINT" --username admin --password "$ADMIN_PASSWORD" --insecure
 
 # Save the endpoint to a file for further use
 echo "$EXTERNAL_ENDPOINT" > /tmp/argocd_endpoint
