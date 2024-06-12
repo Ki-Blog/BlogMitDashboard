@@ -32,9 +32,9 @@ spec:
               cpu: {{ .Values.aiqpost.resources.limits.cpu }}
               memory: {{ .Values.aiqpost.resources.limits.memory }}
           env: 
-          {{- range .Values.aiqpost.env }}
-          - name: {{ .name }}
-            value: {{ .value | quote }}
+          {{- range $key, $value := $.Values.env }}
+          - name: {{ $key }}
+          value: {{ $value | quote }}
           {{- end }}
           livenessProbe:
             tcpSocket:

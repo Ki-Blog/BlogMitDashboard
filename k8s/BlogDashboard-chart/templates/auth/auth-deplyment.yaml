@@ -40,9 +40,9 @@ spec:
             failureThreshold: {{ .Values.aiqauth.livenessProbe.failureThreshold }}
             periodSeconds: {{ .Values.aiqauth.livenessProbe.periodSeconds }}
           env:
-          {{- range .Values.aiqauth.env }}
-          - name: {{ .name }}
-            value: {{ .value | quote }}
+          {{- range $key, $value := $.Values.env }}
+          - name: {{ $key }}
+          value: {{ $value | quote }}
           {{- end }}
           ports:
             - containerPort: {{ .Values.aiqauth.port }}

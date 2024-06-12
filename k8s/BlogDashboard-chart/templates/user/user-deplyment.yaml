@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aiquser
-  namespace: default
+  name: {{ .Values.aiquser.app }}
+  namespace: {{ .Values.namespace }}
   labels:
-    app: aiquser
+    app: {{ .Values.aiquser.app }}
 spec:
   selector:
     matchLabels:
-      app: aiquser
+      app: {{ .Values.aiquser.app }}
   replicas: {{ .Values.aiquser.replicas }}
   strategy:
     rollingUpdate:
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        app: aiquser
+        app: {{ .Values.aiquser.app }}
     spec:
       containers:
-        - name: aiquser
+        - name: {{ .Values.aiquser.app }}
           image: {{ .Values.aiquser.image }}
           imagePullPolicy: {{ .Values.aiquser.imagePullPolicy }}
           resources:
@@ -32,9 +32,9 @@ spec:
               cpu: {{ .Values.aiquser.resources.limits.cpu }}
               memory: {{ .Values.aiquser.resources.limits.memory }}
           env:
-          {{- range .Values.aiquser.env }}
-          - name: {{ .name }}
-            value: {{ .value | quote }}
+          {{- range $key, $value := $.Values.env }}
+          - name: {{ $key }}
+          value: {{ $value | quote }}
           {{- end }}
           livenessProbe:
             tcpSocket:
