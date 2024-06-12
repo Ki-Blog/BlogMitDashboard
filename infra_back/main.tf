@@ -119,7 +119,13 @@ resource "null_resource" "patch_and_login" {
 
 resource "null_resource" "set_context" {
   provisioner "local-exec" {
-    command = "kubectl config set-context --current --namespace=argocd"
+    command = <<EOT
+      if [ -f $HOME/.kube/config.lock ]; then
+        rm $HOME/.kube/config.lock
+      fi
+      kubectl config set-context --current --namespace=argocd
+    EOT
+    interpreter = ["bash", "-c"]
   }
 }
 

@@ -13,11 +13,12 @@ echo "All ArgoCD pods are ready."
 echo "Patching the ArgoCD server service to be of type LoadBalancer..."
 kubectl patch svc argocd-server -n argocd -p "{\"spec\": {\"type\": \"LoadBalancer\"}}"
 
+sleep 300s
 
 echo "Waiting for LoadBalancer to get an external IP..."
 EXTERNAL_IP=""
 while [ -z "$EXTERNAL_IP" ]; do
-    EXTERNAL_IP=$(kubectl get svc argocd-server -n argocd -o jsonpath="{.status.loadBalancer.ingress[0].hostname}" 2>/dev/null || echo "")
+    EXTERNAL_IP=$(kubectl wait get svc argocd-server -n argocd -o jsonpath="{.status.loadBalancer.ingress[0].hostname}" 2>/dev/null || echo "")
     if [ -z "$EXTERNAL_IP" ]; then
         echo "Still waiting..."
         sleep 10
