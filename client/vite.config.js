@@ -6,19 +6,19 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/auth': {
-        target: "",
+        target: "625613c13274fc3f570cec109a741f92.gr7.eu-central-1.eks.amazonaws.com",
         secure: false,
       },
       '/api/user': {
-        target: "",
+        target: "625613c13274fc3f570cec109a741f92.gr7.eu-central-1.eks.amazonaws.com",
         secure: false,
       },
       '/api/post': {
-        target: "",
+        target: "625613c13274fc3f570cec109a741f92.gr7.eu-central-1.eks.amazonaws.com",
         secure: false,
       },
       '/api/comment': {
-        target: "",
+        target: "625613c13274fc3f570cec109a741f92.gr7.eu-central-1.eks.amazonaws.com",
         secure: false,
       },
     },
