@@ -5,8 +5,15 @@ metadata:
 spec:
   source:
     repoURL: "https://github.com/Ki-Blog/BlogMitDashboard.git"
-    path: "./k8s/BlogDashboard-chart"
+    path: "k8s/BlogDashboard-chart"  # Pfad zur Helm-Chart im Repository
     targetRevision: "feature/k8s"
+    helm:
+      releaseName: aiq-release  # Name der Helm-Release
+      values: |  # Optionale Werte, die du für deine Helm-Chart überschreiben möchtest
+        replicaCount: 2
+        image:
+          repository: myrepo/myimage
+          tag: "1.0.0"
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -14,3 +21,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
+      selfHeal: true  # Optional, um sicherzustellen, dass der Zustand der Anwendung selbstheilend ist

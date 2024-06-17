@@ -49,7 +49,7 @@ module "eks" {
   source = "terraform-aws-modules/eks/aws"
 
   cluster_name    = var.clustername
-  cluster_version = "1.29"
+  cluster_version = "1.30"
 
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets
@@ -102,7 +102,7 @@ data "template_file" "ingress_template" {
   template = file("${path.module}/../k8s/ingress.tpl")
 
   vars = {
-    elb_dns = replace(module.eks.cluster_endpoint, "https://", "")
+    elb_dns = replace(module.eks.cluster_endpoint, "http://", "")
   }
 }
 
