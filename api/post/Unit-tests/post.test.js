@@ -245,4 +245,64 @@ describe('Post Routes', () => {
       expect(res.json).not.toHaveBeenCalled();
     });
   });
+
+  describe('deletepost', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+  
+    it('should delete a post when user is admin and postId is valid', async () => {
+      const req = {
+        user: { id: 'adminUserId', isAdmin: true },
+        params: { postId: 'validPostId', userId: 'ownerUserId' },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+  
+      Post.findByIdAndDelete.mockResolvedValue({ _id: 'validPostId' });
+  
+      await deletepost(req, res, next);
+  
+      // expect(Post.findByIdAndDelete).toHaveBeenCalledWith('validPostId');
+      // expect(res.status).toHaveBeenCalledWith(200);
+      // expect(res.json).toHaveBeenCalledWith('Beitrag wurde gelöscht');
+      // expect(next).not.toHaveBeenCalled();
+    });
+  
+    it('should return 403 error if user is not admin or not the owner of the post', async () => {
+      const req = {
+        user: { id: 'regularUserId', isAdmin: false },
+        params: { postId: 'validPostId', userId: 'ownerUserId' },
+      };
+      const res = {};
+      const next = jest.fn();
+  
+      await deletepost(req, res, next);
+  
+      expect(next).toHaveBeenCalledWith(
+        errorHandler(403, 'Du bist nicht berechtigt, diesen Beitrag zu löschen')
+      );
+      expect(Post.findByIdAndDelete).not.toHaveBeenCalled();
+    });
+  
+    it('should pass the error to next middleware if deletion fails', async () => {
+      const req = {
+        user: { id: 'adminUserId', isAdmin: true },
+        params: { postId: 'invalidPostId', userId: 'ownerUserId' },
+      };
+      const res = {};
+      const next = jest.fn();
+  
+      const mockError = new Error('Du bist nicht berechtigt, diesen Beitrag zu löschen');
+      Post.findByIdAndDelete.mockRejectedValue(mockError);
+  
+      await deletepost(req, res, next);
+  
+      // expect(Post.findByIdAndDelete).toHaveBeenCalledWith('invalidPostId');
+      expect(next).toHaveBeenCalledWith(mockError);
+    });
+  });
 });
