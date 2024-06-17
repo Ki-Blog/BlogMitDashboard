@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.0] - 2024-06-17
+### :sparkles: New Features
+- [`0a2bc0c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0a2bc0c9f631bd6c10c86a9b01ad622665f67280) - added eks cluster pipeline and terraform files *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`5496f5b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5496f5b4688711c20a3aeac8db0922e50178d16b) - post-deplyment.yaml has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`2daf1d1`](https://github.com/Ki-Blog/BlogMitDashboard/commit/2daf1d1f944d92d924526c619aa06ad04d636f27) - post-deplyment.yaml has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`98eb322`](https://github.com/Ki-Blog/BlogMitDashboard/commit/98eb322614d2116a993dd84dbe42fcf9e81116d8) - post-deplyment.yaml has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`963acbb`](https://github.com/Ki-Blog/BlogMitDashboard/commit/963acbb1c53eacb0896a1acfae43f96199f715d0) - user-deplyment.yaml has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`46d39db`](https://github.com/Ki-Blog/BlogMitDashboard/commit/46d39dbe29d6be7d2fd9a00fbfb489dc0273587e) - added cors in each microservice *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :bug: Bug Fixes
+- [`58e392b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/58e392bed8023efb9ee87d3c9c70f922cb62ab60) - added wait condition in script.sh *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`279abbd`](https://github.com/Ki-Blog/BlogMitDashboard/commit/279abbdf0d6a53547ce166d735f15a1c7da93449) - terraform.ymal has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`19ff264`](https://github.com/Ki-Blog/BlogMitDashboard/commit/19ff264be31e2e58fbce4b7892435a466f5c1b11) - corrected script.sh argocd patch and login *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`1d75a87`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1d75a871e5713d81e9663a5263889ea45c971863) - corrected script.sh argocd patch and login *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`1a90bba`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1a90bba287038f3c0eb666e60be03460308c2ff3) - edited user template in helm chart *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`804a8a0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/804a8a07bfde9d7c5917f4ce58c04d2cb8a7b65e) - adjust values.yml and auth yaml files in helm chart *(commit by [@Onben](https://github.com/Onben))*
+- [`1f8efa6`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1f8efa6cb7e2d44e974ddb19ade6e76f72d8613b) - edited ingress.tpl *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`21e4db3`](https://github.com/Ki-Blog/BlogMitDashboard/commit/21e4db3f6376c1b9199f4f2c1bfb9fd1680f1d7d) - resolved conflict in user *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`cafe87b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/cafe87bf024648ab10f80d7b812eb758e0290874) - path corrected *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`4d71cab`](https://github.com/Ki-Blog/BlogMitDashboard/commit/4d71cab8c556e5f23ae96fea90ac40a80758095b) - correct syntax error in value.yaml *(commit by [@Onben](https://github.com/Onben))*
+- [`1510f12`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1510f124cd63d7c98d2adef82ec65c78d6bc2865) - correct some syntax errors in auth.deployment.yml *(commit by [@Onben](https://github.com/Onben))*
+- [`bbc3bdd`](https://github.com/Ki-Blog/BlogMitDashboard/commit/bbc3bdd312c66a4cb063f0fd831c76c3ec89dba3) - adjust auth in values.yaml *(commit by [@Onben](https://github.com/Onben))*
+- [`3b492fa`](https://github.com/Ki-Blog/BlogMitDashboard/commit/3b492fa37f72f7a37e4ea85ffb0b8cc6621813e7) - user-yaml has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`e30b787`](https://github.com/Ki-Blog/BlogMitDashboard/commit/e30b787abef573da5b12a74f0a53b9f3316feb70) - user-yaml has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`941d5d2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/941d5d2c5c99e905af0fbc81567edad01fc4f963) - user-yaml has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`463c0f4`](https://github.com/Ki-Blog/BlogMitDashboard/commit/463c0f41307ba208e674ba6d90a60ef0e068dfe1) - k8s-yaml has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`c9836ff`](https://github.com/Ki-Blog/BlogMitDashboard/commit/c9836ff94ea0776fa2b8431187d84de4926f0bfc) - helm.yaml has updated *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`d89a08a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d89a08a7f81a9d8ea021c85dc7be697fd854acff) - helm.yaml has updated *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`2a6aae6`](https://github.com/Ki-Blog/BlogMitDashboard/commit/2a6aae6527d4860773eb36d471cda2004f937392) - secre.yamh has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`b3bad2d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b3bad2dc1adba0a324bddf44eb4d2645fb2ac526) - vite.config corrected *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :white_check_mark: Tests
+- [`48c045c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/48c045c820831efb319f4f81843f10cd4e8208d5) - pipline build-deploy-and-sync-s3.yaml test *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`7fc90d3`](https://github.com/Ki-Blog/BlogMitDashboard/commit/7fc90d342b92fbd2f32ac59a9d5732bbe3ea6109) - added base api variable in frontend *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`f7a7315`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f7a7315c29d853b1bf4befdc2c9ccb70a09e2aa8) - added base api variable in frontend *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`ce0672f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ce0672fc87b582897dce2e624fee66560e2f0322) - added base api variable in frontend *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`a36a739`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a36a739516bdfc6a0a07a28ecefc0dfe4633a7a1) - added base api variable in frontend *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`9f8cfa1`](https://github.com/Ki-Blog/BlogMitDashboard/commit/9f8cfa1d023760b7622e8b4a4657436ddabee317) - k8s pods test *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`f92fd42`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f92fd42857cb9b06b7b4c26776a1d971881351e9) - k8s pods test *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`66c8f44`](https://github.com/Ki-Blog/BlogMitDashboard/commit/66c8f44c5e400e5a6bd5c8841a06453f7d5d535b) - s3 pipline test *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`5ea86c0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5ea86c0c1a52a3c6bd7b8c410340441fcc66b7d5) - s3 mit eks verbinden *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`246f187`](https://github.com/Ki-Blog/BlogMitDashboard/commit/246f1876ef229fd0f4b2a1d894c3f954ce518d34) - s3 mit eks verbinden *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
 ## [v1.1.1] - 2024-06-04
 ### :bug: Bug Fixes
 - [`ea22af2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ea22af222979829b28cc2c04c97056bfbe75102b) - solve merge conflicts in pull in main *(commit by [@Onben](https://github.com/Onben))*
@@ -120,3 +164,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.0.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.0.0...v1.0.1
 [v1.1.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.0.1...v1.1.0
 [v1.1.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.0...v1.1.1
+[v1.2.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.1...v1.2.0
