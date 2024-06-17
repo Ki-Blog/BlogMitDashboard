@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
-
+import cors from 'cors';
 
 dotenv.config();
 
@@ -19,6 +19,14 @@ mongoose
 });
 
 const app = express()
+
+const corsOptions = {
+  origin: 'http://aiq-frontend.s3-website.eu-central-1.amazonaws.com/',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  credentials: true,
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
