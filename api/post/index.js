@@ -23,7 +23,7 @@ mongoose
 const app = express()
 
 const corsOptions = {
-  origin: 'http://aiq-frontend.s3-website.eu-central-1.amazonaws.com/',
+  origin: 'http://aiq-frontend.s3-website.eu-central-1.amazonaws.com',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   credentials: true,
   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
