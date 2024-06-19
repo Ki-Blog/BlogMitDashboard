@@ -35,3 +35,10 @@ spec:
                 name: aiquser
                 port:
                   number: 4001
+          - path: /api/comment
+            pathType: Prefix
+            backend:
+              service:
+                name: aiquser
+                port:
+                  number: 4003
