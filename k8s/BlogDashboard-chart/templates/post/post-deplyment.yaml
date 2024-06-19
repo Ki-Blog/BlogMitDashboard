@@ -31,11 +31,11 @@ spec:
             limits:
               cpu: {{ .Values.aiqpost.resources.limits.cpu }}
               memory: {{ .Values.aiqpost.resources.limits.memory }}
-          env: 
-          {{- range $key, $value := $.Values.env }}
-          - name: {{ $key }}
-          value: {{ $value | quote }}
-          {{- end }}
+          env:
+            - name: MONGO
+              value: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
+            - name: JWT_SECRET
+              value: "sdjfslgjd56fr7"
           livenessProbe:
             tcpSocket:
               port: {{ .Values.aiqpost.port }}

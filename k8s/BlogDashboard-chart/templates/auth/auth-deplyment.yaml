@@ -40,9 +40,9 @@ spec:
             failureThreshold: {{ .Values.aiqauth.livenessProbe.failureThreshold }}
             periodSeconds: {{ .Values.aiqauth.livenessProbe.periodSeconds }}
           env:
-          {{- range $key, $value := $.Values.env }}
-          - name: {{ $key }}
-          value: {{ $value | quote }}
-          {{- end }}
+            - name: MONGO
+              value: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
+            - name: JWT_SECRET
+              value: "sdjfslgjd56fr7"
           ports:
             - containerPort: {{ .Values.aiqauth.port }}

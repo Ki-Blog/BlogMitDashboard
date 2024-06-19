@@ -2,6 +2,11 @@ version: '3.8'
 
 services:
 
+  frontend:
+    build: ./client
+    ports:
+      - "80:80"
+  
   auth:
     build: ./api/auth
     env_file: ./api/auth/.env

@@ -32,10 +32,10 @@ spec:
               cpu: {{ .Values.aiquser.resources.limits.cpu }}
               memory: {{ .Values.aiquser.resources.limits.memory }}
           env:
-          {{- range $key, $value := $.Values.env }}
-          - name: {{ $key }}
-          value: {{ $value | quote }}
-          {{- end }}
+            - name: MONGO
+              value: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
+            - name: JWT_SECRET
+              value: "sdjfslgjd56fr7"
           livenessProbe:
             tcpSocket:
               port: {{ .Values.aiquser.port }}

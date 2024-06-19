@@ -23,7 +23,7 @@ done
 echo "External IP obtained: $EXTERNAL_IP"
 
 # Retrieve the admin password
-ADMIN_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode)
+ADMIN_PASSWORD=$(
 if [ -z "$ADMIN_PASSWORD" ]; then
     echo "Failed to retrieve admin password"
     exit 1
