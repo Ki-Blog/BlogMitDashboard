@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import apiFetch from '../api';
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);
@@ -15,7 +15,7 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await apiFetch(`/api/user/getusers`);
+        const res = await fetch(`${baseUrl}/api/user/getusers`);
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -35,7 +35,7 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await apiFetch(`/api/user/getusers?startIndex=${startIndex}`);
+      const res = await fetch(`${baseUrl}/api/user/getusers?startIndex=${startIndex}`);
       const data = await res.json();
       if (res.ok) {
         setUsers((prev) => [...prev, ...data.users]);
@@ -50,7 +50,7 @@ export default function DashUsers() {
 
   const handleDeleteUser = async () => {
     try {
-      const res = await apiFetch(`/api/user/delete/${userIdToDelete}`, {
+      const res = await fetch(`${baseUrl}/api/user/delete/${userIdToDelete}`, {
         method: 'DELETE',
       });
       const data = await res.json();

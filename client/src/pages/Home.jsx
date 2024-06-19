@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import PostCard from '../components/PostCard';
 import video from '../video/animation.mp4';
 import fallbackImage from '../images/fallback.png';
-import apiFetch from '../api';
+
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await apiFetch('/api/post/getposts');
+      const res = await fetch(`${baseUrl}/api/post/getposts`);
       const data = await res.json();
       setPosts(data.posts);
     }

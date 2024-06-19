@@ -6,7 +6,7 @@ import logo from "../images/logo_gross.svg";
 import { useSelector } from "react-redux"; 
 import backgroundImage from "../images/background.jpg";
 import backgroundImageLight from "../images/background_light.jpg";
-import apiFetch from '../api';
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -27,7 +27,7 @@ export default function SignUp() {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await apiFetch('/api/auth/signup', {
+      const res = await fetch(`${baseUrl}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

@@ -12,7 +12,7 @@ import {
   HiUser,
   HiShieldCheck,
 } from 'react-icons/hi';
-import apiFetch from '../api';
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -30,7 +30,7 @@ export default function DashSidebar() {
   
   const handleSignout = async () => {
     try {
-      const res = await apiFetch('/api/user/signout', {
+      const res = await fetch(`${baseUrl}/api/user/signout`, {
         method: 'POST',
       });
       const data = await res.json();
