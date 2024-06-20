@@ -30,7 +30,8 @@ export const signup = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
-    res.status(201).json({ token, message: "Anmeldung erfolgreich." });
+    res.status(201).cookie('access_token', token, {
+      httpOnly: true}).json({ message: "Anmeldung erfolgreich." });
   } catch (err) {
     if (err.code === 11000) {
       if (err.keyPattern.username) {
@@ -97,7 +98,7 @@ export const google = async (req, res, next) => {
         const {password, ...rest} = newUser._doc;
         res.status(200)
         .cookie('access_token', token, {
-          secure: false,
+          httpOnly: true,
         })
         .json(rest);
     }
