@@ -46,6 +46,8 @@ export default function SignIn() {
         dispatch(signInFailure(data.message));
       }
       if (res.ok) {
+        
+        localStorage.setItem('token', data.token);
         dispatch(signInSuccess(data));
         navigate("/");
       }

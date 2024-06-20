@@ -27,6 +27,7 @@ export default function OAuth() {
                 })
             const data = await res.json()
             if (res.ok){
+                localStorage.setItem('token', data.token);
                 dispatch(signInSuccess(data))
                 navigate('/')
             }
