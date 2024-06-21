@@ -66,6 +66,7 @@ export const signin = async (req, res, next) => {
     );
 
     const {password: userPassword, pass, ...rest} = validUser._doc;
+    console.log("Valid User:", rest);
     res.status(200).json({ token, rest});
 } catch (err) {
     next(err);

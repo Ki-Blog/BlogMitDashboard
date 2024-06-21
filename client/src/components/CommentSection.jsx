@@ -23,7 +23,8 @@ export default function CommentSection({postId}) {
     const res = await fetch(`${baseUrl}/api/comment/create`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({ 
         content: comment, 
