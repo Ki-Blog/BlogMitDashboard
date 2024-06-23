@@ -31,7 +31,14 @@ export const signup = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
-    res.status(201).json({ token, message: "Anmeldung erfolgreich." });
+    // Token hinzufügen
+    const userWithToken = newUser.toObject();
+    userWithToken.token = token;
+
+    res.status(201).json(userWithToken); //Token mit Benutzerobjekt zurückgeben
+
+    // res.status(201).json({ token, message: "Anmeldung erfolgreich." });
+
   } catch (err) {
     if (err.code === 11000) {
       if (err.keyPattern.username) {
@@ -65,9 +72,14 @@ export const signin = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
-    const {password: userPassword, pass, ...rest} = validUser._doc;
-    console.log("Valid User:", rest);
-    res.status(200).json({ token, rest});
+    const userWithToken = validUser.toObject(); // Benutzerobjekt konvertieren
+    userWithToken.token = token; // Token hinzufügen
+
+    res.status(200).json(userWithToken); // Benutzerobjekt mit Token zurückgeben
+
+    // const {password: userPassword, pass, ...rest} = validUser._doc;
+    // console.log("Valid User:", rest);
+    // res.status(200).json({ token, rest});
 } catch (err) {
     next(err);
   }
@@ -79,8 +91,11 @@ export const google = async (req, res, next) => {
     const user = await User.findOne({ email });
     if (user) {
       const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin},process.env.JWT_SECRET);
-      const {password, ...rest} = user._doc;
-      res.status(200).json({ token, rest});
+      const userWithToken = user.toObject(); // Benutzerobjekt konvertieren
+      userWithToken.token = token; // Token hinzufügen
+      res.status(200).json(userWithToken); // Benutzerobjekt mit Token zurückgeben
+      // const {password, ...rest} = user._doc;
+      // res.status(200).json({ token, rest});
       } else {
         const generatedPassword = Math.random().toString(36).slice(-8) + 
         Math.random().toString(36).slice(-8);
@@ -93,8 +108,11 @@ export const google = async (req, res, next) => {
         });
         await newUser.save();
         const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin},process.env.JWT_SECRET);
-        const {password, ...rest} = newUser._doc;
-        res.status(200).json({ token, rest});
+        const userWithToken = newUser.toObject(); // Benutzerobjekt konvertieren
+        userWithToken.token = token; // Token hinzufügen
+        res.status(200).json(userWithToken); // Benutzerobjekt mit Token zurückgeben
+        // const {password, ...rest} = newUser._doc;
+        // res.status(200).json({ token, rest});
     }
   } catch (err) {
     next(err);
