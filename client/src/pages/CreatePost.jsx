@@ -16,7 +16,6 @@ export default function CreatePost() {
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
-
   const navigate = useNavigate();
   const handleUploadImage = async () => {
     try {
@@ -79,7 +78,7 @@ export default function CreatePost() {
   };
 
   return <div className="p-3 max-w-3xl mx-auto min-h-screen mt-[80px]">
-      <h1 className="text-center my-7 dark:text-[#9bb0ddd3] text-[#7b8cb0] p-2 font-semibold text-4xl">Beitrag erstellen</h1>
+      <h1 className="text-center my-7 dark:text-[#9bb0ddd3] text-[#7b8cb0] p-2 font-semibold text-4xl ">Beitrag erstellen</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <input 
@@ -87,11 +86,11 @@ export default function CreatePost() {
           id="title" 
           placeholder="Titel" 
           required
-          className='hidden lg:inline w-[520px] p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-10'
+          className='w-full sm:w-[520px] p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-10'
           onChange={(e) => 
             setFormData({ ...formData, title: e.target.value })}
           />
-          <select className='hidden lg:inline p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-0 text-ml'
+          <select className='lg:inline p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-0 text-ml'
           onChange={(e) => 
             setFormData({ ...formData, category: e.target.value })}
           >

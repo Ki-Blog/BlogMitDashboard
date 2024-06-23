@@ -6,80 +6,57 @@ import PostCard from '../components/PostCard';
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function Search() {
-  const [sidebarData, setSidebarData] = useState({
-    searchTerm: '',
-    sort: 'desc',
-    category: 'uncategorized',
-  });
-
   const { theme } = useSelector((state) => state.theme);
 
-  console.log(sidebarData);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sort, setSort] = useState('desc');
+  const [category, setCategory] = useState('uncategorized');
 
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get('searchTerm');
-    const sortFromUrl = urlParams.get('sort');
-    const categoryFromUrl = urlParams.get('category');
-    if (searchTermFromUrl || sortFromUrl || categoryFromUrl) {
-      setSidebarData({
-        ...sidebarData,
-        searchTerm: searchTermFromUrl,
-        sort: sortFromUrl,
-        category: categoryFromUrl,
-      });
-    }
+    const searchTermFromUrl = urlParams.get('searchTerm') || '';
+    const sortFromUrl = urlParams.get('sort') || 'desc';
+    const categoryFromUrl = urlParams.get('category') || 'uncategorized';
+
+    setSearchTerm(searchTermFromUrl);
+    setSort(sortFromUrl);
+    setCategory(categoryFromUrl);
 
     const fetchPosts = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
+      console.log(`Fetching posts with query: ${searchQuery}`); // Debuggen
       const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
       if (!res.ok) {
         setLoading(false);
+        console.error('Failed to fetch posts'); // Debuggen
         return;
       }
-      if (res.ok) {
-        const data = await res.json();
-        setPosts(data.posts);
-        setLoading(false);
-        if (data.posts.length === 9) {
-          setShowMore(true);
-        } else {
-          setShowMore(false);
-        }
-      }
+      const data = await res.json();
+      console.log('Fetched posts:', data.posts); // Debuggen
+      setPosts(data.posts);
+      setLoading(false);
+      setShowMore(data.posts.length === 9);
     };
+
     fetchPosts();
   }, [location.search]);
-
-  const handleChange = (e) => {
-    if (e.target.id === 'searchTerm') {
-      setSidebarData({ ...sidebarData, searchTerm: e.target.value });
-    }
-    if (e.target.id === 'sort') {
-      const order = e.target.value || 'desc';
-      setSidebarData({ ...sidebarData, sort: order });
-    }
-    if (e.target.id === 'category') {
-      const category = e.target.value || 'uncategorized';
-      setSidebarData({ ...sidebarData, category });
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(location.search);
-    urlParams.set('searchTerm', sidebarData.searchTerm);
-    urlParams.set('sort', sidebarData.sort);
-    urlParams.set('category', sidebarData.category);
+    urlParams.set('searchTerm', searchTerm);
+    urlParams.set('sort', sort);
+    urlParams.set('category', category);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
+    setSearchTerm('');
   };
 
   const handleShowMore = async () => {
@@ -87,20 +64,15 @@ export default function Search() {
     const startIndex = numberOfPosts;
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('startIndex', startIndex);
+    urlParams.set('cacheBuster', Date.now());
     const searchQuery = urlParams.toString();
     const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
     if (!res.ok) {
       return;
     }
-    if (res.ok) {
-      const data = await res.json();
-      setPosts([...posts, ...data.posts]);
-      if (data.posts.length === 9) {
-        setShowMore(true);
-      } else {
-        setShowMore(false);
-      }
-    }
+    const data = await res.json();
+    setPosts([...posts, ...data.posts]);
+    setShowMore(data.posts.length === 9);
   };
 
   return (
@@ -110,19 +82,19 @@ export default function Search() {
           <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
             <div className='flex items-center gap-2'>
               <label className='whitespace-nowrap font-semibold'>
-                Search Term:
+                Suchbegriff:
               </label>
               <input className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
-                placeholder='Search...'
+                placeholder='Suche...'
                 id='searchTerm'
                 type='text'
-                value={sidebarData.searchTerm}
-                onChange={handleChange}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className='flex items-center gap-2'>
               <label className='font-semibold'>Sortieren nach:</label>
-              <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md' onChange={handleChange} value={sidebarData.sort} id='sort'>
+              <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md' onChange={(e) => setSort(e.target.value)} value={sort} id='sort'>
                 <option value='desc'>Neuste</option>
                 <option value='asc'>Älteste</option>
               </select>
@@ -130,8 +102,8 @@ export default function Search() {
             <div className='flex items-center gap-2'>
               <label className='font-semibold'>Kategorie:</label>
               <select className='dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md'
-                onChange={handleChange}
-                value={sidebarData.category}
+                onChange={(e) => setCategory(e.target.value)}
+                value={category}
                 id='category'
               >
                 <option value='uncategorized'>Nicht kategorisiert</option>
@@ -163,15 +135,15 @@ export default function Search() {
             {!loading && posts && posts.map((post) => (
               <PostCard key={post._id} post={post} />
             ))}
-            {showMore && (
-              <button
-                onClick={handleShowMore}
-                className='text-lg hover:underline p-7 w-full text-center'
-              >
-                Weitere Beiträge anzeigen
-              </button>
-            )}
           </div>
+          {showMore && (
+            <button
+              onClick={handleShowMore}
+              className='w-full text-lg text-[#2ca3c1] hover:underline self-center font-bold mt-3 mb-10'
+            >
+              Weitere Beiträge anzeigen
+            </button>
+          )}
         </div>
       </div>
     </div>

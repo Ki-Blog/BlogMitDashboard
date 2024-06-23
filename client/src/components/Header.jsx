@@ -25,6 +25,8 @@ export default function Header() {
     const searchTermFromUrl = urlParams.get('searchTerm');
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
+    } else {
+      setSearchTerm('');
     }
   }, [location.search]);
 
@@ -51,6 +53,7 @@ export default function Header() {
     urlParams.set('searchTerm', searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
+    setSearchTerm(''); // Reset search term after navigating
   };
 
   const getLinkClass = (path) => {
@@ -62,7 +65,7 @@ export default function Header() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Link to="/" className="flex items-center">
-          <img src={logo} alt="Logo" className={`h-11 ${theme === 'dark' ? 'filter invert' : ''}`} />
+            <img src={logo} alt="Logo" className={`h-11 ${theme === 'dark' ? 'filter invert' : ''}`} />
           </Link>
         </div>
         {/* Desktop Navigation */}
@@ -76,8 +79,7 @@ export default function Header() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </form>
-          <button className=''>
-          </button>
+          <button className=''></button>
           <ul className="font-medium flex space-x-8 mt-[8px]">
             <li>
               <Link

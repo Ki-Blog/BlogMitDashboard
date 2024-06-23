@@ -105,7 +105,7 @@ export default function DashProfile() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('token')}`
+        "Authorization": `Bearer ${localStorage.getItem('token')}`,  
       },
       body: JSON.stringify(formData),
     });
@@ -128,6 +128,10 @@ export default function DashProfile() {
       dispatch(deleteUserStart());
       const res = await fetch(`${baseUrl}/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        }
       });
       const data = await res.json();
       if (!res.ok) {
@@ -143,6 +147,10 @@ export default function DashProfile() {
     try {
       const res = await fetch(`${baseUrl}/api/user/signout`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        }
       });
       const data = await res.json();
       if (!res.ok) {
@@ -155,7 +163,7 @@ export default function DashProfile() {
     }
   };
   return (
-      <div className="max-w-lg mx-auto p-3 w-full mt-[80px]">
+      <div className="max-w-lg mx-auto p-3 w-full mt-[53px] mb-[53px]">
         <div className="flex flex-col gap-4 justify-center max-w-md w-full">
           <h1 className="my-7 text-center dark:text-[#9bb0ddd3] text-[#7b8cb0] font-semibold text-4xl">Dein Profil</h1>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

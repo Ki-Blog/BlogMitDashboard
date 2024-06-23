@@ -2,7 +2,7 @@ import { Modal, Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import { HiOutlineExclamationCircle, HiOutlineTrash, HiOutlinePencil } from 'react-icons/hi';
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function DashPosts() {
@@ -57,6 +57,10 @@ export default function DashPosts() {
         `${baseUrl}/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+          },
         }
       );
       const data = await res.json();
@@ -73,80 +77,82 @@ export default function DashPosts() {
   };
 
   return (
-    <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 mt-[80px]'>
-      <h1 className='dark:text-[#9bb0ddd3] text-[#7b8cb0] font-semibold text-4xl mb-12'>Deine Beiträge</h1>
+    <div className='overflow-x-auto md:mx-auto p-3 mt-[80px]'>
+      <h1 className='dark:text-[#9bb0ddd3] text-[#7b8cb0] font-semibold text-4xl mb-12 md:text-center'>Deine Beiträge</h1>
       {currentUser.isAdmin && userPosts.length > 0 ? (
-        <div className="shadow-md rounded-lg overflow-hidden dark:border-2 border-gray-900">
-          <table className='min-w-full bg-[#b8bfd71e] dark:bg-[#0b10209a]'>
-            <thead className="bg-[#b8bfd789] dark:bg-[#070914e4] dark:text-[#7b8cb0b6]  text-[#40517c]">
-              <tr>
-                <th className="py-2 text-left px-4 font-semibold">Datum</th>
-                <th className="py-2 text-left px-4 font-semibold">Beitragsbild</th>
-                <th className="py-2 text-left px-4 font-semibold">Beitragstitel</th>
-                <th className="py-2 text-left px-4 font-semibold">Kategorie</th>
-                <th className="py-2 text-left px-4 font-semibold">Löschen</th>
-                <th className="py-2 text-left px-4 font-semibold">Bearbeiten</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-900">
-              {userPosts.map((post) => (
-                <tr key={post._id} className='bg-[#b8bfd71e] dark:border-gray-900 dark:bg-[#0b1020d4] hover:bg-[#b8bfd75f] dark:hover:bg-[#141c37]'>
-                  <td className="py-2 px-4">
-                    {new Date(post.updatedAt).toLocaleDateString()}
-                  </td>
-                  <td className="py-2 px-4">
-                    <Link to={`/post/${post.slug}`}>
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className='w-20 h-10 object-cover bg-gray-500'
-                      />
-                    </Link>
-                  </td>
-                  <td className="py-2 px-4">
-                    <Link
-                      className=' text-[#2ca3c1] hover:underline'
-                      to={`/post/${post.slug}`}
-                    >
-                      {post.title}
-                    </Link>
-                  </td>
-                  <td className="py-2 px-4">{post.category}</td>
-                  <td className="py-2 px-4">
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setPostIdToDelete(post._id);
-                      }}
-                      className='font-medium text-[#8a52f3dd] hover:underline cursor-pointer'
-                    >
-                      Löschen
-                    </span>
-                  </td>
-                  <td className="py-2 px-4">
-                    <Link
-                      className='text-[#2ca3c1] font-semibold hover:underline'
-                      to={`/update-post/${post._id}`}
-                    >
-                      <span>Bearbeiten</span>
-                    </Link>
-                  </td>
+        <>
+          <div className="shadow-md rounded-lg overflow-hidden dark:border-2 border-gray-900">
+            <table className='w-full bg-[#b8bfd71e] dark:bg-[#0b10209a]'>
+              <thead className="bg-[#b8bfd789] dark:bg-[#070914e4] dark:text-[#7b8cb0b6]  text-[#40517c]">
+                <tr>
+                  <th className="py-2 text-left px-4 font-semibold hidden md:table-cell">Datum</th>
+                  <th className="py-2 text-left px-4 font-semibold">Beitragsbild</th>
+                  <th className="py-2 text-left px-4 font-semibold hidden md:table-cell">Beitragstitel</th>
+                  <th className="py-2 text-left px-4 font-semibold hidden md:table-cell">Kategorie</th>
+                  <th className="py-2 text-left px-4 font-semibold">Löschen</th>
+                  <th className="py-2 text-left px-4 font-semibold">Bearbeiten</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-900">
+                {userPosts.map((post) => (
+                  <tr key={post._id} className='bg-[#b8bfd71e] dark:border-gray-900 dark:bg-[#0b1020d4] hover:bg-[#b8bfd75f] dark:hover:bg-[#141c37]'>
+                    <td className="py-2 px-4 hidden md:table-cell">
+                      {new Date(post.updatedAt).toLocaleDateString()}
+                    </td>
+                    <td className="py-2 px-4">
+                      <Link to={`/post/${post.slug}`}>
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className='w-30 h-25 object-cover bg-gray-500 md:w-40 md:h-20'
+                        />
+                      </Link>
+                    </td>
+                    <td className="py-2 px-4 hidden md:table-cell">
+                      <Link
+                        className=' text-[#2ca3c1] hover:underline'
+                        to={`/post/${post.slug}`}
+                      >
+                        {post.title}
+                      </Link>
+                    </td>
+                    <td className="py-2 px-4 hidden md:table-cell">{post.category}</td>
+                    <td className="py-2 px-4 text-center">
+                      <span
+                        onClick={() => {
+                          setShowModal(true);
+                          setPostIdToDelete(post._id);
+                        }}
+                        className='font-medium text-[#8a52f3dd] hover:underline cursor-pointer'
+                      >
+                        <HiOutlineTrash className='inline w-6 h-6' />
+                      </span>
+                    </td>
+                    <td className="py-2 px-4 text-center">
+                      <Link
+                        className='text-[#2ca3c1] font-semibold hover:underline'
+                        to={`/update-post/${post._id}`}
+                      >
+                        <HiOutlinePencil className='inline w-6 h-6' />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           {showMore && (
             <button
               onClick={handleShowMore}
-              className='w-full text-[#385cb6] self-center text-sm py-7'
+              className='w-full text-lg text-[#2ca3c1] hover:underline font-bold mt-8 mb-10'
             >
               Mehr anzeigen
             </button>
           )}
-        </div>
+        </>
       ) : (
         <div>
-          <p> Du hast noch keine Beiträge erstellt!</p>
+          <p>Du hast noch keine Beiträge erstellt!</p>
         </div>
       )}
       <Modal
