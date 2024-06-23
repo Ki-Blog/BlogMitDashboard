@@ -37,6 +37,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({
           content: editedContent,
