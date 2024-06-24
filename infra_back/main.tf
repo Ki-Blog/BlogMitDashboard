@@ -182,3 +182,7 @@ resource "null_resource" "apply_argocd_manifest" {
 output "ingress_nginx_controller_public_ip" {
 value = data.kubernetes_service.ingress_nginx.status.0.load_balancer.0.ingress.0.ip
 }
+
+module "apigateway" {
+  source = "./apigateway"
+}
