@@ -125,9 +125,11 @@ export default function DashComments() {
                     <td className='py-3 px-4 hidden md:table-cell '>{comment.userId}</td>
                     <td className='py-3 px-4 '>{comment.numberOfLikes}</td>
                     <td className='py-3 px-4 '>
+                      {comment.postId && (
                       <a href={`/post/${comment.postId.slug}`} className='text-[#2ca3c1] hover:underline'>
                         {comment.postId.title}
                       </a>
+                    )}
                     </td>
                     <td className='py-3 px-4 '>
                       <span
