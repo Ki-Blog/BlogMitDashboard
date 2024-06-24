@@ -4,7 +4,7 @@ name: Build, Deploy, and Sync S3
 on:
   push:
    branches:
-    - feature/merge
+    - main
 
 jobs:
   terraform:
