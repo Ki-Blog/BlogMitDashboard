@@ -5,7 +5,7 @@ aiqauth:
   replicas: 1
   port: 4000
   restartPolicy: Always
-  image: docker.io/kpblm256/aiq-auth:1.2.2
+  image: docker.io/kpblm256/aiq-auth:1.2.8
   imagePullPolicy: Always
   resources:
     requests:
@@ -34,7 +34,7 @@ aiqpost:
   replicas: 1
   port: 4003
   restartPolicy: Always
-  image: docker.io/kpblm256/aiq-post:1.2.2
+  image: docker.io/kpblm256/aiq-post:1.2.8
   imagePullPolicy: Always
   resources:
     requests:
@@ -69,7 +69,7 @@ aiquser:
   replicas: 1
   port: 4001
   restartPolicy: Always
-  image: docker.io/kpblm256/aiq-user:1.2.2
+  image: docker.io/kpblm256/aiq-user:1.2.8
   imagePullPolicy: IfNotPresent
   resources:
     requests:
