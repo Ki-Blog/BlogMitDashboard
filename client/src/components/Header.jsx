@@ -7,6 +7,7 @@ import { toggleTheme } from '../redux/theme/themeSlice';
 import { signoutSuccess } from '../redux/user/userSlice';
 import logo from "../images/logo_gross.svg";
 import "../index.css";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function Header() {
   const location = useLocation();
@@ -24,12 +25,14 @@ export default function Header() {
     const searchTermFromUrl = urlParams.get('searchTerm');
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
+    } else {
+      setSearchTerm('');
     }
   }, [location.search]);
 
   const handleSignout = async () => {
     try {
-      const res = await fetch('/api/user/signout', {
+      const res = await fetch(`${baseUrl}/api/user/signout`, {
         method: 'POST',
       });
       const data = await res.json();
@@ -50,6 +53,7 @@ export default function Header() {
     urlParams.set('searchTerm', searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
+    setSearchTerm(''); // Reset search term after navigating
   };
 
   const getLinkClass = (path) => {
@@ -61,7 +65,7 @@ export default function Header() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Link to="/" className="flex items-center">
-          <img src={logo} alt="Logo" className={`h-11 ${theme === 'dark' ? 'filter invert' : ''}`} />
+            <img src={logo} alt="Logo" className={`h-11 ${theme === 'dark' ? 'filter invert' : ''}`} />
           </Link>
         </div>
         {/* Desktop Navigation */}
@@ -75,8 +79,7 @@ export default function Header() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </form>
-          <button className=''>
-          </button>
+          <button className=''></button>
           <ul className="font-medium flex space-x-8 mt-[8px]">
             <li>
               <Link

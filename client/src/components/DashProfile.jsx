@@ -22,6 +22,7 @@ import {
 import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function DashProfile() {
   const {currentUser, error, loading } = useSelector((state) => state.user);
@@ -100,10 +101,11 @@ export default function DashProfile() {
   }
   try {
     dispatch(updateStart());
-    const res = await fetch(`/api/user/update/${currentUser._id}`, {
+    const res = await fetch(`${baseUrl}/api/user/update/${currentUser._id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('token')}`,  
       },
       body: JSON.stringify(formData),
     });
@@ -124,8 +126,12 @@ export default function DashProfile() {
     setShowModal(false);
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${baseUrl}/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        }
       });
       const data = await res.json();
       if (!res.ok) {
@@ -139,8 +145,12 @@ export default function DashProfile() {
   };
   const handleSignout = async () => {
     try {
-      const res = await fetch("/api/user/signout", {
+      const res = await fetch(`${baseUrl}/api/user/signout`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        }
       });
       const data = await res.json();
       if (!res.ok) {
@@ -153,7 +163,7 @@ export default function DashProfile() {
     }
   };
   return (
-      <div className="max-w-lg mx-auto p-3 w-full mt-[80px]">
+      <div className="max-w-lg mx-auto p-3 w-full mt-[53px] mb-[53px]">
         <div className="flex flex-col gap-4 justify-center max-w-md w-full">
           <h1 className="my-7 text-center dark:text-[#9bb0ddd3] text-[#7b8cb0] font-semibold text-4xl">Dein Profil</h1>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

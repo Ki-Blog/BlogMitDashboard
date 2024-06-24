@@ -6,6 +6,7 @@ import logo from "../images/logo_gross.svg";
 import { useSelector } from "react-redux"; 
 import backgroundImage from "../images/background.jpg";
 import backgroundImageLight from "../images/background_light.jpg";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -15,7 +16,7 @@ export default function SignUp() {
   const { theme } = useSelector((state) => state.theme);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+    setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
   };
 
   const handleSubmit = async (e) => {
@@ -26,9 +27,12 @@ export default function SignUp() {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch(`${baseUrl}/api/auth/signup`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
@@ -45,14 +49,15 @@ export default function SignUp() {
     }
   };
 
-  const formContent = (
+  const formContent = (idSuffix) => (
     <>
       <div>
-        <Label value="E-Mail:" />
+        <Label htmlFor={`email-${idSuffix}`} value="E-Mail:" />
         <TextInput 
           type="email" 
           placeholder="name@company.com" 
-          id="email" 
+          id={`email-${idSuffix}`} 
+          name="email"
           onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
@@ -61,11 +66,12 @@ export default function SignUp() {
         />
       </div>
       <div>
-        <Label value="Benutzername:" />
+        <Label htmlFor={`username-${idSuffix}`} value="Benutzername:" />
         <TextInput 
           type="text" 
           placeholder="Benutzername" 
-          id="username" 
+          id={`username-${idSuffix}`} 
+          name="username"
           onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
@@ -74,11 +80,12 @@ export default function SignUp() {
         />
       </div>
       <div>
-        <Label value="Passwort:" />
+        <Label htmlFor={`password-${idSuffix}`} value="Passwort:" />
         <TextInput 
           type="password" 
           placeholder="*********" 
-          id="password" 
+          id={`password-${idSuffix}`} 
+          name="password"
           onChange={handleChange}
           style={{
             backgroundColor: theme === 'dark' ? 'black' : 'white',
@@ -111,7 +118,7 @@ export default function SignUp() {
           <div className="flex-1 mt-16 mr-16">
             <h1 className="text-4xl font font-semibold text-[#385cb6]  text-center my-3">Willkommen bei</h1>
             <Link to="/" className="font-bold dark:text-white text-4xl">
-            <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
+              <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
             </Link>
             <p className="text-center p-5 text-lg">
               Jetzt registrieren oder mit Google anmelden.
@@ -120,11 +127,11 @@ export default function SignUp() {
           {/* right */}
           <div className="flex-1 mt-12 mb-2 ml-12">
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-              {formContent}
+              {formContent('desktop')}
             </form>
             <div className="flex gap-2 text-sm mt-5">
               <span>Du hast bereits einen Account?</span>
-              <Link to="/signin" className="text-[#5356ff] font-semibold ">
+              <Link to="/signin" className="text-[#5356ff] font-semibold">
                 Anmelden
               </Link>
             </div>
@@ -142,9 +149,9 @@ export default function SignUp() {
         <div className="absolute inset-0 bg-white dark:bg-[#000000a0] opacity-50"></div>
         <div className="relative z-10 flex flex-col items-center justify-start p-4 mt-10">
           <div className="text-center mb-8 flex flex-col items-center">
-            <h1 className="text-4xl font font-semibold text-[#385cb6]  mb-3">Willkommen bei</h1>
+            <h1 className="text-4xl font font-semibold text-[#385cb6] mb-3">Willkommen bei</h1>
             <Link to="/" className="font-bold dark:text-white text-4xl">
-            <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
+              <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
             </Link>
             <p className="text-sm p-5">
               Jetzt registrieren oder mit Google anmelden.
@@ -153,12 +160,12 @@ export default function SignUp() {
           
           <div className="w-full px-4">
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-              {formContent}
+              {formContent('mobile')}
             </form>
             <div className="flex gap-2 text-sm mt-5 justify-center">
               <span>Du hast bereits einen Account?</span>
-              <Link to="/signin" className="text-[#5356ff] font-semibold ">
-              Anmelden
+              <Link to="/signin" className="text-[#5356ff] font-semibold">
+                Anmelden
               </Link>
             </div>
             {errorMessage && (

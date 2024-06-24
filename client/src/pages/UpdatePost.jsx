@@ -14,6 +14,8 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 export default function UpdatePost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -28,7 +30,7 @@ export default function UpdatePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/post/getposts?postId=${postId}`);
+        const res = await fetch(`${baseUrl}/api/post/getposts?postId=${postId}`);
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);
@@ -87,10 +89,11 @@ export default function UpdatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+      const res = await fetch(`${baseUrl}/api/post/updatepost/${formData._id}/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(formData),
       });
@@ -110,22 +113,25 @@ export default function UpdatePost() {
   };
 
   return (
-      <div className="p-3 max-w-3xl mx-auto min-h-screen mb-[80px] mt-[80px]">
-      <h1 className="text-center my-7 dark:text-[#9bb0ddd3] text-[#7b8cb0] p-2 font-semibold text-4xl">Beitrag erstellen</h1>
+    <div className="p-3 max-w-3xl mx-auto min-h-screen mb-[80px] mt-[80px]">
+      <h1 className="text-center my-7 dark:text-[#9bb0ddd3] text-[#7b8cb0] p-2 font-semibold text-4xl">Beitrag aktualisieren</h1>
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-4 sm:flex-row justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <input 
-          type="text" 
-          id="title" 
-          placeholder="Titel" 
-          required
-          className='hidden lg:inline w-[520px] p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-10'
-          onChange={(e) => 
-            setFormData({ ...formData, title: e.target.value })}
+            type="text" 
+            id="title" 
+            placeholder="Titel" 
+            value={formData.title || ""}
+            required
+            className='w-full sm:w-[520px] p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-10'
+            onChange={(e) => 
+              setFormData({ ...formData, title: e.target.value })}
           />
-          <select className='hidden lg:inline p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-0 text-ml'
-          onChange={(e) => 
-            setFormData({ ...formData, category: e.target.value })}
+          <select 
+            value={formData.category || "uncategorized"}
+            className='p-2 border dark:bg-[#0b1020d4] bg-[#b8bfd71e] rounded-md mr-0 text-ml'
+            onChange={(e) => 
+              setFormData({ ...formData, category: e.target.value })}
           >
             <option value="uncategorized">Wählen Sie eine Kategorie</option>
             <option value="midjourney">Midjourney</option>

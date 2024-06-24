@@ -5,6 +5,7 @@ import { app } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function OAuth() {
     const auth = getAuth(app)
@@ -15,9 +16,13 @@ export default function OAuth() {
         provider.setCustomParameters({ prompt: 'select_account' })
         try {
             const resultsFromGoogle = await signInWithPopup(auth, provider)
-            const res = await fetch('/api/auth/google', {
+            const res = await fetch(`${baseUrl}/api/auth/google`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                'Content-Type': 'application/json',
+                // "Authorization": `Bearer ${localStorage.getItem('token')}`
+                },
+                
                 body: JSON.stringify({
                     name: resultsFromGoogle.user.displayName,
                     email: resultsFromGoogle.user.email,
@@ -26,6 +31,7 @@ export default function OAuth() {
                 })
             const data = await res.json()
             if (res.ok){
+                localStorage.setItem('token', data.token);
                 dispatch(signInSuccess(data))
                 navigate('/')
             }

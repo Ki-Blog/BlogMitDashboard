@@ -64,9 +64,9 @@ export const deleteUser = async (req, res, next) => {
 
 export const signout = (req, res, next) => {
   try {
-    res.clearCookie("access_token")
-    .status(200)
-    .json("Der Benutzer wurde erfolgreich abgemeldet");
+    const token = null;
+    const message = "Der Benutzer wurde erfolgreich abgemeldet";
+    res.status(200).json({ message, token });
   } catch (error) {
     next(error);
   }

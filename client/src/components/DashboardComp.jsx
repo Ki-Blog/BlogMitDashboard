@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { 
-  HiArrowNarrowUp, 
-  HiClipboardList,
-  HiUserGroup,
-  HiChatAlt2
-} from 'react-icons/hi';
+import { HiArrowNarrowUp, HiClipboardList, HiUserGroup, HiChatAlt2 } from 'react-icons/hi';
 import { Button } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { TinyBarChart, TinyAreaChart, TinyLineChart } from './TinyCharts';
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function DashboardComp() {
   const [users, setUsers] = useState([]);
@@ -25,7 +21,17 @@ export default function DashboardComp() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('/api/user/getusers?limit=5');
+        const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+        if (!authToken) {
+          console.error('Auth-Token nicht gefunden');
+          return;
+        }
+
+        const res = await fetch(`${baseUrl}/api/user/getusers?limit=5`, {
+          headers: {
+            'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -38,7 +44,17 @@ export default function DashboardComp() {
     };
     const fetchPosts = async () => {
       try {
-        const res = await fetch('/api/post/getposts?limit=5');
+        const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+        if (!authToken) {
+          console.error('Auth-Token nicht gefunden');
+          return;
+        }
+
+        const res = await fetch(`${baseUrl}/api/post/getposts?limit=5`, {
+          headers: {
+            'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setPosts(data.posts);
@@ -51,7 +67,17 @@ export default function DashboardComp() {
     };
     const fetchComments = async () => {
       try {
-        const res = await fetch('/api/comment/getcomments?limit=5');
+        const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+        if (!authToken) {
+          console.error('Auth-Token nicht gefunden');
+          return;
+        }
+
+        const res = await fetch(`${baseUrl}/api/comment/getcomments?limit=5`, {
+          headers: {
+            'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -127,9 +153,9 @@ export default function DashboardComp() {
       </div>
       <div className='mt-12 grid grid-cols-1 md:grid-cols-2 gap-6'>
         <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] border-[#385cb6] border-2 rounded-lg shadow-lg'>
-          <div className='flex justify-between items-center'>
+          <div className='flex flex-col md:flex-row justify-between items-start md:items-center'>
             <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'>Die neuesten Benutzer</h1>
-            <Button outline gradientDuoTone="purpleToBlue">
+            <Button outline gradientDuoTone="purpleToBlue" className='mt-2 md:mt-0'>
               <Link to={"/dashboard?tab=users"}>Alle ansehen</Link>
             </Button>
           </div>
@@ -154,10 +180,10 @@ export default function DashboardComp() {
             </table>
           </div>
         </div>
-        <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] ] border-[#385cb6] border-2 rounded-lg shadow-lg'>
-          <div className='flex justify-between items-center'>
+        <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] border-[#385cb6] border-2 rounded-lg shadow-lg'>
+          <div className='flex flex-col md:flex-row justify-between items-start md:items-center'>
             <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'>Die neuesten Kommentare</h1>
-            <Button outline gradientDuoTone="purpleToBlue">
+            <Button outline gradientDuoTone="purpleToBlue" className='mt-2 md:mt-0'>
               <Link to={"/dashboard?tab=comments"}>Alle ansehen</Link>
             </Button>
           </div>
@@ -185,14 +211,16 @@ export default function DashboardComp() {
       </div>
       <div className='mt-12'>
         <div className='p-6 dark:bg-[#0a0f1e] bg-[#b8bfd71e] border-[#385cb6] border-2 rounded-lg shadow-lg'>
-          <div className='flex justify-between items-center'>
-            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c]'> Deine zuletzt erstellten Beiträge</h1>
-            <Button outline gradientDuoTone="purpleToBlue" className='ml-[450px]'>
-              <Link to={"/dashboard?tab=posts"}>Deine Beiträge ansehen</Link>
-            </Button>
-            <Button outline gradientDuoTone="purpleToBlue">
-              <Link to={"/search"}>Alle Beiträge ansehen</Link>
-            </Button>
+          <div className='flex flex-col md:flex-row justify-between items-start md:items-center'>
+            <h1 className='text-lg font-semibold dark:text-[#7b8cb0b6] text-[#40517c] mb-2 md:mb-0'>Deine zuletzt erstellten Beiträge</h1>
+            <div className='flex flex-wrap gap-2'>
+              <Button outline gradientDuoTone="purpleToBlue">
+                <Link to={"/dashboard?tab=posts"}>Deine Beiträge</Link>
+              </Button>
+              <Button outline gradientDuoTone="purpleToBlue">
+                <Link to={"/search"}>Alle Beiträge</Link>
+              </Button>
+            </div>
           </div>
           <div className="overflow-x-auto mt-4 border border-1 rounded-lg border-[#385cb674]">
             <table className="min-w-full bg-[#b8bfd71e] dark:bg-[#0b10209a] shadow-md rounded-lg overflow-hidden">
@@ -200,17 +228,19 @@ export default function DashboardComp() {
                 <tr>
                   <th className="py-2 text-left px-4 font-semibold">Beitragsbild</th>
                   <th className="py-2 text-left px-4 font-semibold">Beitragstitel</th>
-                  <th className="py-2 text-left px-4 font-semibold">Kategorie</th>
+                  <th className="py-2 text-left px-4 font-semibold hidden md:table-cell">Kategorie</th>
                 </tr>
               </thead>
               <tbody>
                 {posts.map((post, index) => (
                   <tr key={post._id} className={`bg-[#b8bfd71e] dark:border-gray-900 dark:bg-[#0b1020d4] ${index !== posts.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''}`}>
                     <td className="py-2 px-4 w-60">
-                      <img src={post.image} alt="post" className="w-20 h-15 rounded-md bg-black" />
+                    <Link to={`/post/${post.slug}`}>
+                      <img src={post.image} alt="post" className="w-30 h-25 rounded-md md:w-40 md:h-20 bg-black" />
+                    </Link>
                     </td>
-                    <td className="py-2 px-4 w-96">{post.title}</td>
-                    <td className="py-2 px-4 w-5">{post.category}</td>
+                    <td className="py-2 px-4 w-96 text-[#2ca3c1] hover:underline">{post.title}</td>
+                    <td className="py-2 px-4 w-5 hidden md:table-cell">{post.category}</td>
                   </tr>
                 ))}
               </tbody>

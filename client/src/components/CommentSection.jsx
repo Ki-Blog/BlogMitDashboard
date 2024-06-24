@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Comment from './Comment'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function CommentSection({postId}) {
   const {currentUser} = useSelector((state) => state.user);
@@ -19,10 +20,11 @@ export default function CommentSection({postId}) {
       return;
   }
   try {
-    const res = await fetch('/api/comment/create', {
+    const res = await fetch(`${baseUrl}/api/comment/create`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({ 
         content: comment, 
@@ -45,7 +47,7 @@ export default function CommentSection({postId}) {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getPostComments/${postId}`);
+        const res = await fetch(`${baseUrl}/api/comment/getPostComments/${postId}`);
         if (res.ok) {
           const data = await res.json();
           setComments(data);
@@ -63,9 +65,22 @@ export default function CommentSection({postId}) {
         navigate('/signin');
         return;
       }
-      const res = await fetch(`/api/comment/likeComment/${commentId}`,
+      //Token Abfrage
+      const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+      if (!authToken) {
+        console.error('Auth-Token nicht gefunden');
+        return;
+      }
+
+
+      const res = await fetch(`${baseUrl}/api/comment/likeComment/${commentId}`,
       {
         method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${authToken}` // Auth-Token übergeben
+        },
+
         });
       if (res.ok) {  
         const data = await res.json();
@@ -99,9 +114,15 @@ export default function CommentSection({postId}) {
         navigate('/signin');
         return;
       }
-      const res = await fetch(`/api/comment/deleteComment/${commentId}`,
+      //Token Abfrage
+      const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+      const res = await fetch(`${baseUrl}/api/comment/delete-comment/${commentId}`,
       {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${authToken}` // Auth-Token übergeben
+        },
       });
       if (res.ok) {
         const data = await res.json();
