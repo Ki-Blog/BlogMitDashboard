@@ -23,6 +23,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          project: ./e2e-testing
+          project: ./
           spec: cypress/e2e/aiq-blog.cy.js
-          working-directory: ./e2e-testing
+          working-directory: ./
