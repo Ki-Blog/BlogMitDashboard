@@ -22,6 +22,10 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: ./e2e-testing
+
+      - name: Install npm dependencies in client
+        run: npm ci
+        working-directory: ./client
       
       - name: start the server
         run: npm run dev
