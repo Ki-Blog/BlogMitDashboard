@@ -28,10 +28,14 @@ jobs:
         working-directory: ./client
       
       - name: start the server
-        run: npm run dev  & sleep 5
+        run: |
+         npm run dev & sleep 10
+         npx wait-on http://localhost:5173
         working-directory: ./client
 
-
+      - name: Return to e2e-testing directory
+        run: cd ../e2e-testing 
+        
       - name: Run Cypress Tests
         run: npm run cypress:run
         working-directory: ./e2e-testing
