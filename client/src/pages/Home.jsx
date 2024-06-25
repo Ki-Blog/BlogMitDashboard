@@ -48,7 +48,7 @@ export default function Home() {
           <div className="gap-8 flex flex-col">
             <h2 className="text-4xl font-semibold text-center dark:text-[#9bb0ddd3] text-[#7b8cb0]">Neuste Beiträge</h2>
             <div className="flex flex-wrap gap-4">
-              {posts.map((post) => (
+              {posts.slice(0, 6).map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             </div>
