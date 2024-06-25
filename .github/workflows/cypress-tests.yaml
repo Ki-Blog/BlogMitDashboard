@@ -12,10 +12,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
+
+      - name: Change directory to e2e-testing
+        run: cd e2e-testing
+
+      - name: Install npm dependencies
+        run: npm install
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          project: ./e2e-testing
+          project: ./  # Assuming Cypress is configured within e2e-testing directory
           spec: cypress/e2e/aiq-blog.cy.js
