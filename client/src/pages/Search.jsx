@@ -1,4 +1,3 @@
-import { Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -20,17 +19,14 @@ export default function Search() {
       setLoading(true);
       try {
         const urlParams = new URLSearchParams(location.search);
-        urlParams.set('limit', 8); // Anzahl der Beiträge auf 8 setzen
+        urlParams.set('limit', 8);
         const searchQuery = urlParams.toString();
-        console.log(`Fetching posts with query: ${searchQuery}`); // Debugging
         const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
         if (!res.ok) {
           setLoading(false);
-          console.error('Failed to fetch posts'); // Debugging
           return;
         }
         const data = await res.json();
-        console.log('Fetched posts:', data.posts); // Debugging
         setPosts(data.posts);
         setLoading(false);
         setShowMore(data.posts.length === 8);
@@ -49,7 +45,7 @@ export default function Search() {
     try {
       const urlParams = new URLSearchParams(location.search);
       urlParams.set('startIndex', startIndex);
-      urlParams.set('limit', 8); // Anzahl der Beiträge auf 8 setzen
+      urlParams.set('limit', 8);
       urlParams.set('cacheBuster', Date.now());
       const searchQuery = urlParams.toString();
       const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
@@ -71,13 +67,13 @@ export default function Search() {
           <h1 className='text-4xl font-semibold p-3 mt-5 dark:text-[#9bb0ddd3] text-[#7b8cb0]'>
             Ergebnisse
           </h1>
-          <div className='p-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center'>
+          <div className='p-2 md:p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
             {!loading && posts.length === 0 && (
               <p className='text-xl p dark:text-[#b3bccfb6] text-[#7b8cb0]'>Keine Einträge gefunden.</p>
             )}
             {loading && <p className='text-xl text-[#2ca3c1]'>Laden...</p>}
             {!loading && posts && posts.map((post) => (
-              <PostCard key={post._id} post={post} />
+              <PostCard key={post._id} post={post} className='mx-2 my-2 md:mx-4 md:my-4' />
             ))}
           </div>
           {showMore && (
