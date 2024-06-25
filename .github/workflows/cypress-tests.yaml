@@ -22,10 +22,11 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: ./e2e-testing
+      
+      - name: start the server
+        run: npm run dev
+        working-directory: ./client
 
-      - name: Wait for server to start
-        run: |
-          while ! curl -s ${CYPRESS_BASE_URL} > /dev/null; do sleep 1; done
 
       - name: Run Cypress Tests
         run: npm run cypress:run
