@@ -14,7 +14,7 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+        const authToken = localStorage.getItem('token');
         if (!authToken) {
           console.error('Auth-Token nicht gefunden');
           return;
@@ -22,7 +22,7 @@ export default function DashComments() {
 
         const res = await fetch(`${baseUrl}/api/comment/getcomments`, {
           headers: {
-            'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+            'Authorization': `Bearer ${authToken}`
           }
         });
         const data = await res.json();
@@ -44,7 +44,7 @@ export default function DashComments() {
   const handleShowMore = async () => {
     const startIndex = comments.length;
     try {
-      const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+      const authToken = localStorage.getItem('token');
       if (!authToken) {
         console.error('Auth-Token nicht gefunden');
         return;
@@ -52,7 +52,7 @@ export default function DashComments() {
 
       const res = await fetch(`${baseUrl}/api/comment/getcomments?startIndex=${startIndex}`, {
         headers: {
-          'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+          'Authorization': `Bearer ${authToken}`
         }
       });
       const data = await res.json();
@@ -70,7 +70,7 @@ export default function DashComments() {
   const handleDeleteComment = async () => {
     setShowModal(false);
     try {
-      const authToken = localStorage.getItem('token'); //prüfung des Tokens
+      const authToken = localStorage.getItem('token');
       if (!authToken) {
         console.error('Auth-Token nicht gefunden');
         return;
@@ -82,7 +82,7 @@ export default function DashComments() {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+            'Authorization': `Bearer ${authToken}`
           },
         });
       const data = await res.json();

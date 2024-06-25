@@ -20,7 +20,6 @@ export default function OAuth() {
                 method: 'POST',
                 headers: { 
                 'Content-Type': 'application/json',
-                // "Authorization": `Bearer ${localStorage.getItem('token')}`
                 },
                 
                 body: JSON.stringify({
@@ -39,10 +38,10 @@ export default function OAuth() {
             console.log(error);
         }
     } 
-  return (
+return (
     <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={handleGoogleClick}>
         <AiFillGoogleCircle className='w-6 h-6 mr-2'/>
         Continue with Google
     </Button>
-  )
+)
 }

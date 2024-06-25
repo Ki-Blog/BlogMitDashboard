@@ -65,8 +65,7 @@ export default function CommentSection({postId}) {
         navigate('/signin');
         return;
       }
-      //Token Abfrage
-      const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+      const authToken = localStorage.getItem('token');
       if (!authToken) {
         console.error('Auth-Token nicht gefunden');
         return;
@@ -78,7 +77,7 @@ export default function CommentSection({postId}) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          "Authorization": `Bearer ${authToken}` // Auth-Token übergeben
+          "Authorization": `Bearer ${authToken}`
         },
 
         });
@@ -114,14 +113,13 @@ export default function CommentSection({postId}) {
         navigate('/signin');
         return;
       }
-      //Token Abfrage
-      const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+      const authToken = localStorage.getItem('token');
       const res = await fetch(`${baseUrl}/api/comment/delete-comment/${commentId}`,
       {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          "Authorization": `Bearer ${authToken}` // Auth-Token übergeben
+          "Authorization": `Bearer ${authToken}`
         },
       });
       if (res.ok) {

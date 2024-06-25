@@ -16,7 +16,7 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+        const authToken = localStorage.getItem('token');
         if (!authToken) {
           console.error('Auth-Token nicht gefunden');
           return;
@@ -24,7 +24,7 @@ export default function DashUsers() {
 
         const res = await fetch(`${baseUrl}/api/user/getusers`, {
           headers: {
-            'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+            'Authorization': `Bearer ${authToken}`
           }
         });
         const data = await res.json();
@@ -46,7 +46,7 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+      const authToken = localStorage.getItem('token');
       if (!authToken) {
         console.error('Auth-Token nicht gefunden');
         return;
@@ -54,7 +54,7 @@ export default function DashUsers() {
 
       const res = await fetch(`${baseUrl}/api/user/getusers?startIndex=${startIndex}`, {
         headers: {
-          'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+          'Authorization': `Bearer ${authToken}`
         }
       });
       const data = await res.json();
@@ -71,7 +71,7 @@ export default function DashUsers() {
 
   const handleDeleteUser = async () => {
     try {
-      const authToken = localStorage.getItem('token'); // Überprüfung des Tokens
+      const authToken = localStorage.getItem('token');
       if (!authToken) {
         console.error('Auth-Token nicht gefunden');
         return;
@@ -81,7 +81,7 @@ export default function DashUsers() {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}` // Token in der Anfrage
+          'Authorization': `Bearer ${authToken}`
         },
       });
       const data = await res.json();

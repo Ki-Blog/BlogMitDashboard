@@ -40,7 +40,7 @@ export default function SignUp() {
       if (!res.ok) {
         return setErrorMessage(data.message);
       }
-      // Speichern des Tokens und Weiterleitung zur Startseite
+
       localStorage.setItem('token', data.token);
       navigate('/');
     } catch (error) {

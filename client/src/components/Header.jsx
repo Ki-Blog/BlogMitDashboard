@@ -53,7 +53,7 @@ export default function Header() {
     urlParams.set('searchTerm', searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
-    setSearchTerm(''); // Reset search term after navigating
+    setSearchTerm('');
   };
 
   const getLinkClass = (path) => {
