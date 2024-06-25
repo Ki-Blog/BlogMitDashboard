@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "cypress": "cypress open",
-    "cypress:run": "cypress run --headless --browser chrome --config-file e2e-testing/cypress.json"
+    "cypress:run": "cypress run "
   },
   "author": "",
   "license": "ISC",

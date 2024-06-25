@@ -28,4 +28,4 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run --config-file e2e-testing/cypress.config.json --browser chrome
-        working-directory: e2e-testing  # Change to your specific directory
+        # working-directory: e2e-testing  # Change to your specific directory
