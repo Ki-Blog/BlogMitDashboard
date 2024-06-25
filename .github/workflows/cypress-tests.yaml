@@ -14,10 +14,18 @@ jobs:
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
         # working-directory: ./e2e-testing
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      - name: Cache dependencies
+        uses: actions/cache@v2
         with:
-         command: npx cypress run
-         browser: chrome
-         config-file: ./e2e-testing/cypress.json
-    #    working-directory: ./e2e-testing
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: e2e-testing  # Change to your specific directory
+
+      - name: Run Cypress tests
+        run: npx cypress run --config-file e2e-testing/cypress.json --browser chrome
+        working-directory: e2e-testing  # Change to your specific directory
