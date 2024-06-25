@@ -28,7 +28,7 @@ jobs:
         working-directory: ./client
       
       - name: start the server
-        run: npm run dev
+        run: npm run dev  & sleep 5
         working-directory: ./client
 
 
