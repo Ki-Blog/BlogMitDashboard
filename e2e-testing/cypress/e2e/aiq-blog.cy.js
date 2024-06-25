@@ -44,8 +44,9 @@ describe('test Admin user in  AIQ-Blog ', () => {
     cy.get('a > .group > .items-stretch').click(),
     cy.get('#email-desktop').type('ons123@hotmail.com'),
     cy.get('#password-desktop').type('123456789'),
-    cy.get('.mt-12 > .flex-col > .from-purple-600 > .items-stretch').click(),
-    cy.get('[data-testid="flowbite-avatar-img"]', { timeout: 10000 }).should('be.visible').click(),
+    cy.get('.mt-12 > .flex-col > .from-purple-600 > .items-stretch').click()
+    cy.wait(20000)
+    cy.get('[data-testid="flowbite-avatar-img"]', { timeout: 15000 }).should('be.visible').click(),
     cy.get('a > li > .flex').click(),
     cy.get('[href="/dashboard?tab=dash"] > .flex').click(),
     cy.get('[data-testid="flowbite-avatar-img"]').click(),

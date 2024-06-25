@@ -30,7 +30,7 @@ jobs:
       
       - name: start the server
         run: |
-         npm run dev & sleep 10
+         npm run dev & sleep 5
          npx wait-on http://localhost:5173
         working-directory: ./client
 
