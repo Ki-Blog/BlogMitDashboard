@@ -18,20 +18,26 @@ export default function Search() {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const urlParams = new URLSearchParams(location.search);
-      const searchQuery = urlParams.toString();
-      console.log(`Fetching posts with query: ${searchQuery}`); // Debugging
-      const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
-      if (!res.ok) {
+      try {
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('limit', 8); // Anzahl der Beiträge auf 8 setzen
+        const searchQuery = urlParams.toString();
+        console.log(`Fetching posts with query: ${searchQuery}`); // Debugging
+        const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
+        if (!res.ok) {
+          setLoading(false);
+          console.error('Failed to fetch posts'); // Debugging
+          return;
+        }
+        const data = await res.json();
+        console.log('Fetched posts:', data.posts); // Debugging
+        setPosts(data.posts);
         setLoading(false);
-        console.error('Failed to fetch posts'); // Debugging
-        return;
+        setShowMore(data.posts.length === 8);
+      } catch (error) {
+        setLoading(false);
+        console.error("Fehler beim Abrufen der Posts:", error);
       }
-      const data = await res.json();
-      console.log('Fetched posts:', data.posts); // Debugging
-      setPosts(data.posts);
-      setLoading(false);
-      setShowMore(data.posts.length === 9);
     };
 
     fetchPosts();
@@ -40,17 +46,22 @@ export default function Search() {
   const handleShowMore = async () => {
     const numberOfPosts = posts.length;
     const startIndex = numberOfPosts;
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.set('startIndex', startIndex);
-    urlParams.set('cacheBuster', Date.now());
-    const searchQuery = urlParams.toString();
-    const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
-    if (!res.ok) {
-      return;
+    try {
+      const urlParams = new URLSearchParams(location.search);
+      urlParams.set('startIndex', startIndex);
+      urlParams.set('limit', 8); // Anzahl der Beiträge auf 8 setzen
+      urlParams.set('cacheBuster', Date.now());
+      const searchQuery = urlParams.toString();
+      const res = await fetch(`${baseUrl}/api/post/getposts?${searchQuery}`);
+      if (!res.ok) {
+        return;
+      }
+      const data = await res.json();
+      setPosts([...posts, ...data.posts]);
+      setShowMore(data.posts.length === 8);
+    } catch (error) {
+      console.error("Fehler beim Abrufen der weiteren Posts:", error);
     }
-    const data = await res.json();
-    setPosts([...posts, ...data.posts]);
-    setShowMore(data.posts.length === 9);
   };
 
   return (
