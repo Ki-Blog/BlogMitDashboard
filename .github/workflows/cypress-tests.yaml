@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      CYPRESS_BASE_URL: http://localhost:5173
+      VITE_API_BASE_URL: http://localhost:5173
       VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
 
     steps:
@@ -33,6 +33,9 @@ jobs:
          npm run dev & sleep 5
          npx wait-on http://localhost:5173
         working-directory: ./client
+        env:
+            VITE_API_BASE_URL: ${{ env.VITE_API_BASE_URL }}
+            VITE_FIREBASE_API_KEY: ${{ env.VITE_FIREBASE_API_KEY }}
 
       - name: Return to e2e-testing directory
         run: cd ./e2e-testing 
@@ -41,7 +44,7 @@ jobs:
         run: npm run cypress:run
         working-directory: ./e2e-testing
         env:
-            CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
+            VITE_API_BASE_URL: ${{ env.VITE_API_BASE_URL }}
             VITE_FIREBASE_API_KEY: ${{ env.VITE_FIREBASE_API_KEY }}
 
     #   - name: Verify Cypress installation
