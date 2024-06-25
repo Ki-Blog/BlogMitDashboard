@@ -18,6 +18,3 @@ jobs:
         with:
           project: ./e2e-testing
           browser: chrome
-          build: yarn build
-          start: yarn start
-          wait-on: "http://localhost:5173"
