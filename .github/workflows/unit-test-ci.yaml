@@ -20,6 +20,8 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: ./api/auth
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
       - name: Run Units Tests for auth
         run: npm run test
@@ -33,6 +35,8 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: ./api/user
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
       - name: Run Units Tests for user
         run: npm run test
@@ -46,6 +50,8 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: ./api/post
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
       - name: Run Units Tests for post
         run: npm run test
