@@ -4,7 +4,7 @@ name: run unit tests
 on:
   push:
    branches:
-    - feature/ms-unittests
+    - feature/unittests-merge
 
 jobs:
   Unittests-run:
@@ -25,7 +25,7 @@ jobs:
             JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
       - name: Run Units Tests for auth
-        run: npm run test
+        run: npm run test --coverage
         working-directory: ./api/auth/Unit-tests
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}

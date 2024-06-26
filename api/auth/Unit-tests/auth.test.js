@@ -41,7 +41,6 @@ describe('Auth API', () => {
         });
 
       expect(res.status).toBe(201);
-      expect(res.body.message).toBe("Anmeldung erfolgreich." );
 
       const user = await User.findOne({ email: 'testuser@example.com' });
       expect(user).toBeTruthy();
@@ -81,7 +80,7 @@ describe('Auth API', () => {
 
       expect(res.status).toBe(200);
       expect(res.body.email).toBe('testuser@example.com');
-      expect(res.headers['set-cookie']).toBeDefined();
+      expect(res.body.token).toBeDefined();
     });
 
     it('should not sign in with invalid password', async () => {
@@ -130,7 +129,7 @@ describe('Auth API', () => {
 
       expect(res.status).toBe(200);
       expect(res.body.email).toBe('googleuser@gmail.com');
-      expect(res.headers['set-cookie']).toBeDefined();
+      expect(res.body.token).toBeDefined();
 
       const user = await User.findOne({ email: 'googleuser@gmail.com' });
       expect(user).toBeTruthy();

@@ -252,7 +252,6 @@ describe('User Controller', () => {
     it('should sign out a user', async () => {
       const req = {};
       const res = {
-        clearCookie: jest.fn().mockReturnThis(),
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
       };
@@ -260,9 +259,8 @@ describe('User Controller', () => {
 
       await signout(req, res, next);
 
-      expect(res.clearCookie).toHaveBeenCalledWith('access_token');
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith('Der Benutzer wurde erfolgreich abgemeldet');
+      expect(res.json).toHaveBeenCalledWith({"message": "Der Benutzer wurde erfolgreich abgemeldet", "token": null});
       expect(next).not.toHaveBeenCalled();
     });
   });
@@ -402,8 +400,9 @@ describe('verifyToken Middleware', () => {
   let req, res, next;
 
   beforeEach(() => {
+
     req = {
-      cookies: {},
+       headers: {},
     };
     res = {};
     next = jest.fn();
@@ -417,7 +416,7 @@ describe('verifyToken Middleware', () => {
     const mockUser = { id: 'userId', username: 'testuser' };
     const token = 'valid_token';
 
-    req.cookies.access_token = token;
+    req.headers.authorization = `Bearer ${token}`;
 
     jwt.verify.mockImplementation((token, secret, callback) => {
       callback(null, mockUser); 
@@ -442,7 +441,7 @@ describe('verifyToken Middleware', () => {
   it('should call next(error) if token verification fails', () => {
     const token = 'invalid_token';
 
-    req.cookies.access_token = token;
+    req.headers.authorization = `Bearer ${token}`;
 
     jwt.verify.mockImplementation((token, secret, callback) => {
       callback(new Error('Token verification failed')); // Simulate a failed token verification
