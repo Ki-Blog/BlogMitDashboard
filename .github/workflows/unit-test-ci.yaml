@@ -39,14 +39,13 @@ jobs:
         working-directory: ./api/user
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}
-            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
 
       - name: Run Units Tests for user
         run: npm run test -- --coverage
         working-directory: ./api/user/Unit-tests
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}
-            JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
       - name: Change directory to test post
         run: cd ./api/post
