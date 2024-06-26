@@ -50,15 +50,10 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: ./api/post
-        env:
-            MONGODB_URI: ${{ secrets.MONGODB_URI }}
-            JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
       - name: Run Units Tests for post
         run: npm run test -- --coverage
         working-directory: ./api/post/Unit-tests
-        env:
-            MONGODB_URI: ${{ secrets.MONGODB_URI }}
-            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
 
       
