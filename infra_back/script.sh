@@ -61,8 +61,8 @@ kubectl patch svc argocd-server -n argocd -p "{\"spec\": {\"type\": \"ClusterIP\
 echo "ArgoCD server service reverted to ClusterIP."
 
 # Start port-forwarding
-echo "Starting port-forwarding to make ArgoCD accessible locally..."
-kubectl port-forward svc/argocd-server -n argocd 8080:443 &
+#echo "Starting port-forwarding to make ArgoCD accessible locally..."
+#kubectl port-forward svc/argocd-server -n argocd 8080:443 &
 
 echo "Port-forwarding started. ArgoCD is accessible at https://localhost:8080"
 

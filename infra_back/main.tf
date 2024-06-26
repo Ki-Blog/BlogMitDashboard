@@ -56,9 +56,16 @@ resource "local_file" "ingress_yaml" {
 
 
 
-resource "null_resource" "patch_and_login" {
+/* resource "null_resource" "patch_and_login" {
   provisioner "local-exec" {
     command = "sh script.sh"
   }
 }
+ */
+resource "null_resource" "helm_upgrade_install" {
+  provisioner "local-exec" {
+    command = "helm upgrade --install aiq-release ../k8s/BlogDashboard-chart -f ../k8s/BlogDashboard-chart/values.yaml -f ../k8s/BlogDashboard-chart/secrets.yaml"
+  }
 
+  depends_on = [null_resource.helm_repo_update]
+}
