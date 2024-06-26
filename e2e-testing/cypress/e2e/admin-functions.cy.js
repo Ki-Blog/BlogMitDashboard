@@ -9,7 +9,7 @@ describe('test Admin user in  AIQ-Blog ', () => {
       cy.get('#email-desktop').type('ons123@hotmail.com'),
       cy.get('#password-desktop').type('123456789'),
       cy.get('.mt-12 > .flex-col > .from-purple-600 > .items-stretch').click()
-      cy.wait(20000)
+    //   cy.wait(20000)
       cy.get('[data-testid="flowbite-avatar-img"]', { timeout: 15000 }).should('be.visible').click(),
       cy.get('a > li > .flex').click(),
       cy.get('[href="/dashboard?tab=dash"] > .flex').click(),
@@ -22,7 +22,7 @@ describe('test Admin user in  AIQ-Blog ', () => {
       cy.get('[href="/dashboard?tab=profile"] > .flex').click()
       cy.get('a > .group > .items-stretch').click(),
       cy.get('#title').type('new post for test'),
-      cy.wait(1000);
+    //   cy.wait(1000);
       cy.get('.flex-col > .lg\\:inline', { timeout: 10000 }).should('be.visible').select('Canva')
       cy.get('.ql-editor').type('my new Post')
       cy.get('[type="submit"] > .items-stretch').click()
