@@ -1,0 +1,68 @@
+name: run unit tests
+
+
+on:
+  push:
+   branches:
+    - feature/ms-unittests
+
+jobs:
+  Unittests-run:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Change directory to test auth
+        run: cd ./api/auth
+
+      - name: Install npm dependencies
+        run: npm ci
+        working-directory: ./api/auth
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+      - name: Run Units Tests for auth
+        run: npm run test
+        working-directory: ./api/auth/Unit-tests
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+      - name: Change directory to test user
+        run: cd ./api/user
+
+      - name: Install npm dependencies
+        run: npm ci
+        working-directory: ./api/user
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+      - name: Run Units Tests for user
+        run: npm run test
+        working-directory: ./api/user/Unit-tests
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+      - name: Change directory to test post
+        run: cd ./api/post
+
+      - name: Install npm dependencies
+        run: npm ci
+        working-directory: ./api/post
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+      - name: Run Units Tests for post
+        run: npm run test
+        working-directory: ./api/post/Unit-tests
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+      
