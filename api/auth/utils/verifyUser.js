@@ -6,7 +6,6 @@ export const verifyToken = (req, res, next) => {
 
     token = req.headers.authorization.split(" ")[1];
 
-
   }
   if (!token) {
     return next(errorHandler(401, "Unauthorized"));
