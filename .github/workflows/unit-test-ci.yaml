@@ -37,9 +37,6 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: ./api/user
-        env:
-            MONGODB_URI: ${{ secrets.MONGODB_URI }}
-
 
       - name: Run Units Tests for user
         run: npm run test -- --coverage
