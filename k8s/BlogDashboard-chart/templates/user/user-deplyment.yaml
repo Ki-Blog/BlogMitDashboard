@@ -33,9 +33,15 @@ spec:
               memory: {{ .Values.aiquser.resources.limits.memory }}
           env:
             - name: MONGO
-              value: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secrets
+                  key: MONGO
             - name: JWT_SECRET
-              value: "sdjfslgjd56fr7"
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secrets
+                  key: JWT_SECRET
           livenessProbe:
             tcpSocket:
               port: {{ .Values.aiquser.port }}

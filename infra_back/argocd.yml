@@ -2,18 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: aiq
+  namespace: default
 spec:
   source:
     repoURL: "https://github.com/Ki-Blog/BlogMitDashboard.git"
-    path: "k8s/BlogDashboard-chart"  
-    targetRevision: "feature/k8s"
+    path: "k8s/BlogDashboard-chart"
+    targetRevision: "feature/terraform"
     helm:
-      releaseName: aiq-release  
-      values: | 
-        replicaCount: 2
-        image:
-          repository: 
-          tag: "1.0.0"
+      releaseName: aiq-release
+      valuesFiles:
+        - values.yaml  # Referencing the values.yaml file in your repo
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -21,4 +19,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true  
+      selfHeal: true
