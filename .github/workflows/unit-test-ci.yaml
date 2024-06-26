@@ -25,7 +25,7 @@ jobs:
             JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
       - name: Run Units Tests for auth
-        run: npm run test --coverage
+        run: npm run test -- --coverage
         working-directory: ./api/auth/Unit-tests
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}
@@ -42,7 +42,7 @@ jobs:
             JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
       - name: Run Units Tests for user
-        run: npm run test
+        run: npm run test -- --coverage
         working-directory: ./api/user/Unit-tests
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}
@@ -59,7 +59,7 @@ jobs:
             JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
       - name: Run Units Tests for post
-        run: npm run test
+        run: npm run test -- --coverage
         working-directory: ./api/post/Unit-tests
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}
