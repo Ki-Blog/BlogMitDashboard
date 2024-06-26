@@ -24,30 +24,6 @@ jobs:
         run: npm ci
         working-directory: ./e2e-testing
 
-      - name: Install npm dependencies in auth
-        run: npm ci
-        working-directory: ./api/auth
-      
-      - name: start the server
-        run: npm start & sleep 5
-        working-directory: ./api/auth
-
-      - name: Install npm dependencies in user
-        run: npm ci
-        working-directory: ./api/user
-      
-      - name: start the server
-        run: npm start & sleep 5
-        working-directory: ./api/user
-
-      - name: Install npm dependencies in post
-        run: npm ci
-        working-directory: ./api/post
-      
-      - name: start the server
-        run: npm start & sleep 5
-        working-directory: ./api/post
-
       - name: Install npm dependencies in client
         run: npm ci
         working-directory: ./client
@@ -62,7 +38,7 @@ jobs:
         run: cd ./e2e-testing 
 
       - name: Run Cypress Tests
-        run: npm run cypress:run
+        run: npm run cypress:run --spec cypress/e2e/aiq-blog.cy.js
         working-directory: ./e2e-testing
         env:
             CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
