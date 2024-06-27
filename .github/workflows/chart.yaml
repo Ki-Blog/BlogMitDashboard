@@ -53,4 +53,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
       run: |
-        git push https://x-access-token:${GITHUB_TOKEN}@github.com/Ki-Blog/BlogMitDashbo
+        git push https://x-access-token:${GITHUB_TOKEN}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages --force
