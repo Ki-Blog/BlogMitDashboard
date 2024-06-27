@@ -47,7 +47,7 @@ done
 
 # Add the GitHub repository to ArgoCD
 echo "Adding GitHub repository to ArgoCD..."
-argocd repo add https://github.com/Ki-Blog/BlogMitDashboard.git --username kpblmMik --password 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
+argocd repo add https://github.com/Ki-Blog/BlogMitDashboard.git
 echo "GitHub repository added."
 
 # Apply the ArgoCD manifest

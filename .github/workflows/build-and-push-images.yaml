@@ -48,16 +48,19 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  release-chart:
-    runs-on: ubuntu-latest
-    needs: build-and-push
-    steps:
-      - name: Publish Helm chart
-        uses: stefanprodan/helm-gh-pages@master
-        with:
-          token: ${{ secrets.GITHUBTAG  }}
-          charts_dir: k8s/BlogDashboard-chart
-          charts_url: https://Sadek-Murad.github.io/BlogMitDashboard
-          owner: Sadek-Murad
-          repository: BlogMitDashboard
-          branch: gh-pages
+  # release-chart:
+  #   runs-on: ubuntu-latest
+  #   needs: build-and-push
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Publish Helm chart
+  #       uses: stefanprodan/helm-gh-pages@master
+  #       with:
+  #         token: ${{ secrets.GITHUBTAG }}
+  #         charts_dir: k8s/BlogDashboard-chart
+  #         charts_url: https://Sadek-Murad.github.io/BlogMitDashboard
+  #         owner: Sadek-Murad
+  #         repository: BlogMitDashboard
+  #         branch: gh-pages
