@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.9] - 2024-06-27
+### :sparkles: New Features
+- [`d31a2c8`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d31a2c89d7db7ef1d1eb63f84e64baa7e5d29acd) - added apigateway.tf *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`c99930d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/c99930d7e16d5b7af51fa97908c4bb43088349c4) - gh-pages branch has been created *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`045cf5c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/045cf5c939eea3452b78172755facf7bd6c29b42) - Add CI/CD workflow for Docker build, push and Helm chart release *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+### :bug: Bug Fixes
+- [`2cb72c5`](https://github.com/Ki-Blog/BlogMitDashboard/commit/2cb72c5480e7a28ebeafa6728f26a9b80e5dc536) - terraform has been updated *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`109ca61`](https://github.com/Ki-Blog/BlogMitDashboard/commit/109ca61dca2895a78c9561d600b2482c809e4d46) - commits *(commit by [@Mone19](https://github.com/Mone19))*
+- [`e038f63`](https://github.com/Ki-Blog/BlogMitDashboard/commit/e038f632a8cf90ab9464985ea9cbd2a86ab62ba8) - main.tf has been updated *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+### :white_check_mark: Tests
+- [`e761234`](https://github.com/Ki-Blog/BlogMitDashboard/commit/e7612343727c0a14dca7c00a1712db23ff5c6027) - test the s3 pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`467f20f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/467f20fdd760eeb927c9e7ed761db4a302ac071d) - test the s3 pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`413c5ba`](https://github.com/Ki-Blog/BlogMitDashboard/commit/413c5ba9e13a9af0921db778cc217fccfb7ed3d2) - test the s3 pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`a5315fa`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a5315fab80e633631062a282a49c7232f58420a6) - test the s3 pipline on the merge branch before merge on main *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`858cace`](https://github.com/Ki-Blog/BlogMitDashboard/commit/858cacedff36190f91d13db9c8494b1a6b64246f) - test the s3 pipline on main *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`86b9dcb`](https://github.com/Ki-Blog/BlogMitDashboard/commit/86b9dcb27ba41f685af612ab4fee4e04695c8d0f) - test the argro localy *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+
 ## [v1.2.0] - 2024-06-17
 ### :sparkles: New Features
 - [`0a2bc0c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0a2bc0c9f631bd6c10c86a9b01ad622665f67280) - added eks cluster pipeline and terraform files *(commit by [@kpblmMik](https://github.com/kpblmMik))*
@@ -165,3 +185,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.1.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.0.1...v1.1.0
 [v1.1.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.0...v1.1.1
 [v1.2.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.1...v1.2.0
+[v1.2.9]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.8...v1.2.9
