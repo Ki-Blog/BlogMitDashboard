@@ -20,7 +20,7 @@ jobs:
       uses: azure/setup-helm@v1
 
     - name: Package Helm chart
-      run: helm package k8s/BlogDashboard-chart
+      run: helm package k8s/BlogDashboard-chart -d .
 
     - name: Set up Git
       run: |
