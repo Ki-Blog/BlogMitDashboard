@@ -3,7 +3,7 @@ name: Deploy Helm Chart to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages
+      - main
 
 jobs:
   build:
@@ -22,26 +22,32 @@ jobs:
     - name: Package Helm chart
       run: helm package k8s/BlogDashboard-chart
 
-    - name: Checkout the target repository
+    - name: Set up Git
+      run: |
+        git config --global user.email "sadekmurad@outlook.de"
+        git config --global user.name "Sadek Murad"
+
+    - name: Create gh-pages branch if not exists
+      run: |
+        git clone https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git repo
+        cd repo
+        if git show-ref --quiet refs/heads/gh-pages; then
+          echo "gh-pages branch already exists"
+        else
+          git checkout --orphan gh-pages
+          git reset --hard
+          git commit --allow-empty -m "Initial commit on gh-pages branch"
+          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git gh-pages
+        fi
+        cd ..
+
+    - name: Checkout gh-pages branch
       uses: actions/checkout@v2
       with:
         repository: Sadek-Murad/HelmChartRepo
         ref: gh-pages
         token: ${{ secrets.GITHUBTAG }}
         fetch-depth: 0
-
-    - name: Create gh-pages branch if not exists
-      run: |
-        git config --global user.email "sadekmurad@outlook.de"
-        git config --global user.name "Sadek Murad"
-        git fetch origin gh-pages
-        if git show-ref --quiet refs/heads/gh-pages; then
-          git checkout -b gh-pages
-        else
-          git checkout --orphan gh-pages
-          git reset --hard
-          git commit --allow-empty -m "Initial commit on gh-pages branch"
-          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git gh-pages
 
     - name: Copy new chart package
       run: cp ../*.tgz .
