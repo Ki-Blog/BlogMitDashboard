@@ -3,11 +3,14 @@ name: Deploy Helm Chart to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Allow write permissions for contents
 
     steps:
     - name: Checkout code
@@ -27,19 +30,18 @@ jobs:
         else
           git checkout --orphan gh-pages
           git reset --hard
-          git commit --allow-empty -m "feat: Initial commit on gh-pages branch"
-          git push origin gh-pages
-        fi
-
+          git commit --allow-empty -m "Initial commit on gh-pages branch"
+          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages
+          
     - name: Checkout gh-pages branch
       run: |
         git config --global user.email "your-email@example.com"
         git config --global user.name "Your Name"
         git checkout gh-pages
-        git pull origin gh-pages
+        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages
 
-    - name: Move new chart package
-      run: mv -n *.tgz .
+    - name: Copy new chart package
+      run: cp *.tgz .
 
     - name: Generate Helm repo index
       run: helm repo index . --url https://ki-blog.github.io/BlogMitDashboard/
@@ -50,7 +52,4 @@ jobs:
         git commit -m "feat: Publish new Helm chart"
 
     - name: Push changes to gh-pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
-      run: |
-        git push https://x-access-token:${GITHUB_TOKEN}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages --force
+      run: git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages --force
