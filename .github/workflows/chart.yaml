@@ -29,26 +29,26 @@ jobs:
 
     - name: Create GitHub Pages branch if not exists
       run: |
-        git fetch origin gh-pages
+        git remote add upstream https://github.com/Ki-Blog/HelmChart.git
+        git fetch upstream gh-pages
         if git show-ref --quiet refs/heads/gh-pages; then
           echo "gh-pages branch already exists"
         else
           git checkout --orphan gh-pages
           git reset --hard
           git commit --allow-empty -m "feat: Initial commit on gh-pages branch"
-          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages
-        fi
-
+          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages
+          
     - name: Checkout gh-pages branch
       run: |
         git checkout gh-pages
-        git pull origin gh-pages
+        git pull upstream gh-pages
 
     - name: Move new chart package
       run: mv .deploy/*.tgz .
 
     - name: Generate Helm repo index
-      run: helm repo index . --url https://ki-blog.github.io/BlogMitDashboard/
+      run: helm repo index . --url https://Ki-Blog.github.io/HelmChart/
 
     - name: Add and commit changes
       run: |
@@ -59,8 +59,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
       run: |
-        git pull origin gh-pages --rebase
-        git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages --force
+        git pull upstream gh-pages --rebase
+        git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages --force
 
     - name: Clean up
       run: rm -rf .deploy
