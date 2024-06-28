@@ -3,7 +3,7 @@ name: Release Helm Chart
 on:
   push:
     branches:
-      - gh-pages
+      - main
 
 permissions:
   contents: write
@@ -20,28 +20,18 @@ jobs:
       uses: azure/setup-helm@v3
 
     - name: Package Helm chart
-      run: |
-        mkdir -p .deploy
-        helm package k8s/BlogDashboard-chart --destination .deploy
-
-    - name: List files in .deploy directory
-      run: ls -l .deploy
-
-    - name: List files in root directory
-      run: ls -l
+      run: helm package k8s/BlogDashboard-chart --destination .deploy
 
     - name: Publish to GitHub Pages
       run: |
-        git config --global init.defaultBranch main
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         cd .deploy
         git init
         git remote add origin https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git
-        mv BlogDashboard-chart-*.tgz .
         helm repo index . --url https://Sadek-Murad.github.io/HelmChartRepo/
         git add .
-        git commit -m "Release $(git describe --tags --abbrev=0)"
+        git commit -m "Release $(git describe --tags)"
         git push origin gh-pages --force
 
     - name: Clean up
