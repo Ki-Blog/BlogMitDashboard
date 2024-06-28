@@ -1,9 +1,9 @@
 name: Release Helm Chart
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
 permissions:
   contents: write
@@ -67,4 +67,3 @@ jobs:
       run: rm -rf .deploy
 
 
-      
