@@ -27,9 +27,16 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+
     - name: Create GitHub Pages branch if not exists
       run: |
-        git remote add upstream https://github.com/Ki-Blog/HelmChart.git
+        git remote add upstream git@github.com:Ki-Blog/HelmChart.git
         git fetch upstream gh-pages
         if git show-ref --quiet refs/heads/gh-pages; then
           echo "gh-pages branch already exists"
@@ -37,13 +44,13 @@ jobs:
           git checkout --orphan gh-pages
           git reset --hard
           git commit --allow-empty -m "feat: Initial commit on gh-pages branch"
-          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages
+          git push git@github.com:Ki-Blog/HelmChart.git gh-pages
         fi
 
     - name: Checkout gh-pages branch
       run: |
         git checkout gh-pages
-        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages
+        git pull git@github.com:Ki-Blog/HelmChart.git gh-pages
 
     - name: Move new chart package
       run: mv .deploy/*.tgz .
@@ -57,11 +64,9 @@ jobs:
         git commit -m "feat: Publish new Helm chart"
 
     - name: Push changes to gh-pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
       run: |
-        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages --rebase
-        git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages --force
+        git pull git@github.com:Ki-Blog/HelmChart.git gh-pages --rebase
+        git push git@github.com:Ki-Blog/HelmChart.git gh-pages --force
 
     - name: Clean up
       run: rm -rf .deploy
