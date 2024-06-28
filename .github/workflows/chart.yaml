@@ -1,9 +1,9 @@
 name: Deploy Helm Chart to GitHub Pages
 
-on:
-  push:
-    branches:
-      - gh-pages
+# on:
+#   push:
+#     branches:
+#       - gh-pages
 
 jobs:
   build:
