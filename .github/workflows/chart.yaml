@@ -59,7 +59,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
       run: |
-        git pull --rebase origin gh-pages
+        git pull origin gh-pages --rebase
         git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages --force
 
     - name: Clean up
