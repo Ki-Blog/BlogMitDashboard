@@ -27,13 +27,6 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Set up SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-
     - name: Create GitHub Pages branch if not exists
       run: |
         git remote add upstream git@github.com:Ki-Blog/HelmChart.git
@@ -44,19 +37,19 @@ jobs:
           git checkout --orphan gh-pages
           git reset --hard
           git commit --allow-empty -m "feat: Initial commit on gh-pages branch"
-          git push git@github.com:Ki-Blog/HelmChart.git gh-pages
+          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages
         fi
 
     - name: Checkout gh-pages branch
       run: |
         git checkout gh-pages
-        git pull git@github.com:Ki-Blog/HelmChart.git gh-pages
+        git pull origin gh-pages
 
     - name: Move new chart package
       run: mv .deploy/*.tgz .
 
     - name: Generate Helm repo index
-      run: helm repo index . --url https://Ki-Blog.github.io/HelmChart/
+      run: helm repo index --url https://Ki-Blog.github.io/HelmChart/gh-pages .
 
     - name: Add and commit changes
       run: |
@@ -64,13 +57,11 @@ jobs:
         git commit -m "feat: Publish new Helm chart"
 
     - name: Push changes to gh-pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
       run: |
-        git pull git@github.com:Ki-Blog/HelmChart.git gh-pages --rebase
-        git push git@github.com:Ki-Blog/HelmChart.git gh-pages --force
+        git pull origin gh-pages --rebase
+        git push https://x-access-token:${{ secrets.GITHUBTAG }}@https://github.com/Ki-Blog/HelmChart.git gh-pages --force
 
     - name: Clean up
       run: rm -rf .deploy
-
-
-      
-
