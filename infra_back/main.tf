@@ -115,8 +115,43 @@ resource "local_file" "ingress_yaml" {
   depends_on = [data.template_file.ingress_template]
 }
 
+resource "local_file" "argocd_manifest" {
+  content = templatefile("${path.module}/argocd.tpl", {
+    repo_url  = "https://helmchart.s3.amazonaws.com/charts"
+    chart     = "BlogDashborad-chart"
+    revision  = "*"
+    namespace = "default"
+  })
+  filename = "${path.module}/argocd.yml"
+}
 
+resource "null_resource" "apply_argocd_manifest" {
+  provisioner "local-exec" {
+    command = "kubectl apply -f ${local_file.argocd_manifest.filename}"
+  }
 
+  provisioner "local-exec" {
+    command = <<EOT
+      echo "Waiting for ArgoCD to be ready..."
+      kubectl wait --for=condition=ready pod -l app.kubernetes.io/component=server --namespace=argocd --timeout=600s
+      echo "ArgoCD is ready. Triggering sync..."
+      curl -X POST https://${var.argocd_server}/api/v1/applications/blog-dashboard/sync -H "Authorization: Bearer ${var.argocd_auth_token}"
+    EOT
+    when = create
+  }
+
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+}
+
+variable "argocd_server" {
+  description = "The URL of the ArgoCD server"
+}
+
+variable "argocd_auth_token" {
+  description = "The authentication token for ArgoCD"
+}
 
 /* resource "null_resource" "patch_and_login" {
   provisioner "local-exec" {

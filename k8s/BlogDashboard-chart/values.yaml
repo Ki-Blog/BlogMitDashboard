@@ -2,7 +2,7 @@ namespace: default
 
 aiqauth:
   app: aiqauth
-  replicas: 1
+  replicas: 2
   port: 4000
   restartPolicy: Always
   image: docker.io/kpblm256/aiq-auth:1.2.8

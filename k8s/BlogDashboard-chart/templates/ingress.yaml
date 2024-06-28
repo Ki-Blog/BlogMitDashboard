@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: a2f08c672ee5148b596971ad26d46299-2000205.eu-central-1.elb.amazonaws.com
+    - host: abfa96b51ed214c1cb78f4bde612b1c0-1565519733.eu-central-1.elb.amazonaws.com
       http:
         paths:
           - path: /api/auth

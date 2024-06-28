@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://helmchart.s3.amazonaws.com/charts"
-    chart: "BlogDashborad-chart"
-    targetRevision: "*"
+    repoURL: "${repo_url}"
+    chart: "${chart}"
+    targetRevision: "${revision}"
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: ${namespace}
   syncPolicy:
     automated:
       prune: true
