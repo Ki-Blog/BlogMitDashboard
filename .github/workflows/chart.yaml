@@ -37,7 +37,7 @@ jobs:
           git reset --hard
           git commit --allow-empty -m "feat: Initial commit on gh-pages branch"
           git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git gh-pages
-          
+        fi
     - name: Checkout gh-pages branch
       run: |
         git checkout gh-pages
