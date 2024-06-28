@@ -36,24 +36,25 @@ jobs:
           git checkout --orphan gh-pages
           git reset --hard
           git commit --allow-empty -m "feat: Initial commit on gh-pages branch"
-          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git gh-pages
+          git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages
         fi
+
     - name: Checkout gh-pages branch
       run: |
         git checkout gh-pages
-        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git gh-pages
+        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages
 
     - name: Move new chart package
       run: mv .deploy/*.tgz .
 
     - name: Generate Helm repo index
-      run: helm repo index . --url https://Sadek-Murad.github.io/HelmChartRepo/
+      run: helm repo index . --url https://ki-blog.github.io/BlogMitDashboard/
 
     - name: Add and commit changes
       run: |
         git add .
         git commit -m "feat: Publish new Helm chart"
-        git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git gh-pages --force
+        git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages --force
 
     - name: Clean up
       run: rm -rf .deploy
