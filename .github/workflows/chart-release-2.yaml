@@ -32,7 +32,7 @@ jobs:
         cd .deploy
         git init
         git remote add origin https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Sadek-Murad/HelmChartRepo.git
-        cp *.tgz .
+        mv ../BlogDashboard-chart-*.tgz .
         helm repo index . --url https://Sadek-Murad.github.io/HelmChartRepo/
         git add .
         git commit -m "Release $(git describe --tags --abbrev=0)"
