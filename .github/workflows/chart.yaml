@@ -42,7 +42,7 @@ jobs:
     - name: Checkout gh-pages branch
       run: |
         git checkout gh-pages
-        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages
+        git pull origin gh-pages
 
     - name: Move new chart package
       run: mv .deploy/*.tgz .
@@ -54,6 +54,12 @@ jobs:
       run: |
         git add .
         git commit -m "feat: Publish new Helm chart"
+
+    - name: Push changes to gh-pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
+      run: |
+        git pull --rebase origin gh-pages
         git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/BlogMitDashboard.git gh-pages --force
 
     - name: Clean up
