@@ -43,7 +43,7 @@ jobs:
     - name: Checkout gh-pages branch
       run: |
         git checkout gh-pages
-        git pull upstream gh-pages
+        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages
 
     - name: Move new chart package
       run: mv .deploy/*.tgz .
@@ -60,7 +60,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTAG }}
       run: |
-        git pull upstream gh-pages --rebase
+        git pull https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages --rebase
         git push https://x-access-token:${{ secrets.GITHUBTAG }}@github.com/Ki-Blog/HelmChart.git gh-pages --force
 
     - name: Clean up
