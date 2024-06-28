@@ -3,7 +3,8 @@ name: Release Helm Chart
 on:
   push:
     branches:
-      - gh-pages  # This triggers the workflow on tag push, e.g., v1.0.0
+      - gh-pages
+ 
 
 permissions:
   contents: write
