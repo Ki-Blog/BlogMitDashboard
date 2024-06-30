@@ -28,7 +28,6 @@ afterAll(async () => {
 beforeEach(async () => {
   await User.deleteMany({});
 });
-//mytest
 jest.mock('jsonwebtoken', () => ({
   sign: jest.fn(() => 'mocked_token'),
   verify: jest.fn(() => ({ userId: 'mocked_user_id' })),
@@ -85,8 +84,7 @@ describe('Auth API', () => {
 
       expect(res.status).toBe(200);
       expect(res.body.email).toBe('testuser@example.com');
-      // expect(res.body.token).toBeDefined();
-      expect(res.body.token).toBe('mocked_token');//mytest
+      expect(res.body.token).toBe('mocked_token');
     });
 
     it('should not sign in with invalid password', async () => {

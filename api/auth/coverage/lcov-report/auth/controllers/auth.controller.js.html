@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74% </span>
+                <span class="strong">74.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>37/50</span>
+                <span class='fraction'>41/55</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74% </span>
+                <span class="strong">74.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>37/50</span>
+                <span class='fraction'>41/55</span>
             </div>
         
             
@@ -169,7 +169,14 @@
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -202,6 +209,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -236,9 +248,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -252,6 +264,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -267,18 +280,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
+&nbsp;
 &nbsp;
 export const signup = async (req, res, next) =&gt; {
   const { username, email, password } = req.body;
@@ -307,7 +320,12 @@ export const signup = async (req, res, next) =&gt; {
       process.env.JWT_SECRET
     );
 &nbsp;
-    res.status(201).json({ token, message: "Anmeldung erfolgreich." });
+    const userWithToken = newUser.toObject();
+    userWithToken.token = token;
+&nbsp;
+    res.status(201).json(userWithToken);
+&nbsp;
+&nbsp;
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    if (err.code === 11000) {</span>
 <span class="cstat-no" title="statement not covered" >      if (err.keyPattern.username) {</span>
@@ -341,10 +359,10 @@ export const signin = async (req, res, next) =&gt; {
       process.env.JWT_SECRET
     );
 &nbsp;
-    const {password: userPassword, pass, ...rest} = validUser._doc;
+    const userWithToken = validUser.toObject(); 
+    userWithToken.token = token; 
 &nbsp;
-      res.status(200).cookie('access_token', token, {
-        httpOnly: true}).json(rest);
+    res.status(200).json(userWithToken); 
 } catch (err) {
 <span class="cstat-no" title="statement not covered" >    next(err);</span>
   }
@@ -356,9 +374,10 @@ export const google = async (req, res, next) =&gt; {
     const user = await User.findOne({ email });
     <span class="missing-if-branch" title="if path not taken" >I</span>if (user) {
       const token = <span class="cstat-no" title="statement not covered" >jwt.sign({ id: user._id, isAdmin: user.isAdmin},process.env.JWT_SECRET);</span>
-      const {password, ...rest} = <span class="cstat-no" title="statement not covered" >user._doc;</span>
-<span class="cstat-no" title="statement not covered" >      res.status(200).cookie('access_token', token, {</span>
-        httpOnly: true}).json(rest);
+      const userWithToken = <span class="cstat-no" title="statement not covered" >user.toObject();</span>
+<span class="cstat-no" title="statement not covered" >      userWithToken.token = token;</span>
+<span class="cstat-no" title="statement not covered" >      res.status(200).json(userWithToken);</span>
+&nbsp;
       } else {
         const generatedPassword = Math.random().toString(36).slice(-8) + 
         Math.random().toString(36).slice(-8);
@@ -371,24 +390,23 @@ export const google = async (req, res, next) =&gt; {
         });
         await newUser.save();
         const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin},process.env.JWT_SECRET);
-        const {password, ...rest} = newUser._doc;
-        res.status(200)
-        .cookie('access_token', token, {
-          httpOnly: true,
-        })
-        .json(rest);
+        const userWithToken = newUser.toObject();
+        userWithToken.token = token;
+        res.status(200).json(userWithToken);
     }
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    next(err);</span>
   }
-};</pre></td></tr></table></pre>
+};
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-15T16:38:50.671Z
+                at 2024-06-28T06:21:13.383Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
