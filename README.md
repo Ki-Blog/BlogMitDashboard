@@ -27,3 +27,11 @@ helm upgrade --install ingress-nginx ingress-nginx \
   -n default
 
 
+kubectl get secret --namespace prometheus kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+
+kubectl port-forward svc/kube-prometheus-stack-grafana -n prometheus 3000:80
+
+kubectl port-forward svc/kube-prometheus-stack-prometheus -n prometheus 9090:9090
+
+kubectl port-forward svc/kube-prometheus-stack-alertmanager -n prometheus 9093:9093

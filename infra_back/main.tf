@@ -97,12 +97,20 @@ variable "argocd_auth_token" {
   }
 }
  */
-resource "null_resource" "helm_upgrade_install" {
+resource "null_resource" "helm_repo_prometheus" {
   provisioner "local-exec" {
-    command = "helm upgrade --install aiq-release ../k8s/BlogDashboard-chart -f ../k8s/BlogDashboard-chart/values.yaml -f ../k8s/BlogDashboard-chart/secrets.yaml"
+    command = "helm repo add prometheus-community https://prometheus-community.github.io/helm-charts && helm repo update"
   }
 
   depends_on = [null_resource.helm_repo_update]
 }
 
+resource "helm_release" "kube_prometheus_stack" {
+  name             = "kube-prometheus-stack"
+  repository       = "https://prometheus-community.github.io/helm-charts"
+  chart            = "kube-prometheus-stack"
+  namespace        = "prometheus"
+  create_namespace = true
 
+  depends_on = [null_resource.helm_repo_prometheus]
+}
