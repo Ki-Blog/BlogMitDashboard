@@ -20,9 +20,6 @@ aiqauth:
     successThreshold: 1
     failureThreshold: 3
     periodSeconds: 10
-  env:
-    MONGO: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
-    JWT_SECRET: "sdjfslgjd56fr7"
   service:
     name: aiqauth
     type: ClusterIP
@@ -55,9 +52,6 @@ aiqpost:
     successThreshold: 1
     failureThreshold: 3
     periodSeconds: 10
-  env:
-    MONGO: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
-    JWT_SECRET: "sdjfslgjd56fr7"
   service:
     name: aiqpost
     type: ClusterIP
@@ -90,9 +84,6 @@ aiquser:
     successThreshold: 1
     failureThreshold: 3
     periodSeconds: 10
-  env:
-    MONGO: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
-    JWT_SECRET: "sdjfslgjd56fr7"
   service:
     name: aiquser
     type: ClusterIP
