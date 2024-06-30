@@ -1,9 +1,5 @@
 namespace: default
 
-sharedSecrets:
-  MONGO: "mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru"
-  JWT_SECRET: "sdjfslgjd56fr7"
-
 aiqauth:
   app: aiqauth
   replicas: 1
