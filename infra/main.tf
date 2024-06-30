@@ -49,6 +49,37 @@ resource "aws_s3_bucket_website_configuration" "web-config" {
   }
 }
 
+# S3 Bucket for hosting the Helm charts
+resource "aws_s3_bucket" "helmchart" {
+  bucket = "helmchart"
+}
+
+resource "aws_s3_bucket_ownership_controls" "helmchart_controls" {
+  bucket = aws_s3_bucket.helmchart.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "helmchart_public_access_block" {
+  bucket = aws_s3_bucket.helmchart.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_acl" "helmchart_acl" {
+  depends_on = [
+    aws_s3_bucket_ownership_controls.helmchart_controls,
+    aws_s3_bucket_public_access_block.helmchart_public_access_block,
+  ]
+
+  bucket = aws_s3_bucket.helmchart.id
+  acl    = "public-read"
+}
+
 # resource "aws_cloudfront_distribution" "website_distribution" {
 #   origin {
 #     domain_name = aws_s3_bucket.aiq.bucket_regional_domain_name
