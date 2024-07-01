@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.11] - 2024-07-01
+### :bug: Bug Fixes
+- [`ebe8341`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ebe83411068e47e128b34f2d2e84270dc2feea74) - the orgin has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`0fda047`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0fda047a340e346273e6d19211aeb40628c3a8a4) - changed cors origin to https://www.aiq-blog.de *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
 ## [v1.2.10] - 2024-07-01
 ### :sparkles: New Features
 - [`3b17ee3`](https://github.com/Ki-Blog/BlogMitDashboard/commit/3b17ee3325c6e4d47695795c2f662c63ad7de8c6) - Initial commit on gh-pages branch *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
@@ -269,3 +275,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.1...v1.2.0
 [v1.2.9]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.8...v1.2.9
 [v1.2.10]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.9...v1.2.10
+[v1.2.11]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.10...v1.2.11
