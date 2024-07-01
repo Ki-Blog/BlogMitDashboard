@@ -4,7 +4,6 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { app, server } from '../index.js'
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken'; //my test
 jest.setTimeout(30000);
 
 let mongoServer;
@@ -133,8 +132,7 @@ describe('Auth API', () => {
 
       expect(res.status).toBe(200);
       expect(res.body.email).toBe('googleuser@gmail.com');
-      // expect(res.body.token).toBeDefined();
-      expect(res.body.token).toBe('mocked_token');//mytest
+      expect(res.body.token).toBe('mocked_token');
 
       const user = await User.findOne({ email: 'googleuser@gmail.com' });
       expect(user).toBeTruthy();
