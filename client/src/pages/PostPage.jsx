@@ -66,7 +66,7 @@ export default function PostPage() {
         </h1>
         <div className="flex justify-center mt-5">
           <Link to={`/search?category=${post && post.category}`} className="">
-            <button className="font-semibold py-2 px-4 rounded-lg border border-[#385cb6] text-[#385cb6] hover:bg-[#3f5292] hover:text-white hover:border-[#5f86db] dark:hover:bg-[#162035] dark:hover:text-white  dark:bg-[#0a0f1e]">
+            <button className="font-semibold py-2 px-4 rounded-lg border border-[#385cb6] text-[#385cb6]  dark:bg-[#0a0f1e]">
               {post && post.category}
             </button>
           </Link>
