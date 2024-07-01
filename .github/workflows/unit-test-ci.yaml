@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Units Tests for auth
         run: npm run test -- --coverage
-        working-directory: ./api/auth/unit-tests
+        working-directory: ./api/auth/Unit-tests
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Units Tests for user
         run: npm run test -- --coverage
-        working-directory: ./api/user/unit-tests
+        working-directory: ./api/user/Unit-tests
 
       - name: Change directory to test post
         run: cd ./api/post
@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Units Tests for post
         run: npm run test -- --coverage
-        working-directory: ./api/post/unit-tests
+        working-directory: ./api/post/Unit-tests
 
 
       
