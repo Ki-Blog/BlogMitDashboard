@@ -4,7 +4,7 @@ name: run unit tests
 on:
   push:
    branches:
-    - feature/unittests-merge
+    - main
 
 jobs:
   Unittests-run:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Units Tests for auth
         run: npm run test -- --coverage
-        working-directory: ./api/auth/Unit-tests
+        working-directory: ./api/auth/unit-tests
         env:
             MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Units Tests for user
         run: npm run test -- --coverage
-        working-directory: ./api/user/Unit-tests
+        working-directory: ./api/user/unit-tests
 
       - name: Change directory to test post
         run: cd ./api/post
@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Units Tests for post
         run: npm run test -- --coverage
-        working-directory: ./api/post/Unit-tests
+        working-directory: ./api/post/unit-tests
 
 
       
