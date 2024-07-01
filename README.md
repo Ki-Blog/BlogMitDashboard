@@ -35,3 +35,8 @@ kubectl port-forward svc/kube-prometheus-stack-grafana -n prometheus 3000:80
 kubectl port-forward svc/kube-prometheus-stack-prometheus -n prometheus 9090:9090
 
 kubectl port-forward svc/kube-prometheus-stack-alertmanager -n prometheus 9093:9093
+
+
+
+kubectl create secret tls my-tls-secret --cert=cert.pem --key=key.pem
+
