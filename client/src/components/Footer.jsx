@@ -25,7 +25,7 @@ export default function FooterCom() {
             </div>
             <div className='ml-6'>
               <a href='https://github.com/Ki-Blog/BlogMitDashboard/' target='_blank' rel='noopener noreferrer'>
-                <BsGithub className='text-2xl' />
+                <BsGithub className='text-2xl text-black dark:text-white' />
               </a>
             </div>
           </div>
