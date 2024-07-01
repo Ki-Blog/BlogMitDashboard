@@ -64,13 +64,7 @@ describe('Comment Routes', () => {
     await getPostComments(req, res, next);
 
     expect(Comment.find).toHaveBeenCalledWith({ postId: 'postId' });
-    // expect(res.status).toHaveBeenCalledWith(200);
-    // expect(res.json).toHaveBeenCalledWith(mockComments); 
-    // expect(next).not.toHaveBeenCalled(); 
-
     expect(Comment.find).toHaveBeenCalledTimes(1);
-    // expect(res.status).toHaveBeenCalledTimes(1);
-    // expect(res.json).toHaveBeenCalledTimes(1);
   });
 
 
@@ -355,14 +349,7 @@ describe('Comment Routes', () => {
     expect(Comment.find().sort).toHaveBeenCalledWith({ createdAt: -1 }); 
     expect(Comment.find().sort().skip).toHaveBeenCalledWith(0);
     expect(Comment.find().sort().skip().limit).toHaveBeenCalledWith(10);
-    // expect(Comment.countDocuments).toHaveBeenCalledTimes(2);
-    // expect(res.status).toHaveBeenCalledWith(200);
-    // expect(res.json).toHaveBeenCalledWith({
-    //   comments: mockComments,
-    //   totalComments: mockTotalComments,
-    //   lastMonthComments: mockLastMonthComments,
-    // });
-    // expect(next).not.toHaveBeenCalled();
+
   });
 
   it('should return 403 error if user is not admin', async () => {

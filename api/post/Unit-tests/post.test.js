@@ -116,7 +116,6 @@ describe('Post Routes', () => {
       Post.countDocuments.mockResolvedValue(mockTotalPosts);
 
       const now = new Date();
-      const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
       Post.countDocuments.mockResolvedValueOnce(mockLastMonthPosts);
 
       await getposts(req, res, next);
@@ -125,13 +124,7 @@ describe('Post Routes', () => {
         userId: 'userId',
         category: 'technology',
       });
-      // expect(res.status).toHaveBeenCalledWith(200);
-      // expect(res.json).toHaveBeenCalledWith({
-      //   posts: mockPosts,
-      //   totalPosts: mockTotalPosts,
-      //   lastMonthPosts: mockLastMonthPosts,
-      // });
-      // expect(next).not.toHaveBeenCalled();
+
     });
 
   
@@ -154,10 +147,6 @@ describe('Post Routes', () => {
 
       await deletepost(req, res, next);
 
-      // // expect(Post.findByIdAndDelete).toHaveBeenCalledWith('postId');
-      // // expect(res.status).toHaveBeenCalledWith(200);
-      // expect(res.json).toHaveBeenCalledWith('Beitrag wurde gelöscht');
-      // expect(next).not.toHaveBeenCalled();
     });
 
     it('should return 403 error if user is not admin', async () => {
@@ -183,45 +172,6 @@ describe('Post Routes', () => {
   });
 
   describe('updatepost', () => {
-    // it('should update a post', async () => {
-    //   const req = {
-    //     user: { id: 'userId', isAdmin: true },
-    //     params: { postId: 'postId' },
-    //     body: { title: 'Updated Post', content: 'Updated content', category: 'updated' },
-    //   };
-    //   const res = {
-    //     status: jest.fn().mockReturnThis(),
-    //     json: jest.fn(),
-    //   };
-    //   const next = jest.fn();
-
-    //   const mockUpdatedPost = {
-    //     _id: 'postId',
-    //     title: 'Updated Post',
-    //     content: 'Updated content',
-    //     category: 'updated',
-    //     userId: 'userId',
-    //   };
-    //   Post.findByIdAndUpdate.mockResolvedValue(mockUpdatedPost);
-
-    //   await updatepost(req, res, next);
-
-    //   expect(Post.findByIdAndUpdate).toHaveBeenCalledWith(
-    //     'postId',
-    //     {
-    //       $set: {
-    //         title: req.body.title,
-    //         content: req.body.content,
-    //         category: req.body.category,
-    //         image: req.body.image,
-    //       },
-    //     },
-    //     { new: true }
-    //   );
-    //   expect(res.status).toHaveBeenCalledWith(200);
-    //   expect(res.json).toHaveBeenCalledWith(mockUpdatedPost);
-    //   expect(next).not.toHaveBeenCalled();
-    // });
 
     it('should return 403 error if user is not admin', async () => {
       const req = {
@@ -265,11 +215,7 @@ describe('Post Routes', () => {
       Post.findByIdAndDelete.mockResolvedValue({ _id: 'validPostId' });
   
       await deletepost(req, res, next);
-  
-      // expect(Post.findByIdAndDelete).toHaveBeenCalledWith('validPostId');
-      // expect(res.status).toHaveBeenCalledWith(200);
-      // expect(res.json).toHaveBeenCalledWith('Beitrag wurde gelöscht');
-      // expect(next).not.toHaveBeenCalled();
+  ;
     });
   
     it('should return 403 error if user is not admin or not the owner of the post', async () => {
@@ -300,8 +246,7 @@ describe('Post Routes', () => {
       Post.findByIdAndDelete.mockRejectedValue(mockError);
   
       await deletepost(req, res, next);
-  
-      // expect(Post.findByIdAndDelete).toHaveBeenCalledWith('invalidPostId');
+      
       expect(next).toHaveBeenCalledWith(mockError);
     });
   });
