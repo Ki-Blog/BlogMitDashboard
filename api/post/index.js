@@ -6,10 +6,7 @@ import postRoutes from './routes/post.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-
 dotenv.config();
-
-
 
 
 mongoose
@@ -34,15 +31,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(4003, () => {
+const server = app.listen(4003, () => {
   console.log('server running on port 4003!')
 });
 
-
 app.use("/api/comment", commentRoutes);
 app.use("/api/post", postRoutes);
-
-
 
 app.use((error, req, res, next) => {
   const statusCode = error.statusCode || 500;
@@ -53,3 +47,5 @@ app.use((error, req, res, next) => {
     message
   });
 });
+
+export { app, server};

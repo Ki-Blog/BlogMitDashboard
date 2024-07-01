@@ -31,9 +31,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(4000, () => {
+const server = app.listen(4000, () => {
   console.log('server running on port 4000!')
 });
+
 
 
 app.use("/api/auth", authRoutes);
@@ -49,3 +50,4 @@ app.use((error, req, res, next) => {
     message
   });
 });
+export { app, server };
