@@ -2,6 +2,88 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.10] - 2024-07-01
+### :sparkles: New Features
+- [`3b17ee3`](https://github.com/Ki-Blog/BlogMitDashboard/commit/3b17ee3325c6e4d47695795c2f662c63ad7de8c6) - Initial commit on gh-pages branch *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`f3164b5`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f3164b51dc01bffc5711a15286d75bb3e453d660) - release-chart has been created *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`fc39fdc`](https://github.com/Ki-Blog/BlogMitDashboard/commit/fc39fdcd76c1a2c5ce13403db581fce4971f5a29) - prometheus-stack-grafana has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+### :bug: Bug Fixes
+- [`2bb6315`](https://github.com/Ki-Blog/BlogMitDashboard/commit/2bb6315af2dfd4ecd715ecd4fdeba6542346bfe0) - all Post *(commit by [@Mone19](https://github.com/Mone19))*
+- [`39836dc`](https://github.com/Ki-Blog/BlogMitDashboard/commit/39836dc0f7b896a0536572f9ce72e82bbf3c8aa6) - in Home only 6 Cards *(commit by [@Mone19](https://github.com/Mone19))*
+- [`59b28a2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/59b28a28ece4988e64914aa19ff53edbbbc33bd2) - only see 8 Cards *(commit by [@Mone19](https://github.com/Mone19))*
+- [`bcf35f0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/bcf35f086d0da66faf3e0c32f5ae2fd9bf3df77c) - responsive *(commit by [@Mone19](https://github.com/Mone19))*
+- [`bdd23b2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/bdd23b250283262b545a9d74b3cde3a902af5451) - comments deleted *(commit by [@Mone19](https://github.com/Mone19))*
+- [`28f2b03`](https://github.com/Ki-Blog/BlogMitDashboard/commit/28f2b03bc331ff9d3f4b8df3b4b712bc4c11f238) - changed cors origin to https://www.aiq-blog.de *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :white_check_mark: Tests
+- [`6cbc918`](https://github.com/Ki-Blog/BlogMitDashboard/commit/6cbc918af60b080b414621c953b778bce050fd8b) - add the unittest for microservice auth *(commit by [@Onben](https://github.com/Onben))*
+- [`088449e`](https://github.com/Ki-Blog/BlogMitDashboard/commit/088449e2994a82f59b25c7efac785476fe512395) - test if the tets is passed after push *(commit by [@Onben](https://github.com/Onben))*
+- [`604c4af`](https://github.com/Ki-Blog/BlogMitDashboard/commit/604c4afd4b7fa9af3513e282123e9a80832c4fa1) - add unittest for ms user *(commit by [@Onben](https://github.com/Onben))*
+- [`ea67dfe`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ea67dfe85d4ecf7395ddb0f06ba0a41b84a74493) - add unittests for post and comment *(commit by [@Onben](https://github.com/Onben))*
+- [`f615186`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f6151860b071a685cdd60b823c5f6a6e25acfb10) - add more tests for user microservice *(commit by [@Onben](https://github.com/Onben))*
+- [`4c73b77`](https://github.com/Ki-Blog/BlogMitDashboard/commit/4c73b7762f747b10e83f6adc7f5adf6991eb022e) - add tests to post and comment tests *(commit by [@Onben](https://github.com/Onben))*
+- [`d3bc3b8`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d3bc3b8c1ee96aa240dce5c821854d04184e6250) - add pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`fbebbf9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/fbebbf972f1913e77c28e18a30c90dae826f267a) - add pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`615450b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/615450be0aeef9e6f4e2b647d0a70f8769e95b80) - add pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`f6320a9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f6320a91109c92add51a4921fa72d0ec7cc2d8ee) - add pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`1c840ef`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1c840ef84d3a69dda281b3c77a27f7a918645531) - add pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`307ecf3`](https://github.com/Ki-Blog/BlogMitDashboard/commit/307ecf3c60b9c761538860b3a4f357f4824de874) - add pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`269387c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/269387c85d870d15b0d598286796079c0f986bd0) - add pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`aa41b03`](https://github.com/Ki-Blog/BlogMitDashboard/commit/aa41b036a2d358c623188d91dd48beb84d6b3aae) - update pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`f97a204`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f97a204ca936e3499223a1953ec40a9c37268cc4) - update pipeline for unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`02e1595`](https://github.com/Ki-Blog/BlogMitDashboard/commit/02e159585b99a7da53d05456dbade06c53bf2c76) - see if conflicts exitst between main and unittest *(commit by [@Onben](https://github.com/Onben))*
+- [`b261246`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b2612466e516e913afbb7f472ec4bb116a888eb8) - update unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`db968d0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/db968d05e30a53262a2d339ec5b21fc375551813) - update unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`2ed0dae`](https://github.com/Ki-Blog/BlogMitDashboard/commit/2ed0daeec0affddae7ac55607b0fb579630ca9da) - add coverage to pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`0cfa0ae`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0cfa0ae132758c14adc013749947f82fc0dc7ae6) - update  pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`b68de22`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b68de22a90eb41f1b4ed842e1759043a47865405) - update  pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`40e870a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/40e870a0b47a56ca579ba58c19b935e55b00bbc0) - update  pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`31e5f37`](https://github.com/Ki-Blog/BlogMitDashboard/commit/31e5f37260c6bf0dc9a123f8623cc9e74be4688f) - update  pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`5961bdc`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5961bdcafc1c56dec53f80fe7501b10e563b7c8b) - update  pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`b0615a3`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b0615a3a8cec9d69530bbbd92556c1dcac971635) - update  pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`d464292`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d464292d430fcacf8d14ab145621b69888501d3f) - update  pipelines for  unit tests *(commit by [@Onben](https://github.com/Onben))*
+- [`0acefe0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0acefe083d8208f9258e9997cc6b4a9eca4e8dee) - update package.json *(commit by [@Onben](https://github.com/Onben))*
+- [`132694a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/132694a8a1ab0932171347779c526f44ffb3d10b) - update package-lock.json *(commit by [@Onben](https://github.com/Onben))*
+- [`b7e4ee6`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b7e4ee6fc8c0900d7f95291e2fb94cdaab440b1a) - test the chart-release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`c033ed6`](https://github.com/Ki-Blog/BlogMitDashboard/commit/c033ed69983f2bdb2708a81f8c6b5800bdfb7dd0) - test the chart-release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`59ef7e6`](https://github.com/Ki-Blog/BlogMitDashboard/commit/59ef7e67ef6da5b927420b01a787a56b27b4d057) - test the chart-release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`ccf0d4e`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ccf0d4ef96ad6448ba431bbbb49c293a9399b153) - test the chart-release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`f63e2b9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f63e2b9827be46b76ba9dc4145e78abd2a35d4ff) - test the chart-release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`b4e091e`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b4e091e0ecb93ceed33d64735a5fbfd849c39905) - test the chart-release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`29e65d1`](https://github.com/Ki-Blog/BlogMitDashboard/commit/29e65d18bdd592d15311a4318c45d27d1fc24c29) - test the chart-release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`3a6d586`](https://github.com/Ki-Blog/BlogMitDashboard/commit/3a6d586e00d1af5bcebb7d14734c701c8ff595b0) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`50bee7d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/50bee7d29e442005313b19b17809465e127bfec1) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`7b6a8f9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/7b6a8f90c2f6fd20cd0c61705ba4c0cf2ba1d941) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`13d878f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/13d878faee573b683b7884c949cee682f6d84a55) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`df666fd`](https://github.com/Ki-Blog/BlogMitDashboard/commit/df666fd7f13a852e79f6ac3edf8b1873566bac9b) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`9b6ef0f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/9b6ef0f5a4eb4b9905539ceaf8631f60c6298b91) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`30e2b46`](https://github.com/Ki-Blog/BlogMitDashboard/commit/30e2b46faac353101c8c7de823aac6cfc5d494ba) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`0f8496a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0f8496aa799a9fa8cd3691854fc8a9e9c92546fd) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`acc753b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/acc753b853d0b38ecabeea9c6e6b6f4c999ff6fa) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`31deb05`](https://github.com/Ki-Blog/BlogMitDashboard/commit/31deb058e8434bfef4fb2efa4cf6ff1f6c480a51) - test the pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`7c7e1c8`](https://github.com/Ki-Blog/BlogMitDashboard/commit/7c7e1c8e1ec29d162bfb3b0d82c44363bb6db3a9) - test the chart yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`ff96ba6`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ff96ba6ef6cad1c982f46f6ae7f0c8f8bf3172f4) - test the chart yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`32c2137`](https://github.com/Ki-Blog/BlogMitDashboard/commit/32c213781e455e1b907c6a119e210b16d1f44fc6) - test the chart yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`d0e783a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d0e783a702fd4390f6eb7b6aab2002fdaf73a878) - test the chart yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`8654a62`](https://github.com/Ki-Blog/BlogMitDashboard/commit/8654a62df384788b8796ac6f91408ea41d38d232) - release-chart has been created *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`a62dda2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a62dda2ec9c2990152ab64c9c22da38cd17b751f) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`965a933`](https://github.com/Ki-Blog/BlogMitDashboard/commit/965a9331b0cc707fe83afac0a8e7d9b0995bf973) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`2f3b17f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/2f3b17fde2660b42c33cc66432d33f3d0faa352c) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`deb1dc2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/deb1dc2032a6d578195d604d8fd77581b673a32b) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`97fe659`](https://github.com/Ki-Blog/BlogMitDashboard/commit/97fe659f45525b2f90f4cb0209cc6e975350b8e7) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`0d8aaeb`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0d8aaeb83146cbead3c2a68b434fb24b853716d4) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`556898a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/556898a273405f4e98b06458ee55f5debac8b57c) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`8aa423b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/8aa423b7256270d8debe3c820cfe8618a6e15f2c) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`c0847b0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/c0847b019a79f3cd45df3a53c24c21bb7f1da435) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`925621a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/925621ac99b8e74b610f21edc55dfdc97911f5eb) - test unit tests pipeline in main *(commit by [@Onben](https://github.com/Onben))*
+- [`1e1f429`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1e1f42978dacaa36e31f4e992adc24547bef1c0a) - test unit tests pipeline in main *(commit by [@Onben](https://github.com/Onben))*
+- [`efa6191`](https://github.com/Ki-Blog/BlogMitDashboard/commit/efa61913e4ce6fb7e7e7e2e2379f4508b420b586) - test the backend domain *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`011904f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/011904f7301cf7264c911f3e3d820d8f8d48620f) - test the backend domain *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`a29ebb5`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a29ebb5694df0771235b2d82cb9e56d3c7887fe6) - test the build-deploy-and-sync-s3.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`0e12632`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0e12632e12f0a8b1d527382abd0defc433ff17d2) - test the build-deploy-and-sync-s3.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+
 ## [v1.2.9] - 2024-06-27
 ### :sparkles: New Features
 - [`d31a2c8`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d31a2c89d7db7ef1d1eb63f84e64baa7e5d29acd) - added apigateway.tf *(commit by [@kpblmMik](https://github.com/kpblmMik))*
@@ -186,3 +268,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.1.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.0...v1.1.1
 [v1.2.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.1.1...v1.2.0
 [v1.2.9]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.8...v1.2.9
+[v1.2.10]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.9...v1.2.10
