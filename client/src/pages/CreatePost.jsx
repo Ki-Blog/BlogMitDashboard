@@ -1,4 +1,4 @@
-import { FileInput, Select, TextInput, Button, Alert } from "flowbite-react";
+import { FileInput, Button, Alert } from "flowbite-react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {getStorage} from "firebase/storage";
