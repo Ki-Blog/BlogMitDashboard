@@ -4,7 +4,6 @@ import {persistReducer} from 'redux-persist';
 import themeReduceer from './theme/themeSlice';
 import storage from 'redux-persist/lib/storage';
 import persistStore from 'redux-persist/es/persistStore';
-import { theme } from 'flowbite-react';
 
 
 const rootReducer = combineReducers({
