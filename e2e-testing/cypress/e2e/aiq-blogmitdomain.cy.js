@@ -74,7 +74,7 @@ describe('test Admin user in  AIQ-Blog ', () => {
       cy.get('[data-testid="flowbite-avatar-img"]').click(),
       cy.get('a > li > .flex').click()
       cy.get('[href="/dashboard?tab=posts"] > .flex').click()
-      cy.get('[href="/dashboard?tab=posts"] > .flex').click()
+    //   cy.get('[href="/dashboard?tab=posts"] > .flex').click()
       cy.get('.bg-\\[\\#b8bfd71e\\] > :nth-child(5)').click()
       cy.get('.gap-4 > .border-transparent > .flex').click()
       cy.slowDownEnd();
