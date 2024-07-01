@@ -73,7 +73,7 @@ describe('test Admin user in  AIQ-Blog ', () => {
       cy.get('[type="submit"] > .items-stretch').click()
       cy.get('[data-testid="flowbite-avatar-img"]').click(),
       cy.get('a > li > .flex').click()
-      cy.get('[href="/dashboard?tab=posts"] > .flex').click()
+      cy.get('[href="/dashboard?tab=posts"] > .flex', { timeout: 10000 }).click()
     //   cy.get('[href="/dashboard?tab=posts"] > .flex').click()
       cy.get('.bg-\\[\\#b8bfd71e\\] > :nth-child(5)', { timeout: 10000 }).should('be.visible').click()
       cy.get('.gap-4 > .border-transparent > .flex').click()
