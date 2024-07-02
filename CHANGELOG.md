@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.17] - 2024-07-02
+### :bug: Bug Fixes
+- [`f68fff7`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f68fff7c04b59b1e44d6d6bda271035198433859) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
+## [v1.2.16] - 2024-07-02
+### :bug: Bug Fixes
+- [`f4583ca`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f4583ca64365937f3a57f1c44621849c0e6c92d7) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
+## [v1.2.15] - 2024-07-02
+### :bug: Bug Fixes
+- [`baf0a90`](https://github.com/Ki-Blog/BlogMitDashboard/commit/baf0a90761a696bbdc46295b9bc344acbadd0504) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`1e07ce9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1e07ce90e060236097012c6b63caab8cda3f52de) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`88d98a1`](https://github.com/Ki-Blog/BlogMitDashboard/commit/88d98a10931fe596a2b03c02b339fe1c58ae389d) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
+## [v1.2.14] - 2024-07-02
+### :sparkles: New Features
+- [`67e3136`](https://github.com/Ki-Blog/BlogMitDashboard/commit/67e3136ecf3e383251550c93adb3aa6263327beb) - added trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
+## [v1.2.13] - 2024-07-02
+### :bug: Bug Fixes
+- [`0c41c7d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0c41c7d062fb934f478dfcd5aee8ed36a67e7a45) - corrected build and test pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :white_check_mark: Tests
+- [`6e04a2b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/6e04a2b09e7c4d46ed8cac992f5ffa33cd42b069) - test the s3 pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+
 ## [v1.2.12] - 2024-07-02
 ### :bug: Bug Fixes
 - [`5c3cb1d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5c3cb1d9acc0d7303253b847455ae5c0e88e079d) - the orgin has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
@@ -290,3 +320,8 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.10]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.9...v1.2.10
 [v1.2.11]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.10...v1.2.11
 [v1.2.12]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.11...v1.2.12
+[v1.2.13]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.12...v1.2.13
+[v1.2.14]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.13...v1.2.14
+[v1.2.15]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.14...v1.2.15
+[v1.2.16]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.15...v1.2.16
+[v1.2.17]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.16...v1.2.17

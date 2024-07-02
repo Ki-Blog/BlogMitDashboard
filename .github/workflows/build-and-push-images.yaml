@@ -1,11 +1,11 @@
 name: Docker Build and Push
 on:
-  # push:
-  #   branches:
-  #     - feature/CI
   push:
+    # branches:
+    #   main
     tags:
       - "v*"
+
 jobs:
   Unittests-run:
     runs-on: ubuntu-22.04
@@ -14,41 +14,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Change directory to test auth
-        run: cd ./api/auth
-
-      - name: Install npm dependencies
-        run: npm ci
+      - name: Run Unit Tests for auth
+        run: |
+          npm ci
+          npm run test -- --coverage
         working-directory: ./api/auth
-
-      - name: Run Units Tests for auth
-        run: npm run test -- --coverage
-        working-directory: ./api/auth/Unit-tests
         env:
-            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
-      - name: Change directory to test user
-        run: cd ./api/user
-
-      - name: Install npm dependencies
-        run: npm ci
+      - name: Run Unit Tests for user
+        run: |
+          npm ci
+          npm run test -- --coverage
         working-directory: ./api/user
 
-      - name: Run Units Tests for user
-        run: npm run test -- --coverage
-        working-directory: ./api/user/Unit-tests
-
-      - name: Change directory to test post
-        run: cd ./api/post
-
-      - name: Install npm dependencies
-        run: npm ci
+      - name: Run Unit Tests for post
+        run: |
+          npm ci
+          npm run test -- --coverage
         working-directory: ./api/post
 
-      - name: Run Units Tests for post
-        run: npm run test -- --coverage
-        working-directory: ./api/post/Unit-tests
   build-and-push:
+    needs: Unittests-run
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
@@ -63,6 +50,7 @@ jobs:
           - dockerfile: ./api/post/Dockerfile
             image: aiq-post
             context: ./api/post
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -81,7 +69,28 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
 
-      - name: Build and push Docker Images
+      - name: Build Docker Images
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ matrix.image }}:${{ github.event.ref }}
+          format: "table"
+          exit-code: "1"
+          ignore-unfixed: true
+          vuln-type: os
+          severity: HIGH,CRITICAL
+          scanners: vuln
+
+      - name: Push Docker Images
+        if: success()
         uses: docker/build-push-action@v5
         with:
           context: ${{ matrix.context }}
