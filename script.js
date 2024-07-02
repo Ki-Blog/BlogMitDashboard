@@ -1,7 +1,12 @@
 import http from 'k6/http';
-import { sleep } from 'k6';
+import { check, sleep } from 'k6';
 
 export default function () {
-  http.get('http://a9f15d3fa0f9849a1bf9a8a377ed214d-665923958.eu-central-1.elb.amazonaws.com/api/auth');
+  let res = http.get('https://aiq-blog.de');
+  check(res, {
+    'is status 200': (r) => r.status === 200,
+  });
+  console.log(`Response status: ${res.status}`);
+  console.log(`Response body: ${res.body}`);
   sleep(1);
 }
