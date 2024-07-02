@@ -69,6 +69,7 @@ describe('test Admin user in  AIQ-Blog ', () => {
       // cy.wait(10000); 
       cy.get('a > li > .flex').click()
       // cy.wait(10000); 
+     cy.visit('https://www.aiq-blog.de/dashboard?tab=posts')
       cy.get('[href="/dashboard?tab=posts"] > .flex', { timeout: 20000 }).should('be.visible').click()
       // cy.wait(5000)
       cy.get('.bg-\\[\\#b8bfd71e\\] > :nth-child(6)', { timeout: 10000 }).should('be.visible').click()
