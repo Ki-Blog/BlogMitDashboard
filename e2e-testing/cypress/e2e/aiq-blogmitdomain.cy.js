@@ -66,10 +66,11 @@ describe('test Admin user in  AIQ-Blog ', () => {
       cy.get('.ql-editor').type('my new Post')
       cy.get('[type="submit"] > .items-stretch').click()
       cy.get('[data-testid="flowbite-avatar-img"]').click(),
+      // cy.wait(10000); 
       cy.get('a > li > .flex').click()
-      cy.wait(5000); 
-      cy.get('[href="/dashboard?tab=posts"] > .flex', { timeout: 10000 }).should('be.visible').click()
-      cy.wait(5000)
+      // cy.wait(10000); 
+      cy.get('[href="/dashboard?tab=posts"] > .flex', { timeout: 20000 }).should('be.visible').click()
+      // cy.wait(5000)
       cy.get('.bg-\\[\\#b8bfd71e\\] > :nth-child(6)', { timeout: 10000 }).should('be.visible').click()
       cy.get('#title').clear().type('updated post for test')
       cy.get('[type="submit"] > .items-stretch').click()
