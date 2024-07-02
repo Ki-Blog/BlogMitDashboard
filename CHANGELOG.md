@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.12] - 2024-07-02
+### :bug: Bug Fixes
+- [`5c3cb1d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5c3cb1d9acc0d7303253b847455ae5c0e88e079d) - the orgin has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`92f98be`](https://github.com/Ki-Blog/BlogMitDashboard/commit/92f98be4ef3286bd34849f2369bd97f3b30f31ad) - combined build and test pipelines *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :white_check_mark: Tests
+- [`d1e1dae`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d1e1dae6b1b7b4eda3c2ac0ee75fe96a4b8ad21b) - favicon create and test *(commit by [@Mone19](https://github.com/Mone19))*
+- [`a202555`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a202555ce1d63100aed763602575e6bce819eef5) - correct some issues and try to ignore coverage files in sonar *(commit by [@Onben](https://github.com/Onben))*
+- [`76e8ed9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/76e8ed94efd34546797bb3b2c4bde84117935b89) - correct some issues in comment and post tests *(commit by [@Onben](https://github.com/Onben))*
+- [`bcaa2f4`](https://github.com/Ki-Blog/BlogMitDashboard/commit/bcaa2f49a656bca9fe1a9dfc6e5ec4be247e1205) - remove unused import *(commit by [@Onben](https://github.com/Onben))*
+- [`809f4ca`](https://github.com/Ki-Blog/BlogMitDashboard/commit/809f4ca2f1e8195a6bef5af0ec93125803850640) - remove unused import *(commit by [@Onben](https://github.com/Onben))*
+
+
 ## [v1.2.11] - 2024-07-01
 ### :bug: Bug Fixes
 - [`ebe8341`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ebe83411068e47e128b34f2d2e84270dc2feea74) - the orgin has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
@@ -276,3 +289,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.9]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.8...v1.2.9
 [v1.2.10]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.9...v1.2.10
 [v1.2.11]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.10...v1.2.11
+[v1.2.12]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.11...v1.2.12
