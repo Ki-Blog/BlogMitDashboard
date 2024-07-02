@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.18] - 2024-07-02
+### :sparkles: New Features
+- [`624617d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/624617d98d1844d1c1185e1e6d190a82f00db3c2) - hpa.yaml has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`58afe8b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/58afe8bfbc0b92294ef7010d324f768689f2f2ba) - hpa.yaml has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+### :bug: Bug Fixes
+- [`b98a2ad`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b98a2ad4f5357f53ff2664b534dd4030c3ebed35) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
 ## [v1.2.17] - 2024-07-02
 ### :bug: Bug Fixes
 - [`f68fff7`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f68fff7c04b59b1e44d6d6bda271035198433859) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
@@ -325,3 +334,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.15]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.14...v1.2.15
 [v1.2.16]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.15...v1.2.16
 [v1.2.17]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.16...v1.2.17
+[v1.2.18]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.17...v1.2.18
