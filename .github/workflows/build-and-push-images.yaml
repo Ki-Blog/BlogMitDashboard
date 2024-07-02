@@ -67,6 +67,23 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
 
+      - name: Build Docker Images
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ matrix.image }}:${{ steps.meta.outputs.tags }}
+          format: "table"
+          exit-code: "1"
+          ignore-unfixed: true
+
       - name: Build and push Docker Images
         uses: docker/build-push-action@v5
         with:
