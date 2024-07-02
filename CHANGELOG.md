@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.15] - 2024-07-02
+### :bug: Bug Fixes
+- [`baf0a90`](https://github.com/Ki-Blog/BlogMitDashboard/commit/baf0a90761a696bbdc46295b9bc344acbadd0504) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`1e07ce9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1e07ce90e060236097012c6b63caab8cda3f52de) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`88d98a1`](https://github.com/Ki-Blog/BlogMitDashboard/commit/88d98a10931fe596a2b03c02b339fe1c58ae389d) - corrected trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
 ## [v1.2.14] - 2024-07-02
 ### :sparkles: New Features
 - [`67e3136`](https://github.com/Ki-Blog/BlogMitDashboard/commit/67e3136ecf3e383251550c93adb3aa6263327beb) - added trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
@@ -305,3 +312,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.12]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.11...v1.2.12
 [v1.2.13]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.12...v1.2.13
 [v1.2.14]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.13...v1.2.14
+[v1.2.15]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.14...v1.2.15
