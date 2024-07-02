@@ -16,6 +16,8 @@ resource "helm_release" "argocd" {
   depends_on = [null_resource.helm_repo_update]
 }
 
+
+
 resource "helm_release" "ingress_nginx" {
   name             = "ingress-nginx"
   repository       = "https://kubernetes.github.io/ingress-nginx"
@@ -29,6 +31,7 @@ resource "helm_release" "ingress_nginx" {
 
 
 
+
 data "kubernetes_service" "ingress_nginx" {
 metadata {
 name = "ingress-nginx-controller"
@@ -38,20 +41,20 @@ depends_on = [helm_release.ingress_nginx]
 }
 
 
-data "template_file" "ingress_template" {
-  template = file("${path.module}/../k8s/ingress.tpl")
+# data "template_file" "ingress_template" {
+#   template = file("${path.module}/../k8s/ingress.tpl")
 
-  vars = {
-    elb_dns = data.kubernetes_service.ingress_nginx.status.0.load_balancer.0.ingress.0.hostname
-  }
+#   vars = {
+#     elb_dns = data.kubernetes_service.ingress_nginx.status.0.load_balancer.0.ingress.0.hostname
+#   }
 
-}
-resource "local_file" "ingress_yaml" {
-  filename = "${path.module}/../k8s/BlogDashboard-chart/templates/ingress.yaml"
-  content  = data.template_file.ingress_template.rendered
+# }
+# resource "local_file" "ingress_yaml" {
+#   filename = "${path.module}/../k8s/BlogDashboard-chart/templates/ingress.yaml"
+#   content  = data.template_file.ingress_template.rendered
 
-  depends_on = [data.template_file.ingress_template]
-}
+#   depends_on = [data.template_file.ingress_template]
+# }
 
 resource "local_file" "argocd_manifest" {
   content = templatefile("${path.module}/argocd.tpl", {

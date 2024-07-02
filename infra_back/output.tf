@@ -7,6 +7,6 @@ output "cluster_endpoint" {
   value       = module.eks.cluster_endpoint
 }
 
-output "ingress_nginx_controller_public_ip" {
-value = data.kubernetes_service.ingress_nginx.status.0.load_balancer.0.ingress.0.ip
+output "ingress_nginx_controller_public_hostname" {
+value = data.kubernetes_service.ingress_nginx.status.0.load_balancer.0.ingress.0.hostname
 }
