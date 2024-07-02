@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.13] - 2024-07-02
+### :bug: Bug Fixes
+- [`0c41c7d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0c41c7d062fb934f478dfcd5aee8ed36a67e7a45) - corrected build and test pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :white_check_mark: Tests
+- [`6e04a2b`](https://github.com/Ki-Blog/BlogMitDashboard/commit/6e04a2b09e7c4d46ed8cac992f5ffa33cd42b069) - test the s3 pipline *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+
 ## [v1.2.12] - 2024-07-02
 ### :bug: Bug Fixes
 - [`5c3cb1d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5c3cb1d9acc0d7303253b847455ae5c0e88e079d) - the orgin has been changend *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
@@ -290,3 +298,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.10]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.9...v1.2.10
 [v1.2.11]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.10...v1.2.11
 [v1.2.12]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.11...v1.2.12
+[v1.2.13]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.12...v1.2.13
