@@ -1,8 +1,10 @@
 name: Docker Build and Push
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      main
+    # tags:
+    #   - "v*"
 
 jobs:
   Unittests-run:
@@ -84,7 +86,8 @@ jobs:
           exit-code: "1"
           ignore-unfixed: true
 
-      - name: Build and push Docker Images
+      - name: Push Docker Images
+        if: success()
         uses: docker/build-push-action@v5
         with:
           context: ${{ matrix.context }}
