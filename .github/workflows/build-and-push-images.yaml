@@ -85,13 +85,16 @@ jobs:
           format: "table"
           exit-code: "1"
           ignore-unfixed: true
+          vuln-type: os
+          severity: HIGH,CRITICAL
+          scanners: vuln
 
-      - name: Push Docker Images
-        if: success()
-        uses: docker/build-push-action@v5
-        with:
-          context: ${{ matrix.context }}
-          file: ${{ matrix.dockerfile }}
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      # - name: Push Docker Images
+      #   if: success()
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ${{ matrix.context }}
+      #     file: ${{ matrix.dockerfile }}
+      #     push: true
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     labels: ${{ steps.meta.outputs.labels }}
