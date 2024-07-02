@@ -1,10 +1,10 @@
 name: Docker Build and Push
 on:
   push:
-    branches:
-      main
-    # tags:
-    #   - "v*"
+    # branches:
+    #   main
+    tags:
+      - "v*"
 
 jobs:
   Unittests-run:
@@ -89,12 +89,12 @@ jobs:
           severity: HIGH,CRITICAL
           scanners: vuln
 
-      # - name: Push Docker Images
-      #   if: success()
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     context: ${{ matrix.context }}
-      #     file: ${{ matrix.dockerfile }}
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
+      - name: Push Docker Images
+        if: success()
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
