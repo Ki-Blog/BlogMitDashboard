@@ -12,7 +12,7 @@ jobs:
     env:
       # CYPRESS_BASE_URL: http://localhost:5173
       CYPRESS_BASE_URL: https://www.aiq-blog.de/
-      VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+      # VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
 
     steps:
       - name: Checkout
@@ -43,7 +43,7 @@ jobs:
         working-directory: ./e2e-testing
         env:
             CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
-            VITE_FIREBASE_API_KEY: ${{ env.VITE_FIREBASE_API_KEY }}
+            # VITE_FIREBASE_API_KEY: ${{ env.VITE_FIREBASE_API_KEY }}
 
     #   - name: Verify Cypress installation
     #     run: npx cypress verify
