@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      # CYPRESS_BASE_URL: http://localhost:5173
       CYPRESS_BASE_URL: https://www.aiq-blog.de/
-      # VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+
 
     steps:
       - name: Checkout
@@ -25,16 +24,6 @@ jobs:
         run: npm ci
         working-directory: ./e2e-testing
 
-      # - name: Install npm dependencies in client
-      #   run: npm ci
-      #   working-directory: ./client
-      
-      # - name: start the server
-      #   run: |
-      #    npm run dev & sleep 5
-      #    npx wait-on http://localhost:5173
-      #   working-directory: ./client
-
       - name: Return to e2e-testing directory
         run: cd ./e2e-testing 
 
@@ -43,15 +32,3 @@ jobs:
         working-directory: ./e2e-testing
         env:
             CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
-            # VITE_FIREBASE_API_KEY: ${{ env.VITE_FIREBASE_API_KEY }}
-
-    #   - name: Verify Cypress installation
-    #     run: npx cypress verify
-
-    #   - name: Cypress run
-    #     uses: cypress-io/github-action@v6
-    #     with:
-    #       project: ./
-    #       spec: cypress/e2e/aiq-blog.cy.js
-    #       working-directory: ./
-    #       browser: chrome

@@ -33,41 +33,6 @@ describe('visit  AIQ-Blog Homepage', () => {
 
 })
 
-describe('visit  AIQ-Blog Homepage', () => {
-  
-  it('shows posts', () => {
-    cy.slowDown(100000);
-    cy.visit('https://www.aiq-blog.de/'),
-    cy.get('.font-medium > :nth-child(5) > .py-1', {timeout:6000}).click({force: true , multiple: true})
-    cy.wait(3000)
-    cy.slowDownEnd();
-  })
-
-  it('shows ueber uns', () => {
-    cy.slowDown(100000);
-    cy.visit('https://www.aiq-blog.de/'),
-    cy.get('.font-medium > :nth-child(3) > .py-1', {timeout:6000}).click({force: true , multiple: true})
-    cy.slowDownEnd();
-  })
-
-  it('shows start Seite', () => {
-    cy.slowDown(100000);
-    cy.visit('https://www.aiq-blog.de/'),
-    cy.get('.font-medium > :nth-child(1) > .py-1', {timeout:6000}).click({force: true , multiple: true})
-    cy.slowDownEnd();
-  })
-
-  it('shows start Seite with Logo', () => {
-    cy.slowDown(100000);
-    cy.visit('https://www.aiq-blog.de/'),
-    cy.get('.space-x-3 > .flex > .h-11').click()
-    cy.slowDownEnd();
-  })
-
-})
-
-require('cypress-slow-down/commands');
-
 describe('test Admin user in  AIQ-Blog ', () => {
     it('shows Admin functions', () => {
       cy.slowDown(100000);
