@@ -67,7 +67,9 @@ describe('test Admin user in  AIQ-Blog ', () => {
       cy.get('[type="submit"] > .items-stretch').click()
       cy.get('[data-testid="flowbite-avatar-img"]').click(),
       cy.get('a > li > .flex').click()
-      cy.get('[href="/dashboard?tab=posts"] > .flex').click()
+      cy.wait(5000); 
+      cy.get('[href="/dashboard?tab=posts"] > .flex', { timeout: 10000 }).should('be.visible').click()
+      cy.wait(5000)
       cy.get('.bg-\\[\\#b8bfd71e\\] > :nth-child(6)', { timeout: 10000 }).should('be.visible').click()
       cy.get('#title').clear().type('updated post for test')
       cy.get('[type="submit"] > .items-stretch').click()
