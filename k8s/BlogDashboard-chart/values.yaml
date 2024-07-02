@@ -1,5 +1,12 @@
 namespace: default
 
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+
+
 aiqauth:
   app: aiqauth
   replicas: 1
