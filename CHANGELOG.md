@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.2.14] - 2024-07-02
+### :sparkles: New Features
+- [`67e3136`](https://github.com/Ki-Blog/BlogMitDashboard/commit/67e3136ecf3e383251550c93adb3aa6263327beb) - added trivy scan step to build and push pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
 ## [v1.2.13] - 2024-07-02
 ### :bug: Bug Fixes
 - [`0c41c7d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0c41c7d062fb934f478dfcd5aee8ed36a67e7a45) - corrected build and test pipeline *(commit by [@kpblmMik](https://github.com/kpblmMik))*
@@ -299,3 +304,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.11]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.10...v1.2.11
 [v1.2.12]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.11...v1.2.12
 [v1.2.13]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.12...v1.2.13
+[v1.2.14]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.13...v1.2.14
