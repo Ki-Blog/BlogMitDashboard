@@ -121,7 +121,7 @@ export default function SignUp() {
               <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
             </Link>
             <p className="text-center p-5 text-lg">
-              Jetzt registrieren oder mit Google anmelden.
+            Registriere dich jetzt mit deiner E-Mail-Adresse oder über Google.
             </p>
           </div>
           {/* right */}
@@ -154,7 +154,7 @@ export default function SignUp() {
               <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
             </Link>
             <p className="text-sm p-5">
-              Jetzt registrieren oder mit Google anmelden.
+            Registriere dich jetzt mit deiner E-Mail-Adresse oder über Google.
             </p>
           </div>
           

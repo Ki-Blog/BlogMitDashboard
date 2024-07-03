@@ -114,7 +114,7 @@ export default function SignIn() {
               <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
             </Link>
             <p className="text-center p-5 text-lg">
-              Jetzt registrieren oder mit Google anmelden.
+            Melde dich jetzt mit deinem Konto oder über Google an.
             </p>
           </div>
           <div className="flex-1 mt-12 mb-2 ml-12">
@@ -146,7 +146,7 @@ export default function SignIn() {
               <img src={logo} alt="Logo" className={`h-15 mx-auto ${theme === 'dark' ? 'filter invert' : ''}`} />
             </Link>
             <p className="text-sm p-5">
-              Jetzt registrieren oder mit Google anmelden.
+            Melde dich jetzt mit deinem Konto oder über Google an.
             </p>
           </div>
           
