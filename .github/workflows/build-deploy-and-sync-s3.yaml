@@ -1,10 +1,11 @@
 name: Build, Deploy, and Sync S3
 
 
-# on:
-#   push:
-#    branches:
-#     - main
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -107,6 +108,3 @@ jobs:
       - name: Destroy Terraform resources
         run: terraform destroy -auto-approve
         working-directory: ./infra
-        
-
-        
