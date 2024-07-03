@@ -9,7 +9,7 @@ hpa:
 
 aiqauth:
   app: aiqauth
-  replicas: 2
+  replicas: 1
   port: 4000
   restartPolicy: Always
   image: docker.io/kpblm256/aiq-auth:1.2.18
