@@ -11,6 +11,7 @@ terraform {
   }
 }
 
+
 resource "aws_s3_bucket" "aiq" {
   bucket = "aiq-frontend"
 }
