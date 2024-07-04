@@ -1,6 +1,7 @@
 # BlogMitDashboard1
 
-
+git tag -a v1.3.0 -m "Release version 1.3.0"
+git push origin v1.3.0
 
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode
