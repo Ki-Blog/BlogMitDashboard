@@ -21,12 +21,6 @@ helm upgrade --install ingress-nginx ingress-nginx \
 
 
 
-  kubectl create secret generic shared-secrets \
-  --from-literal=MONGO="mongodb+srv://admin:XAIetDKFKKvNAxLB@dbguru.8blhy1f.mongodb.net/dbguru?retryWrites=true&w=majority&appName=dbguru" \
-  --from-literal=JWT_SECRET="sdjfslgjd56fr7" \
-  -n default
-
-
 kubectl get secret --namespace prometheus kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
 
@@ -44,6 +38,9 @@ kubectl delete job k6-load-test
 
 kubectl create configmap k6-load-test --from-file=load-test.js --dry-run=client -o yaml | kubectl apply -f -
 
+
 kubectl logs job/k6-load-test
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+kubectl create configmap k6-load-test --from-file=load-test.js --dry-run=client -o yaml | kubectl apply -f -
