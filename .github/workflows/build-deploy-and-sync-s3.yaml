@@ -10,13 +10,15 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    outputs:
+      bucket_exists: ${{ steps.check_bucket.outputs.exists }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+  
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-        
+  
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -24,12 +26,24 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
-
+  
+      - name: Check if S3 bucket exists
+        id: check_bucket
+        run: |
+          if aws s3 ls "s3://aiq-frontend" 2>&1 | grep -q 'NoSuchBucket'; then
+            echo "exists=false" >> $GITHUB_ENV
+          else
+            echo "exists=true" >> $GITHUB_ENV
+          fi
+        continue-on-error: true
+  
       - name: Initialize Terraform
+        if: steps.check_bucket.outputs.exists == 'false'
         run: terraform init
         working-directory: ./infra
-        
+  
       - name: Apply Terraform
+        if: steps.check_bucket.outputs.exists == 'false'
         id: apply_terraform
         run: terraform apply -auto-approve
         working-directory: ./infra
