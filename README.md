@@ -40,3 +40,10 @@ kubectl port-forward svc/kube-prometheus-stack-alertmanager -n prometheus 9093:9
 
 kubectl create secret tls my-tls-secret --cert=cert.pem --key=key.pem
 
+kubectl delete job k6-load-test
+
+kubectl create configmap k6-load-test --from-file=load-test.js --dry-run=client -o yaml | kubectl apply -f -
+
+kubectl logs job/k6-load-test
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
