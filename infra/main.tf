@@ -9,7 +9,15 @@ terraform {
       version = "5.51.1"
     }
   }
+
+  backend "s3" {
+    bucket  = "aiq-tf"
+    key     = "terraform.tfstate"
+    region  = "eu-central-1"
+    encrypt = true
+  }
 }
+
 
 resource "aws_s3_bucket" "aiq" {
   bucket = "aiq-frontend"
