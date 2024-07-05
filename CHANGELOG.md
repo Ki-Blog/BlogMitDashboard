@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.3.0] - 2024-07-05
+### :sparkles: New Features
+- [`d7ca7b8`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d7ca7b8e0c143e8667005c149a4e10b56c51f6b5) - Release new version of BlogDashboard-chart *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`dfec1cb`](https://github.com/Ki-Blog/BlogMitDashboard/commit/dfec1cbf72e2443ac8d90d852773177eecbc9668) - Release new version of BlogDashboard-chart *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`d77cb36`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d77cb363134296ef5f70f8c288129189bcfafa74) - added tf state bucket *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`b4a11fe`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b4a11fe743e110790270ed463780bf81045c0834) - readme.md has been  modified *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+### :bug: Bug Fixes
+- [`f95dd29`](https://github.com/Ki-Blog/BlogMitDashboard/commit/f95dd296971456f5af15d6a680ed988ab4106a03) - text revised *(commit by [@Mone19](https://github.com/Mone19))*
+- [`82dd44f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/82dd44fe5794f76623600491c7c8f320c9e16a81) - build frontend with last changes *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :white_check_mark: Tests
+- [`c52f826`](https://github.com/Ki-Blog/BlogMitDashboard/commit/c52f826740dfbb6e323bf3f21e2b5b701e14bd49) - test the chart.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`bd3bc9d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/bd3bc9d6fc00f974684ddceef61823b3bc1806c8) - change the targetCPUUtilizationPercentage to 20 *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`0865b6e`](https://github.com/Ki-Blog/BlogMitDashboard/commit/0865b6e169e49585d6d1c29805806016528f3c1b) - changed animation on home page *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`61a39be`](https://github.com/Ki-Blog/BlogMitDashboard/commit/61a39be97c60e3f6ffc65f4a3d71989c7f108fa5) - check if bucket exists *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`fa87dd0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/fa87dd0f02d972b1d4aaee7f617b647c0c82b210) - replace homepage video *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`1441b8a`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1441b8a23bffbe8840550537b2e13f5c17279230) - replace homepage video *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`d064ec0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d064ec0069cb150db2bcc3ba419b9803161778e2) - replace homepage video *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`5949497`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5949497478127e0158e1234e4c27af2569bdb6ff) - replace homepage video *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`312a19f`](https://github.com/Ki-Blog/BlogMitDashboard/commit/312a19fe94b8005d45fe2035e3ee7311c65c421e) - replace homepage video *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`5e537db`](https://github.com/Ki-Blog/BlogMitDashboard/commit/5e537dbf7ffd76282005862f447ca9c7faf74fda) - replace homepage video *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`29dc798`](https://github.com/Ki-Blog/BlogMitDashboard/commit/29dc798c54c9c5ae77c8e61737bd3693354c763f) - test the release chart *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`ce2b20d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ce2b20d9c86b97c407813bab6bfabd259d7f19a9) - test the release chart *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`7598901`](https://github.com/Ki-Blog/BlogMitDashboard/commit/759890104a0d0430355fe4aa8be3038bcf55d494) - test the release chart *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`c5d6860`](https://github.com/Ki-Blog/BlogMitDashboard/commit/c5d6860fd4d54cc01b9218a184d642c8bd0e8024) - test the release chart *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`4d3c3de`](https://github.com/Ki-Blog/BlogMitDashboard/commit/4d3c3debaed4678297a51a294c47e773cb9413f9) - test the chart release.yaml *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+### :wrench: Chores
+- [`8f38eb0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/8f38eb01fda9ef6b5f5292ec9b5c0ea5a48a7633) - new chart release  has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+- [`1e92a98`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1e92a98ac96f382a6c42c644b363dbf86af96c51) - new chart release  has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+
 ## [v1.2.18] - 2024-07-02
 ### :sparkles: New Features
 - [`624617d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/624617d98d1844d1c1185e1e6d190a82f00db3c2) - hpa.yaml has been added *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
@@ -335,3 +368,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.16]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.15...v1.2.16
 [v1.2.17]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.16...v1.2.17
 [v1.2.18]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.17...v1.2.18
+[v1.3.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.18...v1.3.0
