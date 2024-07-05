@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-
+        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -27,27 +27,10 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
         working-directory: ./infra
-
-      - name: Plan Terraform
-        id: plan_terraform
-        run: terraform plan -out=tfplan
-        working-directory: ./infra
-
-      - name: Check for changes
-        id: check_changes
-        run: |
-          terraform show -json tfplan | jq -r '.resource_changes | length' > change_count.txt
-          if [ $(cat change_count.txt) -gt 0 ]; then
-            echo "::set-output name=changes::true"
-          else
-            echo "::set-output name=changes::false"
-          fi
-
+        
       - name: Apply Terraform
-        if: steps.check_changes.outputs.changes == 'true'
-
         id: apply_terraform
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve
         working-directory: ./infra
         
   build:
@@ -124,3 +107,4 @@ jobs:
       - name: Destroy Terraform resources
         run: terraform destroy -auto-approve
         working-directory: ./infra
+        
