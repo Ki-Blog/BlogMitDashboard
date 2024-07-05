@@ -30,14 +30,14 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-    - name: Initialize Terraform
-      run: terraform init
-      working-directory: ./infra_s3
+    # - name: Initialize Terraform
+    #   run: terraform init
+    #   working-directory: ./infra_s3
 
-    - name: Apply Terraform
-      id: apply_terraform
-      run: terraform apply -auto-approve
-      working-directory: ./infra_s3
+    # - name: Apply Terraform
+    #   id: apply_terraform
+    #   run: terraform apply -auto-approve
+    #   working-directory: ./infra_s3
 
     - name: Generate Helm repo index
       run: helm repo index .deploy --url https://helmchart.s3.amazonaws.com/charts
