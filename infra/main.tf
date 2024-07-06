@@ -9,6 +9,13 @@ terraform {
       version = "5.51.1"
     }
   }
+  backend "s3" {
+    bucket         = "aiq-tfstate"
+    key            = "terraform.tfstate"
+    region         = "eu-central-1"
+    dynamodb_table = "aiq-terraform-lock-table"
+    encrypt        = true
+  }
 }
 
 
