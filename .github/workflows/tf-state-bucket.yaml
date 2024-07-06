@@ -1,7 +1,6 @@
 name: terraform state bucket
 
-on:
-
+# on:
 #   push:
 #     branches:
 #       - main

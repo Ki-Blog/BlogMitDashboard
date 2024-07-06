@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PostCard from '../components/PostCard';
-import video from '../video/animation.mp4';
+import videoVariant1 from '../video/animation1.mp4';
+import videoVariant2 from '../video/animation2.mp4';
 import fallbackImage from '../images/fallback.png';
+
+const useVariant1 = true;
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const currentVideo = useVariant1 ? videoVariant1 : videoVariant2;
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,7 +29,7 @@ export default function Home() {
         <div className="relative mx-auto bg-black w-full border-b-2 border-[#385cb6] dark:border-hidden">
           <div className="relative mx-auto max-w-[1500px]">
             <video loop autoPlay muted className="w-full h-auto object-cover">
-              <source src={video} type="video/mp4" />
+            <source src={currentVideo} type="video/mp4" />
               <img src={fallbackImage} alt="Fallback" className="w-full h-auto object-cover" />
               Ihr Browser unterstützt das Video-Tag nicht.
             </video>
