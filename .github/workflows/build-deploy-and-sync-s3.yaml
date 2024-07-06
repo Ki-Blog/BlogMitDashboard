@@ -17,6 +17,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.destroy_infra == false }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,8 +43,9 @@ jobs:
         working-directory: ./infra
         
   build:
-    needs: terraform
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.destroy_infra == false }}
+    needs: terraform
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -69,8 +71,9 @@ jobs:
           path: client/dist
 
   upload_to_s3:
+    runs-on: ubuntu-latest    
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.destroy_infra == false }}
     needs: build
-    runs-on: ubuntu-latest
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -92,7 +95,7 @@ jobs:
 
   destroy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.destroy_infra == true
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.destroy_infra == true }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
