@@ -6,7 +6,13 @@ on:
     #   - "v*"
     branches:
       - main
-  # workflow_dispatch:
+  workflow_dispatch:
+    inputs:
+      destroy_infra:
+        description: 'Destroy Infrastructure'
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   terraform:
@@ -85,8 +91,8 @@ jobs:
               aws s3 sync client/dist s3://aiq-frontend --acl public-read --delete
 
   destroy:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.destroy_infra == true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -109,4 +115,3 @@ jobs:
       - name: Destroy Terraform resources
         run: terraform destroy -auto-approve
         working-directory: ./infra
-        
