@@ -21,6 +21,7 @@ terraform {
 
 resource "aws_s3_bucket" "aiq" {
   bucket = "aiq-frontend"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {
