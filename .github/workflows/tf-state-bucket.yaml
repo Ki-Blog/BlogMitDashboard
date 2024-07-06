@@ -2,9 +2,9 @@ name: terraform state bucket
 
 on:
 
-  push:
-    branches:
-      - main
+#   push:
+#     branches:
+#       - main
 
 jobs:
   terraform:
