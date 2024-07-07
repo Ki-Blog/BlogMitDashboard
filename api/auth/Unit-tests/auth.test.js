@@ -7,6 +7,23 @@ import bcryptjs from 'bcryptjs';
 jest.setTimeout(30000);
 
 let mongoServer;
+
+jest.mock('firebase-admin', () => {
+  return {
+    apps: {
+      length: 0
+    },
+    initializeApp: jest.fn(),
+    credential: {
+      applicationDefault: jest.fn(() => ({})),
+    },
+  };
+});
+jest.mock('jsonwebtoken', () => ({
+  sign: jest.fn(() => 'mocked_token'),
+  verify: jest.fn(() => ({ userId: 'mocked_user_id' })),
+}));
+
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const mongoUri = mongoServer.getUri();
@@ -27,10 +44,10 @@ afterAll(async () => {
 beforeEach(async () => {
   await User.deleteMany({});
 });
-jest.mock('jsonwebtoken', () => ({
-  sign: jest.fn(() => 'mocked_token'),
-  verify: jest.fn(() => ({ userId: 'mocked_user_id' })),
-}));
+// jest.mock('jsonwebtoken', () => ({
+//   sign: jest.fn(() => 'mocked_token'),
+//   verify: jest.fn(() => ({ userId: 'mocked_user_id' })),
+// }));
 
 describe('Auth API', () => {
   describe('POST /signup', () => {
