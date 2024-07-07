@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.3.2] - 2024-07-07
+### :white_check_mark: Tests
+- [`bd82619`](https://github.com/Ki-Blog/BlogMitDashboard/commit/bd82619bfd81706020823990486d047d784d6913) - add mocked firebase-admin in auth-unittest *(commit by [@Onben](https://github.com/Onben))*
+- [`37f518c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/37f518cdecf9d00555a32c4b7b0a80a6d91b464c) - test the pipeline  auth-unittest *(commit by [@Onben](https://github.com/Onben))*
+- [`03f47c2`](https://github.com/Ki-Blog/BlogMitDashboard/commit/03f47c246948e299d2cab56e42c5ec893dad28c6) - test the pipline build-deploy-and-sync-s3 *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
+
+
 ## [v1.3.1] - 2024-07-07
 ### :sparkles: New Features
 - [`8c596bb`](https://github.com/Ki-Blog/BlogMitDashboard/commit/8c596bbcde0045e8ad41c5e7c3905076f0af9798) - added tf state bucket *(commit by [@kpblmMik](https://github.com/kpblmMik))*
@@ -395,3 +402,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.18]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.17...v1.2.18
 [v1.3.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.18...v1.3.0
 [v1.3.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.3.0...v1.3.1
+[v1.3.2]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.3.1...v1.3.2
