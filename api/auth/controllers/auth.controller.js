@@ -2,7 +2,11 @@ import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
+import admin from "firebase-admin";
 
+if (!admin.apps.length) {
+  admin.initializeApp({ credential: admin.credential.applicationDefault() });
+}
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -36,7 +40,6 @@ export const signup = async (req, res, next) => {
 
     res.status(201).json(userWithToken);
 
-
   } catch (err) {
     if (err.code === 11000) {
       if (err.keyPattern.username) {
@@ -46,6 +49,7 @@ export const signup = async (req, res, next) => {
         return next(errorHandler(400, "E-Mail existiert bereits."));
       }
     }
+    console.error('Error during signup:', err);
     next(err);
   }
 };
@@ -54,7 +58,7 @@ export const signin = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password || email === "" || password === "") {
-    next(errorHandler(400, "Bitte alle Felder ausfüllen."));
+    return next(errorHandler(400, "Bitte alle Felder ausfüllen."));
   }
   try {
     const validUser = await User.findOne({ email });
@@ -74,7 +78,8 @@ export const signin = async (req, res, next) => {
     userWithToken.token = token; 
 
     res.status(200).json(userWithToken); 
-} catch (err) {
+  } catch (err) {
+    console.error('Error during signin:', err);
     next(err);
   }
 };
@@ -82,31 +87,34 @@ export const signin = async (req, res, next) => {
 export const google = async (req, res, next) => {
   const { email, name, googlePhotoUrl } = req.body;
   try {
+    console.log('Google auth request body:', req.body);
+    if (!email) {
+      return next(errorHandler(400, "E-Mail ist erforderlich."));
+    }
     const user = await User.findOne({ email });
     if (user) {
-      const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin},process.env.JWT_SECRET);
+      const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET);
       const userWithToken = user.toObject();
       userWithToken.token = token;
       res.status(200).json(userWithToken);
-
-      } else {
-        const generatedPassword = Math.random().toString(36).slice(-8) + 
-        Math.random().toString(36).slice(-8);
-        const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
-        const newUser = new User({
-          username: name.toLowerCase().split(" ").join("") + Math.random().toString(9).slice(-4),
-          email,
-          password: hashedPassword,
-          profilePicture: googlePhotoUrl,
-        });
-        await newUser.save();
-        const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin},process.env.JWT_SECRET);
-        const userWithToken = newUser.toObject();
-        userWithToken.token = token;
-        res.status(200).json(userWithToken);
+    } else {
+      const generatedPassword = Math.random().toString(36).slice(-8) + 
+      Math.random().toString(36).slice(-8);
+      const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+      const newUser = new User({
+        username: name.toLowerCase().split(" ").join("") + Math.random().toString(9).slice(-4),
+        email,
+        password: hashedPassword,
+        profilePicture: googlePhotoUrl,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin }, process.env.JWT_SECRET);
+      const userWithToken = newUser.toObject();
+      userWithToken.token = token;
+      res.status(200).json(userWithToken);
     }
   } catch (err) {
+    console.error('Error during Google auth:', err);
     next(err);
   }
 };
-
