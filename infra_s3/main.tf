@@ -9,6 +9,13 @@ terraform {
       version = "5.51.1"
     }
   }
+  backend "s3" {
+    bucket         = "aiq-tfstate"
+    key            = "1/terraform.tfstate"
+    region         = "eu-central-1"
+    dynamodb_table = "aiq-terraform-lock-table"
+    encrypt        = true
+  }
 }
 # S3 Bucket for hosting the Helm charts
 resource "aws_s3_bucket" "helmchart" {
