@@ -355,14 +355,6 @@ describe('Comment Routes', () => {
     expect(Comment.find().sort).toHaveBeenCalledWith({ createdAt: -1 }); 
     expect(Comment.find().sort().skip).toHaveBeenCalledWith(0);
     expect(Comment.find().sort().skip().limit).toHaveBeenCalledWith(10);
-    // expect(Comment.countDocuments).toHaveBeenCalledTimes(2);
-    // expect(res.status).toHaveBeenCalledWith(200);
-    // expect(res.json).toHaveBeenCalledWith({
-    //   comments: mockComments,
-    //   totalComments: mockTotalComments,
-    //   lastMonthComments: mockLastMonthComments,
-    // });
-    // expect(next).not.toHaveBeenCalled();
   });
 
   it('should return 403 error if user is not admin', async () => {

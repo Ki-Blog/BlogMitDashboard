@@ -4,7 +4,6 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { app, server } from '../index.js'
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken'; //my test
 jest.setTimeout(30000);
 
 let mongoServer;

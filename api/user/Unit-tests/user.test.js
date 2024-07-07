@@ -12,7 +12,6 @@ import request from 'supertest';
 import { app, server } from '../index.js';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
-import { errorHandler } from '../utils/error.js'; 
 import { verifyToken } from '../utils/verifyUser.js';
 
 
