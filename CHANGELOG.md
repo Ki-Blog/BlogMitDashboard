@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.3.1] - 2024-07-07
+### :sparkles: New Features
+- [`8c596bb`](https://github.com/Ki-Blog/BlogMitDashboard/commit/8c596bbcde0045e8ad41c5e7c3905076f0af9798) - added tf state bucket *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`c7527a0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/c7527a0f09646f671728d13251d1bdbf66869070) - added tf state bucket *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`1aed6a0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/1aed6a01ca3a94b717950da47c66bf42d69acafa) - adjusted home page to easy swithc between video variants *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+### :bug: Bug Fixes
+- [`b609433`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b60943304370a1a6f034a4f3f057aeccc243f807) - adjusted destroy job configuration *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`64c3468`](https://github.com/Ki-Blog/BlogMitDashboard/commit/64c3468e0ff46947cde7bb9b35f4604b6bc4a4e1) - adjusted destroy job configuration *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`ceaddb3`](https://github.com/Ki-Blog/BlogMitDashboard/commit/ceaddb38e427ae0ccb329da38ea4c71f3bfe35d7) - adjusted destroy job configuration *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`73757ce`](https://github.com/Ki-Blog/BlogMitDashboard/commit/73757cef20760354a6a3ef43ffe8fc0a3137f15b) - adjusted destroy job configuration *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`663310c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/663310c1ce698e7e59a637b75dc18fc7ba19253b) - adjusted destroy job configuration *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`168ec73`](https://github.com/Ki-Blog/BlogMitDashboard/commit/168ec7398876168c5865027e324385e71dca8c99) - adjusted destroy job configuration *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`4c0b35d`](https://github.com/Ki-Blog/BlogMitDashboard/commit/4c0b35da069e29f4af8daa69f15f30947c57a637) - logging GoogleAuth *(commit by [@Mone19](https://github.com/Mone19))*
+- [`45bc750`](https://github.com/Ki-Blog/BlogMitDashboard/commit/45bc7509ea702cb5f52343a2bcf496d1b3c0d213) - logging GoogleAuth *(commit by [@Mone19](https://github.com/Mone19))*
+
+### :white_check_mark: Tests
+- [`d3e6348`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d3e6348040c4b8f9ae2d9f6691366b4960280c8b) - replaced video on homepage *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`182a809`](https://github.com/Ki-Blog/BlogMitDashboard/commit/182a809c3baf55190a5a649e446c719dfde31044) - state bucket *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`a43d876`](https://github.com/Ki-Blog/BlogMitDashboard/commit/a43d8762d308c13e10720ef858759b0d11b4b24d) - state bucket *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`705b9b0`](https://github.com/Ki-Blog/BlogMitDashboard/commit/705b9b05318287e0b8e56979ac4ff6e9d0c423d3) - chaged video on homepage *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`b0acaa9`](https://github.com/Ki-Blog/BlogMitDashboard/commit/b0acaa9012258a39c7e66b659cb9ea3dcb075d78) - chaged video on homepage *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`7bd4403`](https://github.com/Ki-Blog/BlogMitDashboard/commit/7bd440386f4a42c146e42d038f8099cc8d0f1d70) - added state bucket for helm chart release *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
 ## [v1.3.0] - 2024-07-05
 ### :sparkles: New Features
 - [`d7ca7b8`](https://github.com/Ki-Blog/BlogMitDashboard/commit/d7ca7b8e0c143e8667005c149a4e10b56c51f6b5) - Release new version of BlogDashboard-chart *(commit by [@Sadek-Murad](https://github.com/Sadek-Murad))*
@@ -369,3 +394,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.2.17]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.16...v1.2.17
 [v1.2.18]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.17...v1.2.18
 [v1.3.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.18...v1.3.0
+[v1.3.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.3.0...v1.3.1
