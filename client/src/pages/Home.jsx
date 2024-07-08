@@ -5,7 +5,7 @@ import videoVariant1 from '../video/animation1.mp4';
 import videoVariant2 from '../video/animation2.mp4';
 import fallbackImage from '../images/fallback.png';
 
-const useVariant1 = false;
+const useVariant1 = true;
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 

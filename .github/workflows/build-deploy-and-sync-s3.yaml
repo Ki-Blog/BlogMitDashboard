@@ -2,8 +2,8 @@ name: Build, Deploy, and Sync S3
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
   workflow_dispatch:
 
 env:
