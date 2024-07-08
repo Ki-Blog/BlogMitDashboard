@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [v1.3.3] - 2024-07-08
+### :white_check_mark: Tests
+- [`831ee5c`](https://github.com/Ki-Blog/BlogMitDashboard/commit/831ee5ceb83f1815064afa757f73342d1c11d58e) - state bucket *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`6c7b5dc`](https://github.com/Ki-Blog/BlogMitDashboard/commit/6c7b5dc3c66d0bc1c7e57a515aa41f84fe934243) - build app *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+- [`2e87391`](https://github.com/Ki-Blog/BlogMitDashboard/commit/2e8739146594388032b0f56fb0132e850053e77d) - mystery change *(commit by [@kpblmMik](https://github.com/kpblmMik))*
+
+
 ## [v1.3.2] - 2024-07-07
 ### :white_check_mark: Tests
 - [`bd82619`](https://github.com/Ki-Blog/BlogMitDashboard/commit/bd82619bfd81706020823990486d047d784d6913) - add mocked firebase-admin in auth-unittest *(commit by [@Onben](https://github.com/Onben))*
@@ -403,3 +410,4 @@ All notable changes to this project will be documented in this file. See [standa
 [v1.3.0]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.2.18...v1.3.0
 [v1.3.1]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.3.0...v1.3.1
 [v1.3.2]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.3.1...v1.3.2
+[v1.3.3]: https://github.com/Ki-Blog/BlogMitDashboard/compare/v1.3.2...v1.3.3
