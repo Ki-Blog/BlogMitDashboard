@@ -5,7 +5,7 @@ variable "region" {
 }
 
 variable "clustername" {
-  description = "aiq-ekss"
+  description = "aiq-eks"
   type        = string
-  default     = "aiq-ekss"
+  default     = "aiq-eks"
 }
