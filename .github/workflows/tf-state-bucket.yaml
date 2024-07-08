@@ -3,7 +3,7 @@ name: terraform state bucket
 on:
   push:
     branches:
-      - feature/test
+      - main  
 
 jobs:
   terraform:

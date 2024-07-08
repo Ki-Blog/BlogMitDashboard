@@ -1,8 +1,5 @@
 # BlogMitDashboard1
 
-git tag -a v1.3.0 -m "Release version 1.3.0"
-git push origin v1.3.0
-
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode
 
@@ -14,8 +11,8 @@ helm upgrade --install ingress-nginx ingress-nginx \
   --namespace ingress-nginx --create-namespace
 
   # Tag erstellen 
-  git tag -a v1.2.8 -m "v1.2.8"
-  git push origin v1.2.8
+git tag -a v1.3.3 -m "Release version 1.3.3"
+git push origin v1.3.3
 
 
   helm upgrade --install aiq-release . -f values.yaml -f secrets.yaml
