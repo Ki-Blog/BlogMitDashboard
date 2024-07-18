@@ -4,7 +4,7 @@ hpa:
   enabled: true
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 20
+  targetCPUUtilizationPercentage: 5
 
 
 aiqauth:

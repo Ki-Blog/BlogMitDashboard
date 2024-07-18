@@ -116,4 +116,4 @@ resource "helm_release" "kube_prometheus_stack" {
   create_namespace = true
 
   depends_on = [null_resource.helm_repo_prometheus]
-}
+}  

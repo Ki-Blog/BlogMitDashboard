@@ -8,7 +8,7 @@ export let options = {
     { duration: '2m', target: 20 },    
   ],
   thresholds: {
-    http_req_duration: ['p(95)<200'], // 95% der Anfragen müssen unter 200ms sein
+    http_req_duration: ['p(95)<200'], 
   },
 };
 
